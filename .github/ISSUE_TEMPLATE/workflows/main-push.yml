@@ -1,0 +1,45 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # main 브랜치 머지지될 때 실행
+
+jobs:
+  build:
+    name: Build Next.js
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # 전체 커밋 이력
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "18" # Node.js 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build website
+        run: npm run build
+
+      - name: Export static files
+        run: npm run export # Next.js를 정적 HTML로
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Add .nojekyll to prevent Jekyll processing
+        run: echo > out/.nojekyll # .nojekyll 파일을 추가하여 Jekyll을 비활성화
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+        with:
+          # 'out' 폴더를 GitHub Pages에 배포
+          path: out # Next.js에서 내보낸 정적 파일이 위치한 폴더
