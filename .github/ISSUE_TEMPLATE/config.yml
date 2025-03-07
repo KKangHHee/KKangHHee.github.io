@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "Chore"
+    url: "/issues/new?template=⚙chore-template.md"
+    about: "일반적인 작업을 기록하는 템플릿입니다."
+  - name: "Other"
+    url: "/issues/new?template=🎨other-template.md"
+    about: "기타 작업을 기록하는 템플릿입니다."
+  - name: "Fix"
+    url: "/issues/new?template=🔧fix-template.md"
+    about: "버그 수정과 관련된 이슈를 기록하는 템플릿입니다."
+  - name: "Feature"
+    url: "/issues/new?template=🛠feature-template.md"
+    about: "새로운 기능 추가와 관련된 이슈를 기록하는 템플릿입니다."
