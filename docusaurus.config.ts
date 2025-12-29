@@ -2,37 +2,28 @@ import type * as Preset from "@docusaurus/preset-classic";
 import type { Config } from "@docusaurus/types";
 import { themes as prismThemes } from "prism-react-renderer";
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
 const config: Config = {
-  title: "Kang-hee portfolio",
-  tagline: "Dinosaurs are cool",
-  favicon: "img/favicon.ico",
+  title: "Kang-hee",
+  tagline: "견고하고 확장 가능한 백엔드를 지향합니다.",
+  // favicon: "img/favicon.ico",
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+    v4: true,
   },
 
-  // Set the production url of your site here
-  url: "https://your-docusaurus-site.example.com",
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
+  url: "https://KKangHHee.github.io",
   baseUrl: "/",
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: "facebook", // Usually your GitHub org/user name.
-  projectName: "docusaurus", // Usually your repo name.
+  organizationName: "KKangHHee", // Usually your GitHub org/user name.
+  projectName: "KKangHHee.github.io", // Usually your repo name.
+  deploymentBranch: "gh-pages", // deployment branch
 
   onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "warn",
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: "en",
-    locales: ["en"],
+    defaultLocale: "ko", // settings language
+    locales: ["ko"],
   },
 
   presets: [
@@ -41,21 +32,20 @@ const config: Config = {
       {
         docs: {
           sidebarPath: "./sidebars.ts",
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
+          routeBasePath: "docs",
           editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+            "https://github.com/KKangHHee/KKangHHee.github.io/tree/main/",
         },
         blog: {
           showReadingTime: true,
+          blogTitle: "Troubleshooting & Learning",
+          blogDescription: "개발 중 겪은 문제와 학습 기록",
           feedOptions: {
             type: ["rss", "atom"],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+            "https://github.com/KKangHHee/KKangHHee.github.io/tree/main/",
           // Useful options to enforce blogging best practices
           onInlineTags: "warn",
           onInlineAuthors: "warn",
@@ -69,27 +59,31 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
     colorMode: {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: "My Site",
-      logo: {
-        alt: "My Site Logo",
-        src: "img/logo.svg",
-      },
+      title: "Kang-hee.log",
       items: [
         {
           type: "docSidebar",
           sidebarId: "tutorialSidebar",
           position: "left",
-          label: "Tutorial",
+          label: "📁 Projects",
         },
-        { to: "/blog", label: "Blog", position: "left" },
         {
-          href: "https://github.com/facebook/docusaurus",
+          to: "/docs/resume",
+          label: "📄 Resume",
+          position: "left",
+        },
+        {
+          to: "/blog",
+          label: "✍️ Blog",
+          position: "left",
+        },
+        {
+          href: "https://github.com/KKangHHee",
           label: "GitHub",
           position: "right",
         },
@@ -97,52 +91,32 @@ const config: Config = {
     },
     footer: {
       style: "dark",
-      links: [
-        {
-          title: "Docs",
-          items: [
-            {
-              label: "Tutorial",
-              to: "/docs/intro",
-            },
-          ],
-        },
-        {
-          title: "Community",
-          items: [
-            {
-              label: "Stack Overflow",
-              href: "https://stackoverflow.com/questions/tagged/docusaurus",
-            },
-            {
-              label: "Discord",
-              href: "https://discordapp.com/invite/docusaurus",
-            },
-            {
-              label: "X",
-              href: "https://x.com/docusaurus",
-            },
-          ],
-        },
-        {
-          title: "More",
-          items: [
-            {
-              label: "Blog",
-              to: "/blog",
-            },
-            {
-              label: "GitHub",
-              href: "https://github.com/facebook/docusaurus",
-            },
-          ],
-        },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      // links: [
+      //   {
+      //     title: "Contents",
+      //     items: [
+      //       { label: "Projects", to: "/docs/intro" },
+      //       { label: "Blog", to: "/blog" },
+      //     ],
+      //   },
+      //   {
+      //     title: "Contact",
+      //     items: [
+      //       { label: "GitHub", href: "https://github.com/KKangHHee" },
+      //       { label: "Email", href: "skh8609@naver.com" },
+      //       {
+      //         label: "Linked-In",
+      //         href: "https://www.linkedin.com/in/kanghee-shin-98ab90345/",
+      //       },
+      //     ],
+      //   },
+      // ],
+      copyright: `Copyright © ${new Date().getFullYear()} Kang-hee. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+      additionalLanguages: ["java", "sql"],
     },
   } satisfies Preset.ThemeConfig,
 };
