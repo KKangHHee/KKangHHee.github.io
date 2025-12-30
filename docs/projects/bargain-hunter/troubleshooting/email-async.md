@@ -285,3 +285,7 @@ public void handleVerificationCodeCreated(VerificationCodeCreatedEvent event) {
 
 - [Spring Framework - Event Publishing](https://docs.spring.io/spring-framework/reference/core/beans/context-introduction.html#context-functionality-events)
 - [Spring Framework - Task Execution and Scheduling](https://docs.spring.io/spring-framework/reference/integration/scheduling.html)
+
+## 9. PR
+
+[관련 PR](https://github.com/JocketDan/jocketdanBackend/pull/34)

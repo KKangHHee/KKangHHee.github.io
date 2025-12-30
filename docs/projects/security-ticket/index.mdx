@@ -6,20 +6,20 @@ description: 정보보호 컴플라이언스 점검 디지털화 플랫폼
 
 # 🔐 Security Ticket Platform
 
-> **정보보호 컴플라이언스(ISMS-P, ISO27001) 점검을 디지털화한 웹 기반 관리 플랫폼**
->
+> **컴플라이언스(ISMS-P, ISO27001) 점검을 디지털화한 웹 기반 관리 플랫폼**  
 > Excel·이메일 중심의 수동 프로세스 → 웹 기반 자동화 전환
 
 ---
 
 ## 📋 프로젝트 개요
 
-| 항목        | 내용                                                         |
-| ----------- | ------------------------------------------------------------ |
-| **기간**    | 2025.04 ~ 2025.05 (2개월)                                    |
-| **팀 구성** | BE 8명 (A팀 4명, B팀 4명), FE 3명                            |
-| **역할**    | Backend Developer (B팀 - 컴플라이언스 검증/사용자 관리 담당) |
-| **배포**    | 폐쇄망 온프레미스 + Nexus 패키지 관리                        |
+| 항목        | 내용                                  |
+| ----------- | ------------------------------------- |
+| **기간**    | 2025.04 ~ 2025.05 (2개월)             |
+| **팀 구성** | BE 8명 (A팀 4명, B팀 4명), FE 3명     |
+| **역할**    | Backend Developer (B팀)               |
+| **기여도**  | 15% (사용자 관리 담당)                |
+| **배포**    | 폐쇄망 온프레미스 + Nexus 패키지 관리 |
 
 ### 핵심 문제 인식
 
@@ -41,39 +41,29 @@ description: 정보보호 컴플라이언스 점검 디지털화 플랫폼
 
 ## 🏗️ 시스템 아키텍처
 
+### ERD
+
+![erd](./img/erd.png)
+
+### Flow chart
+
+![flow chart](./img/flow-chart.svg)
+
 ### 백엔드 구조
 
-```
-┌─────────────────────────────────────────┐
-│        Admin Dashboard (관리자)         │
-│  - 회원 관리                             │
-│  - 컴플라이언스 검증                     │
-│  - 보안 티켓 관리                        │
-└────────────┬────────────────────────────┘
-             │
-             ▼
-┌────────────────────────────────────────┐
-│   Spring Boot 3.x (Monolithic)         │
-│  ┌──────────────┬──────────────────┐   │
-│  │   JPA        │    MyBatis       │   │
-│  │  (기본 CRUD)  │  (복잡한 검색)    │   │
-│  └──────────────┴──────────────────┘   │
-└────────────┬───────────────────────────┘
-             │
-             ▼
-   ┌─────────┴─────────┐
-   │                   │
-┌──▼────┐        ┌─────▼─────┐
-│ MySQL │        │   Redis   │
-│(메인DB) │        │ (세션/캐시)│
-└───────┘        └───────────┘
-```
+![architecture](./img/system-architecure.svg)
 
-### 핵심 설계 원칙
+- **배포 환경 특징**
 
-- ✅ **하이브리드 ORM**: JPA(CRUD) + MyBatis(복잡 검색)
-- ✅ **세션 기반 인증**: Spring Security 커스텀 구현
-- ✅ **역할 기반 접근 제어**: 최고 관리자 / 관리자 / 고객사
+  - 폐쇄망 기반 온프레미스 + Nexus로 패키지 관리
+  - Admin: 내부망 직접 접속
+  - Customer: EC2 FE → VPN → 내부망 API 접근 구조
+
+- **핵심 설계 원칙**
+
+  - **하이브리드 ORM**: JPA(CRUD) + MyBatis(복잡 검색)
+  - **세션 기반 인증**: Spring Security 커스텀 구현
+  - **역할 기반 접근 제어**: 최고 관리자 / 관리자 / 고객사
 
 ---
 
@@ -164,15 +154,11 @@ public class LoginService {
 **해결**: MyBatis 동적 SQL + EXISTS 서브쿼리 패턴
 
 ```xml
-
-
   SELECT u.*, c.*, co.*
   FROM user u
   LEFT JOIN client c ON u.client_id = c.client_id
   LEFT JOIN company co ON c.company_id = co.company_id
   WHERE u.client_id IS NOT NULL
-
-
 
     AND (
       (#{range} = 'all' AND (
@@ -187,13 +173,9 @@ public class LoginService {
   ORDER BY u.last_login_at DESC
   LIMIT #{limit} OFFSET #{offset}
 
-
-
-
   SELECT COUNT(*)
   FROM user u
   WHERE u.client_id IS NOT NULL
-
 
     AND (
       u.email LIKE CONCAT('%', #{keyword}, '%')
@@ -203,8 +185,6 @@ public class LoginService {
         AND c.phone_number LIKE CONCAT('%', #{keyword}, '%')
       )
     )
-
-
 ```
 
 **핵심 개선**
@@ -230,11 +210,59 @@ public class LoginService {
 
 **해결**: MyBatis 동적 SQL + EXISTS 패턴
 
-| 항목              | JPA Specification | MyBatis (최종) | 개선율      |
-| ----------------- | ----------------- | -------------- | ----------- |
-| **평균 응답시간** | 24.45ms           | 15.51ms        | **36.8% ↓** |
-| **최대 응답시간** | 83.67ms           | 54ms           | **35% ↓**   |
-| **처리량 (TPS)**  | 221.77            | 273.34         | **23% ↑**   |
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gap: "16px",
+  }}
+>
+  <div>![MyBatis](./img/mybatis_성능.png)</div>
+  <div>
+    <table style={{ width: "100%", fontSize: "14px" }}>
+      <thead>
+        <tr>
+          <th>항목</th>
+          <th>JPA Specification</th>
+          <th>MyBatis (최종)</th>
+          <th>개선율</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <strong>평균 응답시간</strong>
+          </td>
+          <td>24.45ms</td>
+          <td>15.51ms</td>
+          <td>
+            <strong>36.8% ↓</strong>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>최대 응답시간</strong>
+          </td>
+          <td>83.67ms</td>
+          <td>54ms</td>
+          <td>
+            <strong>35% ↓</strong>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>처리량 (TPS)</strong>
+          </td>
+          <td>221.77</td>
+          <td>273.34</td>
+          <td>
+            <strong>23% ↑</strong>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 **MyBatis 개선 전 대비**
 
@@ -301,6 +329,22 @@ Response
 
 - ✅ API 표준화로 FE 연동 시간 **30% 단축** (팀 피드백 기반)
 - ✅ Swagger 문서 자동화로 커뮤니케이션 비용 감소
+  ![img_1](./img/notion_1.png)
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: "16px",
+      height: "100%",
+    }}
+  >
+    <div>
+      ![img_2](./img/notion_2.png)
+      <br />
+      ![img_3](./img/notion_3.png)
+    </div>
+    <div>![img_4](./img/notion_4.png)</div>
+  </div>
 
 ---
 

@@ -43,9 +43,31 @@ description: MSA 기반 국내 관광 지원 서비스
 
 ## 🏗️ 시스템 아키텍처
 
-### MSA 기반 서비스 구조
+### 백엔드 구조
 
-```
+![architecture](./img/system-architecure.png)
+
+### 서비스 구조
+
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: "16px",
+      height: "100%",
+    }}
+  >
+```text
+// 디렉토리 구조
+├─ gateway/  # API Gateway
+├─ auth/     # 인증 및 사용자 관리 서비스
+├─ review/   # 리뷰 서비스
+├─ tour/     # 관광지 정보 서비스
+└─ util/     # LLM 서비스
+````
+
+```text
+// 인증 구조
 ┌─────────────────────────────────────────┐
 │         API Gateway (Spring Cloud)      │
 │  - JWT 검증 (1회)                        │
@@ -64,11 +86,16 @@ description: MSA 기반 국내 관광 지원 서비스
 └─────────┘   └─────────┘
 ```
 
-### 핵심 설계 원칙
+</div>
 
-- ✅ **Gateway 중앙 인증**: JWT 검증을 Gateway에서 1회만 수행 → 각 서비스는 헤더에서 사용자 정보 추출
-- ✅ **이벤트 기반 비동기**: Spring Event + @Async로 이메일 발송 처리
-- ✅ **독립적 배포**: 각 서비스별 Docker 이미지 빌드 → Kubernetes 배포
+- **핵심 설계 원칙**
+  - **Gateway 중앙 인증**: JWT 검증을 Gateway에서 1회만 수행 → 각 서비스는 헤더에서 사용자 정보 추출
+  - **이벤트 기반 비동기**: Spring Event + @Async로 이메일 발송 처리
+  - **독립적 배포**: 각 서비스별 Docker 이미지 빌드 → Kubernetes 배포
+
+### figma
+
+![figma](./img/figma.png)
 
 ---
 
@@ -246,15 +273,14 @@ public class JwtAuthenticationFilter implements GatewayFilter {
 
 ## 🔥 핵심 기술 도전
 
-### 1️⃣ 이메일 발송 API 응답 속도 92% 개선
+### 1️⃣ 이메일 발송 API 응답 속도 92% 개선[(관련 PR 보기)](https://github.com/JocketDan/jocketdanBackend/pull/34)
 
 **문제**: JavaMailSender.send()가 동기 블로킹 (평균 2~3초 대기)
 
 **해결**: Spring Event + @Async 비동기 처리
-
-| 항목              | Before   | After      | 개선율     |
+| 항목 | Before | After | 개선율 |
 | ----------------- | -------- | ---------- | ---------- |
-| API 응답 시간     | 2.5초    | 0.2초      | **92% ↓**  |
+| API 응답 시간 | 2.5초 | 0.2초 | **92% ↓** |
 | 동시 처리 가능 수 | 10 req/s | 100+ req/s | **10배 ↑** |
 
 [상세 분석 보기 →](./troubleshooting/email-async)
