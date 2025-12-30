@@ -3,7 +3,7 @@ import type { Config } from "@docusaurus/types";
 import { themes as prismThemes } from "prism-react-renderer";
 
 const config: Config = {
-  title: "Kang-hee",
+  title: "신강희 | Backend Developer",
   tagline: "견고하고 확장 가능한 백엔드를 지향합니다.",
   // favicon: "img/favicon.ico",
 
@@ -32,9 +32,9 @@ const config: Config = {
       {
         docs: {
           sidebarPath: "./sidebars.ts",
-          routeBasePath: "docs",
-          editUrl:
-            "https://github.com/KKangHHee/KKangHHee.github.io/tree/main/",
+          routeBasePath: "/docs",
+          // editUrl:
+          //   "https://github.com/KKangHHee/KKangHHee.github.io/tree/main/",
         },
         blog: {
           showReadingTime: true,
@@ -44,9 +44,6 @@ const config: Config = {
             type: ["rss", "atom"],
             xslt: true,
           },
-          editUrl:
-            "https://github.com/KKangHHee/KKangHHee.github.io/tree/main/",
-          // Useful options to enforce blogging best practices
           onInlineTags: "warn",
           onInlineAuthors: "warn",
           onUntruncatedBlogPosts: "warn",
@@ -61,21 +58,22 @@ const config: Config = {
   themeConfig: {
     image: "img/docusaurus-social-card.jpg",
     colorMode: {
+      defaultMode: "light",
       respectPrefersColorScheme: true,
     },
     navbar: {
       title: "Kang-hee.log",
       items: [
         {
+          to: "/docs/resume",
+          label: "📄 Resume",
+          position: "left",
+        },
+        {
           type: "docSidebar",
           sidebarId: "tutorialSidebar",
           position: "left",
           label: "📁 Projects",
-        },
-        {
-          to: "/docs/resume",
-          label: "📄 Resume",
-          position: "left",
         },
         {
           to: "/blog",
@@ -91,26 +89,6 @@ const config: Config = {
     },
     footer: {
       style: "dark",
-      // links: [
-      //   {
-      //     title: "Contents",
-      //     items: [
-      //       { label: "Projects", to: "/docs/intro" },
-      //       { label: "Blog", to: "/blog" },
-      //     ],
-      //   },
-      //   {
-      //     title: "Contact",
-      //     items: [
-      //       { label: "GitHub", href: "https://github.com/KKangHHee" },
-      //       { label: "Email", href: "skh8609@naver.com" },
-      //       {
-      //         label: "Linked-In",
-      //         href: "https://www.linkedin.com/in/kanghee-shin-98ab90345/",
-      //       },
-      //     ],
-      //   },
-      // ],
       copyright: `Copyright © ${new Date().getFullYear()} Kang-hee. Built with Docusaurus.`,
     },
     prism: {

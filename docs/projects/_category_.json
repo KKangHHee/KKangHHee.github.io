@@ -1,0 +1,12 @@
+{
+  "label": "📁 Projects",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "title": "Project Portfolio",
+    "description": "최근 진행한 주요 프로젝트입니다. 각 카드를 클릭하면 상세 기술 분석 및 성과를 확인할 수 있습니다.",
+    "slug": "/projects"
+  },
+  "collapsible": true,
+  "collapsed": false
+}

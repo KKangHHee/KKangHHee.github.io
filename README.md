@@ -1,41 +1,97 @@
-# Website
+# 신강희 포트폴리오
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+## 📖 소개
 
-## Installation
+### 주소
 
-```bash
-yarn
+> [🌐 kanghee's github pages](https://kkanghhee.github.io)
+
+### 주요 내용
+
+- 📄 **About**: 경력, 학력, 자격증 및 활동 내역 등 기본 정보
+- 💼 **Projects**: 주요 프로젝트 상세 설명
+- 🔧 **Troubleshooting**: 기술적 이슈 해결 과정
+
+## 📁 프로젝트 구조
+
+```
+.
+├── blog/                      # 포스트 (Troubleshooting 등)
+│   └── troubleshooting/
+│       ├── bargain-hunter/    # Bargain Hunter 트러블슈팅
+│       ├── security-ticket/   # 보안 티켓 트러블슈팅
+│       └── readyvery/         # 레디베리 트러블슈팅
+├── docs/                      # 프로젝트 문서
+│   ├── bargain-hunter/        # Bargain Hunter 프로젝트
+│   ├── security-ticket/       # 보안 티켓 관리 플랫폼
+│   └── readyvery/             # 레디베리 프로젝트
+├── src/
+│   ├── pages/                 # 커스텀 페이지
+│   │   ├── index.tsx          # 메인 페이지
+│   │   └── about.md           # About 페이지
+│   └── css/
+│       └── custom.css         # 커스텀 스타일
+├── static/                    # 정적 파일
+├── docusaurus.config.ts       # Docusaurus 설정
+└── sidebars.ts                # 사이드바 설정
 ```
 
-## Local Development
+## 🎨 주요 기능
 
-```bash
-yarn start
+### 1. 프로젝트 문서화
+
+- 각 프로젝트별 상세한 기술 스택, 담당 역할, 성과 문서화
+- 사이드바를 통한 체계적인 문서 구조
+
+### 2. 트러블슈팅 블로그
+
+- 프로젝트별 기술적 이슈 해결 과정 공유
+- 코드 예시와 함께 상세한 설명
+
+### 3. PDF 출력 최적화
+
+- 인쇄/PDF 저장 시 최적화된 레이아웃
+- 불필요한 요소 자동 제거
+
+### 4. 반응형 디자인
+
+- 다크 모드 지원
+
+## 💻 기술 스택
+
+- **Framework**: Docusaurus 3.x
+- **Language**: TypeScript
+- **Styling**: CSS Modules
+- **Deployment**: GitHub Pages
+
+## 📝 문서 작성 가이드
+
+### 프로젝트 문서 추가
+
+1. `docs/` 디렉터리에 프로젝트 폴더 생성
+2. 다음 파일들 작성:
+   - `overview.md`: 프로젝트 개요
+   - `tech-stack.md`: 기술 스택
+   - `my-role.md`: 담당 역할
+   - `achievements.md`: 주요 성과
+3. `sidebars.ts`에 사이드바 항목 추가
+
+### 트러블슈팅 포스트 추가
+
+1. `blog/troubleshooting/{프로젝트명}/` 디렉터리에 `.md` 파일 생성
+2. Front Matter 작성:
+
+```markdown
+---
+slug: {프로젝트명}/{포스트명}
+title: 포스트 제목
+authors: [shin]
+tags: [태그1, 태그2]
+---
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+## 📞 연락처
 
-## Build
-
-```bash
-yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-## Deployment
-
-Using SSH:
-
-```bash
-USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```bash
-GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+- **Email**: skh8609@naver.com
+- **GitHub**: [github.com/KKangHHee](https://github.com/KKangHHee)
+- **Blog**: [hee-ya07.tistory.com](https://hee-ya07.tistory.com/)
