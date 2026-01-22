@@ -1,0 +1,38 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  margin: 4px;
+  background-color: #f3f4f6; /* 연한 그레이 배경 */
+  border: 1px solid #e5e7eb;
+  border-radius: 20%;
+  vertical-align: middle;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  object-fit: contain; /* 이미지 비율 유지 */
+  display: block;
+}
+
+.label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #374151;
+  white-space: nowrap;
+}
+
+@media print {
+  .tag {
+    background-color: #f3f4f6 !important; /* 배경색 강제 유지 */
+    -webkit-print-color-adjust: exact; /* 크롬/사파리 배경색 인쇄 허용 */
+    print-color-adjust: exact;
+    border: 1px solid #d1d5db !important;
+  }
+
+  .label {
+    color: #000 !important; /* 인쇄 시 가독성을 위해 완전 검정 */
+  }
+}
