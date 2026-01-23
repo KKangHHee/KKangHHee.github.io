@@ -1,0 +1,49 @@
+.project {
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.meta p {
+  margin: 0;
+  font-size: 0.9rem;
+  border-left: 2px solid #222; /* 좌측에 얇은 선을 주어 그룹화 */
+  padding-left: 12px;
+}
+
+.flowList {
+  margin-top: 0.6rem;
+  padding-left: 1.1rem;
+}
+
+.flowItem {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* 🎯 색상 역할 분리 */
+.domain {
+  color: #666;
+}
+
+.result {
+  text-decoration: underline; /* 혹은 배경색 없이 굵게만 */
+  text-underline-offset: 3px;
+}
+
+.extraList {
+  margin-top: 0.5rem;
+  padding-left: 1.1rem;
+  color: #333;
+}
+
+.extraList li {
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
