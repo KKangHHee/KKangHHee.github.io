@@ -1,10 +1,19 @@
 import ProjectItem from "@site/src/components/resume/projectItem/ProjectItem";
-import TechTag from "@site/src/components/resume/tag/TechTag";
 import { PROJECTS } from "@site/src/pages/projects.data";
 import Layout from "@theme/Layout";
 import styles from "./resume.module.css";
 
 export default function Resume() {
+  const stackList = (stack: string) => {
+    stack.split(",").map((item) => item.trim());
+  };
+  const STACKS = {
+    BE: "Java, SpringBoot, JPA, MyBatis",
+    DB: "MySQL, PostgreSQL",
+    INFRA: "AWS, Docker, GitHubActions, Jenkins",
+    FE: "React, TypeScript",
+  };
+
   return (
     <Layout title="Resume">
       <main className={styles.container}>
@@ -58,51 +67,21 @@ export default function Resume() {
 
         <section className={styles.section}>
           <h2>Stack & Tools</h2>
-
-          <div className={styles.stackGroup}>
-            <div className={styles.stackRow}>
-              <span className={styles.stackLabel}>Core</span>
-              <div className={styles.stackItems}>
-                <TechTag src="/img/resume/java.svg" label="Java" />
-                <TechTag src="/img/resume/spring.svg" label="Spring Boot" />
-                <TechTag
-                  src="/img/resume/springsecurity.svg"
-                  label="Spring Security"
-                />
-                <TechTag src="/img/resume/jpa.svg" label="JPA" />
-                <TechTag src="/img/resume/mybatis.svg" label="MyBatis" />
-              </div>
-            </div>
-
-            <div className={styles.stackRow}>
-              <span className={styles.stackLabel}>DB</span>
-              <div className={styles.stackItems}>
-                <TechTag src="/img/resume/postgresql.svg" label="PostgreSQL" />
-                <TechTag src="/img/resume/mysql.svg" label="MySQL" />
-              </div>
-            </div>
-
-            <div className={styles.stackRow}>
-              <span className={styles.stackLabel}>Infra</span>
-              <div className={styles.stackItems}>
-                <TechTag src="/img/resume/aws.svg" label="AWS" />
-                <TechTag src="/img/resume/docker.svg" label="Docker" />
-                <TechTag
-                  src="/img/resume/githubactions.svg"
-                  label="GitHubActions"
-                />
-                <TechTag src="/img/resume/jenkins.svg" label="Jenkins" />
-              </div>
-            </div>
-
-            <div className={styles.stackRow}>
-              <span className={styles.stackLabel}>Frontend</span>
-              <div className={styles.stackItems}>
-                <TechTag src="/img/resume/react.svg" label="React" />
-                <TechTag src="/img/resume/typescript.svg" label="TypeScript" />
-              </div>
-            </div>
-          </div>
+          <ul className={styles.stackTextList}>
+            <li>
+              <strong>Backend</strong> : Java, Spring Boot, Spring Security,
+              JPA, MyBatis
+            </li>
+            <li>
+              <strong>DB / Cache</strong> : MySQL, PostgreSQL, Redis
+            </li>
+            <li>
+              <strong>Infra</strong> : AWS, Docker, GitHub Actions, Jenkins
+            </li>
+            <li>
+              <strong>Frontend</strong> : React, TypeScript
+            </li>
+          </ul>
         </section>
 
         <section className={styles.section}>
@@ -116,21 +95,16 @@ export default function Resume() {
           <h2>Education</h2>
           <ul>
             <li>
-              <strong>웹 풀스택 개발자 과정 (Java / Spring Boot)</strong>
-              <br />
-              2024.12 ~ 2025.05 (총 920시간)
+              <strong>웹 풀스택 개발자 과정</strong> (2024.12 ~ 2025.05)
               <ul>
-                <li>REST API 설계 및 Spring Boot 기반 백엔드 실습 중심 교육</li>
                 <li>
-                  코드 리뷰 & 피드백 기반 학습으로 클린 코드·리팩토링 습관 형성
+                  Spring Boot 기반 REST API 설계, DB 튜닝, Redis 캐시 전략 실습
                 </li>
-                <li>DB 튜닝, Redis, 캐시 전략을 활용한 성능 최적화 경험</li>
               </ul>
             </li>
             <li>
-              <strong>가톨릭대학교 컴퓨터정보공학부</strong>
-              <br />
-              2019.03 ~ 2025.08 (졸업)
+              <strong>가톨릭대학교 컴퓨터정보공학부</strong> (2019.03 ~ 2025.08
+              | 졸업)
               <ul>
                 <li>
                   주요 이수 과목: 데이터베이스 설계, 데이터 통신, 운영체제
@@ -141,7 +115,7 @@ export default function Resume() {
         </section>
 
         <section className={styles.section}>
-          <h2>Certifications</h2>
+          <h2>Certifications & Activities</h2>
           <ul>
             <li>
               <strong>정보처리기사</strong> (2024.12 | 한국산업인력공단)
@@ -150,34 +124,17 @@ export default function Resume() {
               <strong>SQLD</strong> (2024.12 | 한국데이터산업진흥원)
             </li>
           </ul>
-        </section>
-
-        <section className={styles.section}>
-          <h2>Activities</h2>
           <ul>
             <li>
               <strong>교내 데이터베이스 튜터</strong> (2024.09 ~ 2024.11)
-              <ul>
-                <li>학우 대상 데이터 모델링 및 MySQL 쿼리 설계 지도</li>
-                <li>JOIN / 서브쿼리 / 인덱스 개념 코칭 → 학습 성취도 향상</li>
-              </ul>
             </li>
             <li>
               <strong>하나소셜벤처유니버시티 – 청년 창업 교육 수료</strong>{" "}
-              (2024.07)
-              <ul>
-                <li>사용자 중심 서비스 기획 및 비즈니스 모델 설계 실습</li>
-                <li>
-                  팀 단위 피칭을 통해 문제 정의 → 해결안 제시 → 설득 구조 경험
-                </li>
-              </ul>
+              (2024.07) — 창업 아이템 기획/피칭 경험
             </li>
             <li>
-              <strong>UMC 대학생 IT 연합 동아리</strong> (2023.03 ~ 2023.08)
-              <ul>
-                <li>프론트엔드 스터디 및 팀 프로젝트 참여</li>
-                <li>Git 기반 협업 및 역할 분담을 통한 개발 프로세스 경험</li>
-              </ul>
+              <strong>UMC 대학생 IT 연합 동아리</strong> (2023.03 ~ 2023.08) —
+              프론트 협업 경험
             </li>
           </ul>
         </section>

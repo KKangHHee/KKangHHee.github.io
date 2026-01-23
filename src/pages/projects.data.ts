@@ -35,8 +35,7 @@ export const PROJECTS: ProjectProps[] = [
       },
     ],
     extras: [
-      "Spring Cloud Gateway를 통한 중앙 집중형 JWT 검증 및 서비스 오버헤드 제거",
-      "팀 내 통합 API 규약 문서 작성 → BE/FE 협업 속도 및 구현 일관성 향상",
+      "Spring Cloud Gateway를 통한 중앙 집중형 JWT 검증 및 서비스 오버헤드 최소화",
       "Auth Service 담당자로서 전체 인증/인가 아키텍처 설계 주도",
     ],
   },
@@ -48,7 +47,7 @@ export const PROJECTS: ProjectProps[] = [
     period: "2025.04 ~ 2025.05 (2개월)",
     role: "백엔드 API 설계 및 사용자 관리 도메인 개발",
     stack:
-      "Java, Spring Boot, MySQL, JPA, MyBatis, Redis, Spring Security, Docker, NginX, gitLab",
+      "Java, Spring Boot, MySQL, JPA, MyBatis, Redis, Docker, NginX, gitLab",
     members: "BE 8인, FE 3인",
     service: "수동 점검 프로세스를 디지털화한 웹 기반 관리 시스템",
     flows: [
@@ -59,19 +58,11 @@ export const PROJECTS: ProjectProps[] = [
         solution: "MyBatis 하이브리드 도입 및 EXISTS 서브쿼리 최적화로",
         result: "평균 응답 시간 36% 개선 및 최대 응답 시간 88.5% 단축",
       },
-      {
-        title: "Spring Security 커스텀 제어를 통한 보안 로직 고도화",
-        domain: "사용자 인증",
-        problem:
-          "표준 필터로 처리 어려운 복잡한 로그인 비즈니스 로직(잠금, 첫 로그인 등)",
-        solution: "SecurityContext 및 SessionStrategy 커스텀 제어로",
-        result: "유연한 인증 플로우 확보 및 중복 로그인 제어 구현",
-      },
     ],
     extras: [
-      "코드 컨벤션 정의, 공통 응답 및 예외처리 표준화",
-      "사용자 관리 도메인 담당 및 데이터 모델링 수행",
-      "Swagger(Springdoc) 도입으로 프론트엔드 연동 시간 30% 단축",
+      "Spring Security 커스텀 제어를 통해 복잡한 로그인 비즈니스 로직(잠금 등) 해결",
+      "코드 컨벤션 정의, 공통 응답 및 예외 처리 표준화 주도",
+      "팀 내 통합 API 규약 문서 작성 → BE/FE 협업 속도 및 구현 일관성 향상",
     ],
   },
 
@@ -84,22 +75,9 @@ export const PROJECTS: ProjectProps[] = [
     stack: "React, TypeScript, Recoil, Axios, React Query, Toss Payments SDK",
     members: "BE 2인, FE 4인",
     service: "로컬 카페용 패스트오더 서비스",
-    flows: [
-      {
-        title: "결제 SDK 라이프사이클 최적화를 통한 사용자 경험 개선",
-        domain: "결제 시스템 연동",
-        problem:
-          "옳바르지 않은 Toss SDK 초기화 및 중복 실행으로 인한 화면 깜빡임 및 로딩 지연",
-        solution: "useEffect 의존성 최적화 및 useRef 인스턴스 관리로",
-        result: "결제 로딩 시간 70% 단축 (3s → 1s)",
-      },
-    ],
     extras: [
-      "사용자향 페이지 개발",
-      "결제 모듈 및 쿠폰/포인트/할인 기능 연동",
-      "교내 축제 및 학교 인근 카페 2곳 실사용 배포 및 운영",
-      "사용자 피드백 기반 UI/UX 개선을 통한 주문 완료 이탈률 감소",
-      "API 설계 과정에서 데이터 정합성의 중요성을 체감하여 백엔드로 전향하는 계기 형성",
+      "결제 SDK 라이프사이클 최적화 및 useRef 관리로 결제 로딩 시간 70% 단축(3s→1s)",
+      "결제 모듈 연동 과정에서 데이터 정합성의 중요성을 체감하여 백엔드로 전향하는 계기 형성 ",
     ],
   },
 ];

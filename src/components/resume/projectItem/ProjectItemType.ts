@@ -14,6 +14,6 @@ export type ProjectProps = {
   stack: string;
   members: string;
   service: string;
-  flows: ProjectDetail[];
+  flows?: ProjectDetail[];
   extras?: string[]; // 인프라 / 협업 / 단순구현 등
 };

@@ -48,29 +48,31 @@ export default function ProjectItem({
         </div>
       </dl>
 
-      <section className={styles.flowSection}>
-        <h4 className={styles.solutionEx}>[핵심 문제 해결]</h4>
-        <ul className={styles.flowList}>
-          {flows.map((f, i) => (
-            <li key={i} className={styles.flowItem}>
-              <strong className={styles.flowTitle}>{f.title}</strong>
-              {/* 내용 */}
-              <div className={styles.problemContainer}>
-                <strong className={styles.domain}>&nbsp;{f.domain}</strong>
-                <span> 시,</span>&nbsp;
-                <span className={styles.problem}>{f.problem}</span>
-                <span> 발생</span>
-              </div>
-              {/* 해결 및 성과 */}
-              <div className={styles.solutionContainer}>
-                <span aria-hidden="true">⇒&nbsp;</span>
-                <span className={styles.solution}>{f.solution},</span>&nbsp;
-                <mark className={styles.result}>{f.result}</mark>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </section>
+      {flows && (
+        <section className={styles.flowSection}>
+          <h4 className={styles.solutionEx}>[핵심 문제 해결]</h4>
+          <ul className={styles.flowList}>
+            {flows.map((f, i) => (
+              <li key={i} className={styles.flowItem}>
+                <strong className={styles.flowTitle}>{f.title}</strong>
+                {/* 내용 */}
+                <div className={styles.problemContainer}>
+                  <strong className={styles.domain}>&nbsp;{f.domain}</strong>
+                  <span> 시,</span>&nbsp;
+                  <span className={styles.problem}>{f.problem}</span>
+                  <span> 발생</span>
+                </div>
+                {/* 해결 및 성과 */}
+                <div className={styles.solutionContainer}>
+                  <span aria-hidden="true">⇒&nbsp;</span>
+                  <span className={styles.solution}>{f.solution},</span>&nbsp;
+                  <mark className={styles.result}>{f.result}</mark>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {extras && (
         <footer className={styles.extraFooter}>
