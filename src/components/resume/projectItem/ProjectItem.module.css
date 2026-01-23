@@ -1,49 +1,116 @@
 .project {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   color: #333;
 }
 
 .title {
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  margin-bottom: 6px;
+  margin-bottom: 0.75rem;
 }
 
-.meta p {
-  margin: 0;
+/* Description List 스타일링 */
+.meta {
+  padding: 0 0 1rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.metaItem {
+  display: flex;
   font-size: 0.9rem;
-  border-left: 2px solid #222; /* 좌측에 얇은 선을 주어 그룹화 */
+  border-left: 2px solid #222;
   padding-left: 12px;
 }
 
+.metaItem dt {
+  font-weight: 700;
+  min-width: 80px; /* 라벨 정렬을 위해 너비 확보 */
+  margin-right: 8px;
+}
+
+.metaItem dt::after {
+  content: ":";
+}
+
+.metaItem dd {
+  margin: 0;
+  flex: 1;
+}
+
+.stackContainer {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap; /* 배지가 많으면 다음 줄로 넘김 */
+  gap: 6px; /* 배지 사이 간격 */
+  align-items: center;
+}
+
+/* 개별 기술 배지 스타일 */
+.stackBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  background-color: #f0f0f0; /* 연한 회색 배경 */
+  color: #444;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px; /* 약간 각진 둥근 모서리 */
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.4;
+  transition: all 0.2s ease;
+}
+
+/* 텍스트 강조 및 레이아웃 */
 .flowList {
-  margin-top: 0.6rem;
-  padding-left: 1.1rem;
+  margin-top: 1rem;
+  padding-left: 1.2rem;
+}
+
+.flowTitle {
+  display: block; /* 줄바꿈 */
+  font-size: 1rem;
+  color: #000;
+  margin-bottom: 4px;
 }
 
 .flowItem {
-  margin-bottom: 0.5rem;
-  line-height: 1.5;
-  font-weight: 500;
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
 }
 
-/* 🎯 색상 역할 분리 */
+.flowItem div {
+  border-left: 1.5px solid #b5b5b5;
+  padding-left: 12px;
+}
+
+.solutionEx {
+  font-size: 0.95rem;
+  color: #222;
+  margin: 1.5rem 0 0.5rem 0;
+  border-bottom: 1px solid #f0f0f0; /* 섹션 구분선 */
+  padding-bottom: 4px;
+}
+
+.arrow {
+  margin-right: 6px;
+  color: #222;
+  font-weight: bold;
+}
 .domain {
-  color: #666;
+  color: #555;
+  font-weight: 600;
 }
 
 .result {
-  text-decoration: underline; /* 혹은 배경색 없이 굵게만 */
-  text-underline-offset: 3px;
+  background-color: transparent; /* mark 태그 기본 배경색 제거 */
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .extraList {
-  margin-top: 0.5rem;
-  padding-left: 1.1rem;
-  color: #333;
-}
-
-.extraList li {
-  font-size: 0.9rem;
-  margin-bottom: 4px;
+  margin-top: 0.8rem;
+  padding-left: 1.2rem;
 }

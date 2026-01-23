@@ -12,59 +12,76 @@ export default function ProjectItem({
   flows,
   extras,
 }: ProjectProps) {
-  const metaItems = [
-    { label: "서비스", value: service },
-    { label: "일정", value: period },
-    { label: "기술 스택", value: stack },
-    { label: "참여 인원", value: members },
-  ];
-
+  const stackList = stack.split(",").map((item) => item.trim());
   return (
-    <div className={styles.project}>
-      <h3 className={styles.title}>
-        <span className={styles.organization}>[{organization}]</span> {title}
-      </h3>
+    <article className={styles.project}>
+      <header>
+        <h3 className={styles.title}>
+          <span className={styles.organization}>[{organization}]</span> {title}
+        </h3>
+      </header>
 
-      <div className={styles.meta}>
-        <p>
-          <strong>서비스: </strong> {service}
-        </p>
-        <p>
-          <strong>기간 / 인원 </strong> {period} | {members}
-        </p>
-        <p>
-          <strong>담당 역할: </strong> {role}
-        </p>
-        <p>
-          <strong>기술 스택: </strong> {stack}
-        </p>
-      </div>
+      <dl className={styles.meta}>
+        <div className={styles.metaItem}>
+          <dt>서비스</dt>
+          <dd>{service}</dd>
+        </div>
+        <div className={styles.metaItem}>
+          <dt>기간 / 인원</dt>
+          <dd>
+            {period} | {members}
+          </dd>
+        </div>
+        <div className={styles.metaItem}>
+          <dt>담당 역할</dt>
+          <dd>{role}</dd>
+        </div>
+        <div className={styles.metaItem}>
+          <dt>기술 스택</dt>
+          <dd className={styles.stackContainer}>
+            {stackList.map((s, i) => (
+              <span key={i} className={styles.stackBadge}>
+                {s}
+              </span>
+            ))}
+          </dd>
+        </div>
+      </dl>
 
-      <ol className={styles.flowList}>
-        {flows.map((f, i) => (
-          <li key={i} className={styles.flowItem}>
-            <div>
-              <span className={styles.domain}>{f.domain}</span>&nbsp;
-              <span>시,&nbsp;</span>
-              <span className={styles.problem}>{f.problem}</span>
-              <span> 발생</span>
-            </div>
-            <div>
-              <span>⇒&nbsp;</span>
-              <span className={styles.solution}>{f.solution}</span>&nbsp;
-              <span className={styles.result}>{f.result}</span>
-            </div>
-          </li>
-        ))}
-      </ol>
-
-      {extras && (
-        <ul className={styles.extraList}>
-          {extras.map((text, i) => (
-            <li key={i}>{text}</li>
+      <section className={styles.flowSection}>
+        <h4 className={styles.solutionEx}>[핵심 문제 해결]</h4>
+        <ul className={styles.flowList}>
+          {flows.map((f, i) => (
+            <li key={i} className={styles.flowItem}>
+              <strong className={styles.flowTitle}>{f.title}</strong>
+              {/* 내용 */}
+              <div className={styles.problemContainer}>
+                <strong className={styles.domain}>&nbsp;{f.domain}</strong>
+                <span> 시,</span>&nbsp;
+                <span className={styles.problem}>{f.problem}</span>
+                <span> 발생</span>
+              </div>
+              {/* 해결 및 성과 */}
+              <div className={styles.solutionContainer}>
+                <span aria-hidden="true">⇒&nbsp;</span>
+                <span className={styles.solution}>{f.solution},</span>&nbsp;
+                <mark className={styles.result}>{f.result}</mark>
+              </div>
+            </li>
           ))}
         </ul>
+      </section>
+
+      {extras && (
+        <footer className={styles.extraFooter}>
+          <h4 className={styles.solutionEx}>[주요 기여 및 인사이트]</h4>
+          <ul className={styles.extraList}>
+            {extras.map((text, i) => (
+              <li key={i}>{text}</li>
+            ))}
+          </ul>
+        </footer>
       )}
-    </div>
+    </article>
   );
 }

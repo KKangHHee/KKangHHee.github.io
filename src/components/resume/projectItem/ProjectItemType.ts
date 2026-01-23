@@ -1,4 +1,5 @@
 type ProjectDetail = {
+  title: string;
   problem: string;
   solution: string;
   result: string;
