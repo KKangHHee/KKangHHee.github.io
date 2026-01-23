@@ -22,8 +22,10 @@
 .project {
   margin-bottom: 3rem;
   color: var(--color-secondary); /* #333 통일 */
-  padding-bottom: 2rem;
-  border-bottom: 1px solid var(--color-border);
+  /* padding-bottom: 2rem;
+  border-bottom: 1px solid var(--color-border); */
+  padding-bottom: 0;
+  border-bottom: none;
 }
 
 .project:last-child {
@@ -48,19 +50,25 @@
   font-size: var(--font-size-base); /* 1rem */
 }
 
+.content {
+  padding-left: 1.5rem; /* 제목보다 안쪽으로 들여쓰기 */
+  border-left: 1px solid var(--color-border); /* 내용 왼쪽에 얇은 선을 주어 가이드 역할 */
+  margin-left: 0.5rem; /* 선과 제목 사이의 미세 간격 */
+}
+
 /* ========================================
    📋 메타 정보 (DL 스타일)
    ======================================== */
 .meta {
-  padding: 0 0 1.2rem 0;
+  /* padding: 0 0 0 1.2rem; */
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-  background-color: var(--color-highlight);
-  padding: 1rem;
-  border-radius: 6px;
-  border-left: 3px solid var(--color-primary);
+  gap: 0.1rem;
+  /* margin-bottom: 1rem; */
+  /* background-color: var(--color-highlight); */
+  /* padding: 1rem; */
+  /* border-radius: 6px; */
+  /* border-left: 3px solid var(--color-primary); */
 }
 
 .metaItem {
@@ -101,7 +109,7 @@
 .stackBadge {
   display: inline-flex;
   align-items: center;
-  padding: 4px 10px; /* 패딩 증가 */
+  padding: 2px 4px; /* 패딩 증가 */
   background-color: #f0f0f0;
   color: var(--color-secondary); /* #333 */
   border: 1px solid var(--color-border);

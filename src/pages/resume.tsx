@@ -80,8 +80,68 @@ export default function Resume() {
             <ProjectItem key={idx} {...project} />
           ))}
         </section>
+        <div className={styles.bottomGrid}>
+          {/* 왼쪽: Education */}
+          <section className={styles.section}>
+            <h2>Education</h2>
+            <div className={styles.infoItem}>
+              <div className={styles.infoTitle}>
+                <strong>웹 풀스택 개발자 과정</strong>
+                <span className={styles.period}>(2024.12 ~ 2025.05)</span>
+              </div>
+              <ul className={styles.subDesc}>
+                <li>Java/Spring Boot 기반 REST API 설계 및 실무 중심 교육</li>
+              </ul>
+            </div>
 
-        <section className={styles.section}>
+            <div className={styles.infoItem}>
+              <div className={styles.infoTitle}>
+                <strong>가톨릭대학교 컴퓨터정보공학부</strong>
+                <span className={styles.period}>(2019.03 ~ 2025.08)</span>
+              </div>
+              <ul className={styles.subDesc}>
+                <li>주요 이수: 데이터베이스 설계, 데이터 통신, 운영체제</li>
+              </ul>
+            </div>
+          </section>
+
+          {/* 오른쪽: Certifications & Activities */}
+          <section className={styles.section}>
+            <h2>Certs & Activities</h2>
+            <div className={styles.infoItem}>
+              <div className={styles.infoTitle}>
+                <strong>Certifications</strong>
+              </div>
+              <ul className={styles.subDesc}>
+                <li>정보처리기사 (2024.12)</li>
+                <li>SQLD (SQL 개발자, 2024.12)</li>
+              </ul>
+            </div>
+
+            <div className={styles.infoItem}>
+              <div className={styles.infoTitle}>
+                <strong>Activities</strong>
+              </div>
+              <ul className={styles.subDesc}>
+                <li>
+                  <strong>교내 DB 튜터</strong>
+                  (2024.09)
+                  <br /> : 쿼리 작성 및 정규화 지도
+                </li>
+                <li>
+                  <strong>하나소셜벤처</strong> (2024.07)
+                  <br />: 서비스 기획 및 피칭 수료
+                </li>
+                <li>
+                  <strong>UMC IT 동아리</strong>
+                  (2023.03)
+                  <br />: 프론트엔드 협업 프로젝트
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+        {/* <section className={styles.section}>
           <h2>Education</h2>
           <ul>
             <li>
@@ -126,7 +186,7 @@ export default function Resume() {
               프론트 협업 경험
             </li>
           </ul>
-        </section>
+        </section> */}
       </main>
     </Layout>
   );
