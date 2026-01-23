@@ -7,7 +7,8 @@ export const PROJECTS: ProjectProps[] = [
     title: "Bargain Hunter (Full Stack)",
     period: "2025.07 ~ 2025.10 (4개월)",
     role: "인증/인가 마이크로서비스 설계 주도 및 사용자 도메인 담당",
-    stack: "Java, Spring Boot, PostgreSQL, Redis, Docker, K8s",
+    stack:
+      "Java, Spring Boot, PostgreSQL, Redis, Docker, Kubernetes, Spring Cloud Gateway",
     members: "4인",
     service: "지도를 활용한 국내 관광지 정보 제공 및 LLM 기반 가격 비교 서비스",
     flows: [
@@ -45,7 +46,8 @@ export const PROJECTS: ProjectProps[] = [
     title: "Security Ticket (Back-End)",
     period: "2025.04 ~ 2025.05 (2개월)",
     role: "백엔드 API 설계 및 사용자 관리 도메인 개발",
-    stack: "Java, Spring Boot, MySQL, MyBatis, Redis, Docker",
+    stack:
+      "Java, Spring Boot, MySQL, JPA, MyBatis, Redis, Docker, NginX, gitLab",
     members: "BE 8인, FE 3인",
     service: "수동 점검 프로세스를 디지털화한 웹 기반 관리 시스템",
     flows: [

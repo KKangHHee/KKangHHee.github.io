@@ -1,116 +1,288 @@
+/* ========================================
+   ProjectItem - 일관된 타이포그래피 시스템
+   ======================================== */
+
+/* 📐 타이포그래피 변수 (resume.module.css와 통일) */
+:root {
+  --font-size-h3: 1.25rem; /* 20px - 프로젝트 제목 */
+  --font-size-h4: 1.1rem; /* 17.6px - 하위 섹션 */
+  --font-size-base: 1rem; /* 16px - 본문 */
+  --font-size-small: 0.9rem; /* 14.4px - 보조 */
+  --font-size-xs: 0.85rem; /* 13.6px - 메타 */
+
+  --color-primary: #111; /* 최상위 제목 */
+  --color-secondary: #333; /* 본문 */
+  --color-tertiary: #555; /* 보조 */
+  --color-muted: #777; /* 메타 정보 */
+  --color-border: #e0e0e0; /* 구분선 */
+  --color-highlight: #f8f9fa; /* 배경 강조 */
+}
+
+/* 🎯 프로젝트 카드 */
 .project {
   margin-bottom: 3rem;
-  color: #333;
+  color: var(--color-secondary); /* #333 통일 */
+  /* padding-bottom: 2rem;
+  border-bottom: 1px solid var(--color-border); */
+  padding-bottom: 0;
+  border-bottom: none;
 }
 
+.project:last-child {
+  border-bottom: none;
+}
+
+/* ========================================
+   📌 프로젝트 헤더
+   ======================================== */
 .title {
-  font-size: 1.25rem;
+  font-size: var(--font-size-h3); /* 1.25rem 유지 */
   font-weight: 700;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  color: var(--color-primary); /* #111 */
+  letter-spacing: -0.3px;
+  line-height: 1.4;
 }
 
-/* Description List 스타일링 */
+.organization {
+  color: var(--color-tertiary); /* #555 */
+  font-weight: 600;
+  font-size: var(--font-size-base); /* 1rem */
+}
+
+.content {
+  padding-left: 1.5rem; /* 제목보다 안쪽으로 들여쓰기 */
+  border-left: 1px solid var(--color-border); /* 내용 왼쪽에 얇은 선을 주어 가이드 역할 */
+  margin-left: 0.5rem; /* 선과 제목 사이의 미세 간격 */
+}
+
+/* ========================================
+   📋 메타 정보 (DL 스타일)
+   ======================================== */
 .meta {
-  padding: 0 0 1rem 0;
+  /* padding: 0 0 0 1.2rem; */
   display: flex;
   flex-direction: column;
+  gap: 0.1rem;
+  /* margin-bottom: 1rem; */
+  /* background-color: var(--color-highlight); */
+  /* padding: 1rem; */
+  /* border-radius: 6px; */
+  /* border-left: 3px solid var(--color-primary); */
 }
 
 .metaItem {
   display: flex;
-  font-size: 0.9rem;
-  border-left: 2px solid #222;
-  padding-left: 12px;
+  font-size: var(--font-size-small); /* 0.9rem → 통일 */
+  line-height: 1.5;
 }
 
 .metaItem dt {
-  font-weight: 700;
-  min-width: 80px; /* 라벨 정렬을 위해 너비 확보 */
-  margin-right: 8px;
+  font-weight: 600;
+  color: var(--color-primary); /* #111 */
+  min-width: 90px;
+  margin-right: 12px;
+  flex-shrink: 0;
 }
 
 .metaItem dt::after {
   content: ":";
+  margin-left: 2px;
 }
 
 .metaItem dd {
   margin: 0;
   flex: 1;
+  color: var(--color-secondary); /* #333 */
 }
 
+/* 🏷 기술 스택 컨테이너 */
 .stackContainer {
   margin: 0;
   display: flex;
-  flex-wrap: wrap; /* 배지가 많으면 다음 줄로 넘김 */
-  gap: 6px; /* 배지 사이 간격 */
+  flex-wrap: wrap;
+  gap: 6px;
   align-items: center;
 }
 
-/* 개별 기술 배지 스타일 */
+/* 🎨 기술 스택 배지 */
 .stackBadge {
   display: inline-flex;
   align-items: center;
-  padding: 2px 10px;
-  background-color: #f0f0f0; /* 연한 회색 배경 */
-  color: #444;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px; /* 약간 각진 둥근 모서리 */
-  font-size: 0.85rem;
+  padding: 2px 4px; /* 패딩 증가 */
+  background-color: #f0f0f0;
+  color: var(--color-secondary); /* #333 */
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: var(--font-size-small); /* 0.85rem → 0.9rem 증가 */
   font-weight: 600;
   line-height: 1.4;
   transition: all 0.2s ease;
 }
 
-/* 텍스트 강조 및 레이아웃 */
-.flowList {
-  margin-top: 1rem;
-  padding-left: 1.2rem;
+.stackBadge:hover {
+  background-color: #e8e8e8;
+  border-color: #ccc;
+  transform: translateY(-1px);
 }
 
-.flowTitle {
-  display: block; /* 줄바꿈 */
-  font-size: 1rem;
-  color: #000;
-  margin-bottom: 4px;
-}
-
-.flowItem {
-  margin-bottom: 0.75rem;
-  line-height: 1.6;
-}
-
-.flowItem div {
-  border-left: 1.5px solid #b5b5b5;
-  padding-left: 12px;
+/* ========================================
+   💡 핵심 문제 해결 섹션
+   ======================================== */
+.flowSection {
+  margin-top: 1.5rem;
 }
 
 .solutionEx {
-  font-size: 0.95rem;
-  color: #222;
-  margin: 1.5rem 0 0.5rem 0;
-  border-bottom: 1px solid #f0f0f0; /* 섹션 구분선 */
-  padding-bottom: 4px;
+  font-size: var(--font-size-h4); /* 1.1rem */
+  font-weight: 700;
+  color: var(--color-primary); /* #111 */
+  margin: 1.5rem 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-border);
 }
 
-.arrow {
-  margin-right: 6px;
-  color: #222;
-  font-weight: bold;
+.flowList {
+  margin-top: 1rem;
+  padding-left: 0;
+  list-style: none;
 }
+
+.flowItem {
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+  padding-left: 1rem;
+  border-left: 3px solid var(--color-border);
+}
+
+.flowItem:last-child {
+  margin-bottom: 0;
+}
+
+/* 🔖 문제 해결 제목 */
+.flowTitle {
+  display: block;
+  font-size: var(--font-size-base); /* 1rem */
+  font-weight: 700;
+  color: var(--color-primary); /* #111 */
+  margin-bottom: 0.6rem;
+  line-height: 1.5;
+}
+
+/* 📍 도메인 및 문제 설명 */
+.problemContainer,
+.solutionContainer {
+  padding-left: 12px;
+  margin-bottom: 0.4rem;
+  font-size: var(--font-size-small); /* 0.9rem */
+  line-height: 1.6;
+}
+
 .domain {
-  color: #555;
+  color: var(--color-tertiary); /* #555 */
   font-weight: 600;
+  font-size: var(--font-size-small); /* 0.9rem */
 }
 
+.problem {
+  color: var(--color-secondary); /* #333 */
+  font-weight: 500;
+}
+
+.solution {
+  color: var(--color-secondary); /* #333 */
+  font-weight: 500;
+}
+
+/* ✨ 결과 강조 */
 .result {
-  background-color: transparent; /* mark 태그 기본 배경색 제거 */
-  color: inherit;
+  background-color: transparent;
+  color: var(--color-primary); /* #111 */
   font-weight: 700;
   text-decoration: underline;
-  text-underline-offset: 4px;
+  text-decoration-color: #fbbf24; /* 강조 색상 */
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+/* 🎯 화살표 아이콘 */
+.arrow {
+  margin-right: 6px;
+  color: var(--color-primary); /* #111 */
+  font-weight: bold;
+}
+
+/* ========================================
+   📌 추가 기여 섹션
+   ======================================== */
+.extraFooter {
+  margin-top: 1.5rem;
 }
 
 .extraList {
   margin-top: 0.8rem;
-  padding-left: 1.2rem;
+  padding-left: 1.5rem;
+  list-style: disc;
+}
+
+.extraList li {
+  margin-bottom: 0.6rem;
+  font-size: var(--font-size-small); /* 0.9rem */
+  line-height: 1.6;
+  color: var(--color-secondary); /* #333 */
+}
+
+/* ========================================
+   🖨 PDF 출력 최적화
+   ======================================== */
+@media print {
+  .project {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .stackBadge {
+    background-color: #f0f0f0 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    border: 1px solid #d1d5db !important;
+  }
+
+  .result {
+    color: #000 !important;
+    text-decoration-color: #000 !important;
+  }
+
+  .meta {
+    background-color: #f8f9fa !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+/* ========================================
+   📱 반응형 디자인
+   ======================================== */
+@media screen and (max-width: 768px) {
+  .meta {
+    padding: 0.8rem;
+  }
+
+  .metaItem {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .metaItem dt {
+    min-width: auto;
+    margin-bottom: 2px;
+  }
+
+  .title {
+    font-size: 1.1rem;
+  }
+
+  .solutionEx {
+    font-size: 1rem;
+  }
 }

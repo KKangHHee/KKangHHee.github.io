@@ -4,16 +4,6 @@ import Layout from "@theme/Layout";
 import styles from "./resume.module.css";
 
 export default function Resume() {
-  const stackList = (stack: string) => {
-    stack.split(",").map((item) => item.trim());
-  };
-  const STACKS = {
-    BE: "Java, SpringBoot, JPA, MyBatis",
-    DB: "MySQL, PostgreSQL",
-    INFRA: "AWS, Docker, GitHubActions, Jenkins",
-    FE: "React, TypeScript",
-  };
-
   return (
     <Layout title="Resume">
       <main className={styles.container}>
@@ -27,17 +17,12 @@ export default function Resume() {
             />
           </div>
 
-          {/* 2. 중앙 이름 및 자기소개 영역 */}
+          {/* 2. 중앙 이름 영역 */}
           <div className={styles.intro}>
             <div className={styles.nameLine}>
               <h1 className={styles.name}>신강희</h1>
               <span className={styles.role}>Backend Developer</span>
             </div>
-            <p className={styles.summary}>
-              Java 기반의 신입 백엔드 개발자입니다. <br />
-              프론트 경험을 통해 사용자 흐름을 이해하고, 견고한 시스템을
-              지향합니다. <br />
-            </p>
           </div>
 
           {/* 3. 우측 연락처 영역 */}
@@ -58,11 +43,16 @@ export default function Resume() {
 
         <section className={styles.section}>
           <h2>Summary</h2>
-          <ul>
-            <li>Java / Spring Boot 기반 REST API 설계 및 성능 최적화 경험</li>
-            <li>Redis, DB 튜닝, 캐시 전략으로 병목 해결</li>
-            <li>React 실서비스 경험 → 사용자 관점 API 설계</li>
-          </ul>
+          <p className={styles.summary}>
+            Java/Spring 기반의 신입 백엔드 개발자로,
+            <br />
+            복잡한 동적 쿼리를 MyBatis로 최적화하여
+            <strong> DB 평균 응답 시간을 36% 단축</strong>한 경험이 있습니다.
+            <br />
+            프론트엔드 개발 경험을 통해
+            <strong> 견고한 서버 설계와 시스템의 중요성</strong>을 체감했고,
+            사용자 경험을 지탱하는 백엔드를 만드는 개발자를 지향합니다.
+          </p>
         </section>
 
         <section className={styles.section}>
@@ -90,16 +80,74 @@ export default function Resume() {
             <ProjectItem key={idx} {...project} />
           ))}
         </section>
+        <div className={styles.bottomGrid}>
+          {/* 왼쪽: Education */}
+          <section className={styles.section}>
+            <h2>Education</h2>
+            <div className={styles.infoItem}>
+              <div className={styles.infoTitle}>
+                <strong>웹 풀스택 개발자 과정</strong>
+                <span className={styles.period}>(2024.12 ~ 2025.05)</span>
+              </div>
+              <ul className={styles.subDesc}>
+                <li>Java/Spring Boot 기반 REST API 설계 및 실무 중심 교육</li>
+              </ul>
+            </div>
 
-        <section className={styles.section}>
+            <div className={styles.infoItem}>
+              <div className={styles.infoTitle}>
+                <strong>가톨릭대학교 컴퓨터정보공학부</strong>
+                <span className={styles.period}>(2019.03 ~ 2025.08)</span>
+              </div>
+              <ul className={styles.subDesc}>
+                <li>주요 이수: 데이터베이스 설계, 데이터 통신, 운영체제</li>
+              </ul>
+            </div>
+          </section>
+
+          {/* 오른쪽: Certifications & Activities */}
+          <section className={styles.section}>
+            <h2>Certs & Activities</h2>
+            <div className={styles.infoItem}>
+              <div className={styles.infoTitle}>
+                <strong>Certifications</strong>
+              </div>
+              <ul className={styles.subDesc}>
+                <li>정보처리기사 (2024.12)</li>
+                <li>SQLD (SQL 개발자, 2024.12)</li>
+              </ul>
+            </div>
+
+            <div className={styles.infoItem}>
+              <div className={styles.infoTitle}>
+                <strong>Activities</strong>
+              </div>
+              <ul className={styles.subDesc}>
+                <li>
+                  <strong>교내 DB 튜터</strong>
+                  (2024.09)
+                  <br /> : 쿼리 작성 및 정규화 지도
+                </li>
+                <li>
+                  <strong>하나소셜벤처</strong> (2024.07)
+                  <br />: 서비스 기획 및 피칭 수료
+                </li>
+                <li>
+                  <strong>UMC IT 동아리</strong>
+                  (2023.03)
+                  <br />: 프론트엔드 협업 프로젝트
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+        {/* <section className={styles.section}>
           <h2>Education</h2>
           <ul>
             <li>
               <strong>웹 풀스택 개발자 과정</strong> (2024.12 ~ 2025.05)
               <ul>
-                <li>
-                  Spring Boot 기반 REST API 설계, DB 튜닝, Redis 캐시 전략 실습
-                </li>
+                <li>Spring Boot 기반 REST API 설계, DB 튜닝 실습</li>
               </ul>
             </li>
             <li>
@@ -126,7 +174,8 @@ export default function Resume() {
           </ul>
           <ul>
             <li>
-              <strong>교내 데이터베이스 튜터</strong> (2024.09 ~ 2024.11)
+              <strong>교내 데이터베이스 튜터</strong> (2024.09 ~ 2024.11) – DB
+              기초/정규화/쿼리 작성 튜터링 진행
             </li>
             <li>
               <strong>하나소셜벤처유니버시티 – 청년 창업 교육 수료</strong>{" "}
@@ -137,7 +186,7 @@ export default function Resume() {
               프론트 협업 경험
             </li>
           </ul>
-        </section>
+        </section> */}
       </main>
     </Layout>
   );
