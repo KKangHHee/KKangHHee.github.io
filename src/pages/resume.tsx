@@ -1,5 +1,5 @@
 import ProjectItem from "@site/src/components/resume/projectItem/ProjectItem";
-import { PROJECTS } from "@site/src/pages/projects.data";
+import { PROJECTS } from "@site/src/data/projects.data";
 import Layout from "@theme/Layout";
 import styles from "./resume.module.css";
 
