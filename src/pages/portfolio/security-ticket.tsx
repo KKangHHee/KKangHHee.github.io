@@ -68,7 +68,7 @@ export default function Portfolio() {
           <div className={styles.archGrid}>
             <div>
               <img
-                src="/img/portfolio/security-ticket/img/system-architecture.svg"
+                src="/img/portfolio/security-ticket/system-architecture.svg"
                 className={styles.archImage}
                 alt="시스템 다이어그램"
               />
@@ -76,7 +76,7 @@ export default function Portfolio() {
             <div>
               <strong>ERD</strong>
               <img
-                src="/img/portfolio/security-ticket/img/erd.png"
+                src="/img/portfolio/security-ticket/erd.png"
                 className={styles.archImage}
                 alt="시스템 다이어그램"
               />
@@ -85,7 +85,7 @@ export default function Portfolio() {
           <strong>Flow chart</strong>
           <div>
             <img
-              src="/img/portfolio/security-ticket/img/flow-chart.svg"
+              src="/img/portfolio/security-ticket/flow-chart.svg"
               className={styles.archImage2}
               alt="시스템 다이어그램"
             />

@@ -117,7 +117,7 @@ export default function Portfolio() {
             <div>
               <strong>ERD(점주)</strong>
               <img
-                src="/img/portfolio/readyberry/img/erd.png"
+                src="/img/portfolio/readyberry/erd.png"
                 className={styles.archImage}
                 alt="시스템 다이어그램"
               />
@@ -125,7 +125,7 @@ export default function Portfolio() {
             <div>
               <strong>ERD(고객)</strong>
               <img
-                src="/img/portfolio/readyberry/img/erd_customer.png"
+                src="/img/portfolio/readyberry/erd_customer.png"
                 className={styles.archImage}
                 alt="시스템 다이어그램"
               />

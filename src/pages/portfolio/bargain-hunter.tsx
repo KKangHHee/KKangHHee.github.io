@@ -86,7 +86,7 @@ export default function Portfolio() {
           <div className={styles.archGrid}>
             <div>
               <img
-                src="/img/portfolio/bargain-hunter/img/system-architecture.png"
+                src="/img/portfolio/bargain-hunter/system-architecture.png"
                 className={styles.archImage}
                 alt="시스템 다이어그램"
               />
