@@ -18,24 +18,12 @@ export const PROJECTS: ProjectProps[] = [
         solution: "Spring Event + @Async 비동기 처리 도입으로",
         result: "응답 시간 92% 개선 (0.2s) 및 처리량 10배 향상",
       },
-      {
-        title: "Redis 원자적 연산을 활용한 분산 환경 동시성 제어",
-        domain: "인증 코드 검증",
-        problem: "분산 환경에서 시도 횟수 카운팅 Race Condition",
-        solution: "Redis Hash 구조 및 HINCRBY 원자적 연산 활용으로",
-        result: "동시성 이슈 해결 및 데이터 정합성 보장",
-      },
-      {
-        title: "보안 취약점 방어 및 즉시 토큰 무효화 아키텍처 구축",
-        domain: "시스템 보안",
-        problem: "JWT 탈취 시 무효화 불가 및 Auth Code 가로채기 위협",
-        solution: "Refresh Token DB 저장 및 OAuth2 PKCE 플로우 적용으로",
-        result: "보안 취약점 방어 및 즉시 토큰 무효화 체계 구축",
-      },
     ],
     extras: [
       "Spring Cloud Gateway를 통한 중앙 집중형 JWT 검증 및 서비스 오버헤드 최소화",
       "Auth Service 담당자로서 전체 인증/인가 아키텍처 설계 주도",
+      "OAuth2 PKCE 플로우 적용으로 인증 코드 가로채기 방지 및 보안 무결성 강화",
+      "Redis HINCRBY을 활용한 동시성 제어",
     ],
   },
 

@@ -50,7 +50,10 @@ function HomepageHeader() {
             >
               📁 프로젝트 살펴보기
             </Link>
-            <Link className="button button--secondary button--lg" to="/blog">
+            <Link
+              className="button button--secondary button--lg"
+              to="/blog/index"
+            >
               ✍️ 블로그 읽기
             </Link>
           </div>

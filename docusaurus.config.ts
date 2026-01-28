@@ -37,16 +37,19 @@ const config: Config = {
           //   "https://github.com/KKangHHee/KKangHHee.github.io/tree/main/",
         },
         blog: {
-          showReadingTime: true,
+          path: "blog",
+          routeBasePath: "blog",
+          showReadingTime: false,
           blogTitle: "Troubleshooting & Learning",
           blogDescription: "개발 중 겪은 문제와 학습 기록",
           feedOptions: {
             type: ["rss", "atom"],
             xslt: true,
           },
+          blogSidebarCount: 0,
           onInlineTags: "warn",
           onInlineAuthors: "warn",
-          onUntruncatedBlogPosts: "warn",
+          onUntruncatedBlogPosts: "ignore",
         },
         theme: {
           customCss: "./src/css/custom.css",
@@ -76,7 +79,7 @@ const config: Config = {
           label: "📁 Projects",
         },
         {
-          to: "/blog",
+          to: "/blog/index",
           label: "✍️ Blog",
           position: "left",
         },

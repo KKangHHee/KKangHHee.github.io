@@ -51,16 +51,14 @@ description: 정보보호 컴플라이언스 점검 디지털화 플랫폼
 
 ### 백엔드 구조
 
-![architecture](./img/system-architecure.svg)
+![architecture](./img/system-architecture.svg)
 
 - **배포 환경 특징**
-
   - 폐쇄망 기반 온프레미스 + Nexus로 패키지 관리
   - Admin: 내부망 직접 접속
   - Customer: EC2 FE → VPN → 내부망 API 접근 구조
 
 - **핵심 설계 원칙**
-
   - **하이브리드 ORM**: JPA(CRUD) + MyBatis(복잡 검색)
   - **세션 기반 인증**: Spring Security 커스텀 구현
   - **역할 기반 접근 제어**: 최고 관리자 / 관리자 / 고객사
@@ -190,7 +188,6 @@ public class LoginService {
 **핵심 개선**
 
 1. **동적 SQL 최적화**
-
    - `<choose>` 중첩 제거 → OR 조건 기반 통합
    - 쿼리 템플릿 고정화 → SQL 캐시 효율 향상
 

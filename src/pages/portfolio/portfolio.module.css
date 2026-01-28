@@ -1,0 +1,109 @@
+:root {
+  --font-size-h1: 2rem;
+  --font-size-h2: 1.5rem;
+  --font-size-h3: 1.25rem;
+  --font-size-h4: 1.05rem;
+  --font-size-base: 1rem;
+  --font-size-small: 0.9rem;
+
+  --color-primary: #111;
+  --color-secondary: #333;
+  --color-tertiary: #555;
+  --color-border: #e0e0e0;
+}
+
+.container {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 30px 32px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--color-secondary);
+  line-height: 1.7;
+}
+
+/* Header */
+.header {
+  margin-bottom: 2.5rem;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 1.2rem;
+}
+
+.title {
+  font-size: var(--font-size-h1);
+  font-weight: 700;
+  margin: 0 0 0.4rem;
+  color: var(--color-primary);
+}
+
+.subtitle {
+  font-size: var(--font-size-small);
+  color: var(--color-tertiary);
+}
+
+/* Sections */
+.section {
+  margin-bottom: 2.5rem;
+}
+
+.section h2 {
+  font-size: var(--font-size-h2);
+  font-weight: 700;
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: 0.4rem;
+  margin-bottom: 1.2rem;
+  color: var(--color-primary);
+}
+
+.section h3 {
+  font-size: var(--font-size-h3);
+  margin-top: 1.2rem;
+  color: var(--color-primary);
+}
+
+.section h4 {
+  font-size: var(--font-size-h4);
+  margin-top: 1rem;
+  color: var(--color-primary);
+}
+
+/* Lists */
+.descList {
+  padding-left: 1.3rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.descList li {
+  margin-bottom: 0.5rem;
+  font-size: var(--font-size-base);
+}
+
+.descList strong {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* Image */
+.imageBox {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.imageBox img {
+  max-width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+
+.imageCaption {
+  font-size: 0.85rem;
+  color: var(--color-tertiary);
+  margin-top: 0.4rem;
+}
+
+/* Trouble */
+.troubleBox {
+  background: #fafafa;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1.4rem;
+}
