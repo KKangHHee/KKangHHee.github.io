@@ -50,8 +50,8 @@ title: 프로젝트 포트폴리오
 
 ## 📂 프로젝트 상세 보기
 
-- [Bargain Hunter - MSA 기반 여행 플랫폼](./projects/bargain-hunter/)
-- [Security Ticket - 컴플라이언스 관리 시스템](./projects/security-ticket/)
-- [ReadyBerry - 선결제 테이크아웃 서비스](./projects/readyberry/)
+- [Bargain Hunter - MSA 기반 여행 플랫폼](/docs/projects/bargain-hunter/)
+- [Security Ticket - 컴플라이언스 관리 시스템](/docs/projects/security-ticket/)
+- [ReadyBerry - 선결제 테이크아웃 서비스](/docs/projects/readyberry/)
 
 ---
