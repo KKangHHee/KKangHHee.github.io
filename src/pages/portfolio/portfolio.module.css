@@ -82,6 +82,12 @@
   font-weight: 600;
 }
 
+.blogDesc {
+  margin-left: 6px;
+  font-size: 0.9rem;
+  color: var(--color-tertiary);
+}
+
 /* Image */
 .imageBox {
   margin-top: 1rem;
@@ -106,4 +112,141 @@
   border: 1px solid var(--color-border);
   border-radius: 8px;
   padding: 1.4rem;
+}
+
+.troubleBox + .troubleBox {
+  margin-top: 1.5rem;
+}
+
+/* grid */
+.archGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  align-items: start;
+  margin-top: 16px;
+}
+
+.codeBlock {
+  background: #0f172a;
+  color: #e5e7eb;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  overflow-x: auto;
+}
+
+.archImage {
+  width: 100%;
+  max-width: 720px;
+  margin-top: 8px;
+}
+
+.archImage2 {
+  width: 100%;
+  max-width: 580px;
+  margin-top: 8px;
+}
+.perfTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  font-size: 0.95rem;
+}
+
+.perfTable th,
+.perfTable td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.perfTable thead {
+  background-color: #f8fafc;
+}
+
+.perfTable th {
+  font-weight: 600;
+}
+
+.up {
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.down {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.closing {
+  margin-top: 24px;
+  padding: 16px 20px;
+  background-color: #f9fafb; /* 아주 연한 회색 */
+  border-left: 4px solid #4f46e5; /* 포인트 컬러 (indigo 계열) */
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #374151; /* gray-700 */
+  border-radius: 6px;
+}
+
+.closing strong {
+  color: #111827; /* gray-900 */
+  font-weight: 600;
+}
+
+/* ========================================
+   🖨 PDF 출력 최적화
+   ======================================== */
+@media print {
+  @page {
+    size: A3 portrait;
+    margin: 15mm 12mm;
+  }
+
+  body {
+    background: white;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .container {
+    max-width: 100%;
+    padding: 0;
+    transform-origin: top left;
+  }
+
+  /* 인쇄 시 색상 보정 */
+  .name,
+  .section h2 {
+    color: #000 !important;
+  }
+
+  /* .summary, */
+  .contactBox,
+  .stackTextList li {
+    color: #333 !important;
+  }
+
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  /* 페이지 나눔 방지 */
+  h1,
+  h2,
+  h3 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .profileImg {
+    border: 1px solid #ddd !important;
+  }
 }

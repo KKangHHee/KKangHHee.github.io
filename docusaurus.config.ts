@@ -68,7 +68,7 @@ const config: Config = {
       title: "Kang-hee.log",
       items: [
         {
-          to: "/docs/resume",
+          to: "/resume",
           label: "📄 Resume",
           position: "left",
         },

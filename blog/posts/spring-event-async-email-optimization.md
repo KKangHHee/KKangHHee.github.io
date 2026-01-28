@@ -162,15 +162,15 @@ public class VerificationCodeEventListener {
 
 ### 4) ThreadPoolTaskExecutor 설정
 
-- CorePoolSize (기본 스레드 수)
-- MaxPoolSize (최대 스레드 수)
-- QueueCapacity (대기 큐 크기)
-- RejectedExecutionHandler:
+- `CorePoolSize` (기본 스레드 수)
+- `MaxPoolSize` (최대 스레드 수)
+- `QueueCapacity` (대기 큐 크기)
+- `RejectedExecutionHandler`:
   - 최대 스레드까지 다 쓰고 큐도 꽉 찼을 때 어떻게 할지 결정합니다.
-  - AbortPolicy (기본값): 예외를 던지고 작업을 버립니다.
-  - CallerRunsPolicy: 큐가 꽉 차면 이벤트를 발행한 메인 스레드가 직접 처리합니다.
+  - `AbortPolicy` (기본값): 예외를 던지고 작업을 버립니다.
+  - `CallerRunsPolicy`: 큐가 꽉 차면 이벤트를 발행한 메인 스레드가 직접 처리합니다.
 
-- ThreadNamePrefix:
+- `ThreadNamePrefix`:
   - 디버깅을 위한 네이밍입니다.
 
 ```java

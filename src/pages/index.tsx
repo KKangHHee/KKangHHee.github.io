@@ -38,10 +38,7 @@ function HomepageHeader() {
 
           {/* CTA 버튼들 */}
           <div className={styles.buttons}>
-            <Link
-              className="button button--secondary button--lg"
-              to="/docs/resume"
-            >
+            <Link className="button button--secondary button--lg" to="/resume">
               📄 이력서 보기
             </Link>
             <Link

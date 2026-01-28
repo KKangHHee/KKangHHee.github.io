@@ -139,7 +139,7 @@ export default function HomepageFeatures(): ReactNode {
       </section>
 
       {/* 프로젝트 쇼케이스 섹션 */}
-      <section className={styles.projects}>
+      {/* <section className={styles.projects}>
         <div className="container">
           <div className={styles.sectionHeader}>
             <Heading as="h2">🚀 Featured Projects</Heading>
@@ -151,7 +151,7 @@ export default function HomepageFeatures(): ReactNode {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 }
