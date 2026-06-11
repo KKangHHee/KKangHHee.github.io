@@ -25,6 +25,8 @@ date: 2000-07-13
 - [Spring Boot에서 Session 인증을 커스텀하는 이유와 실전 구현](./posts/pring-boot-custom-session-authentication.md)
 - [복잡한 검색 쿼리, JPA vs MyBatis 성능 비교와 하이브리드 전략](./posts/jpa-mybatis-hybrid-strategy.md)
 - [이메일 발송 API 응답 속도 개선: Spring Event와 비동기 처리](./posts/spring-event-async-email-optimization.md)
+- [서로 다른 두 DB를 조인할 수 없을 때: 인메모리 조인과 트레이드오프](./posts/multi-datasource-in-memory-join.md)
+- [Oracle 11g에서 Hibernate 6 페이징이 깨질 때: ROWNUM 2단계 조회](./posts/oracle11g-hibernate-pagination.md)
 
 ### 🟣 Docker / Infra
 
