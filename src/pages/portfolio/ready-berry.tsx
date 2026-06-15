@@ -6,7 +6,7 @@ import styles from "./portfolio.module.css";
 export default function Portfolio() {
   return (
     <PortfolioPageLayout
-      title="ReadyBerry"
+      title="ReadyVery"
       subtitle="지역 기반 카페 대상 패스트 오더 서비스"
     >
       <PortfolioSection title="1. 프로젝트 요약">
@@ -58,8 +58,8 @@ export default function Portfolio() {
             </li>
           </ul>
           <li>
-            <strong>구조:</strong> API Gateway + Microservices + DB + Redis Cache
-            구조
+            <strong>구조:</strong> API Gateway + Microservices + DB + Redis
+            Cache 구조
           </li>
         </ul>
 
@@ -174,7 +174,7 @@ export default function Portfolio() {
         </PortfolioTroubleCard>
       </PortfolioSection>
 
-      <PortfolioSection title="5. 성과 및 배운 점 – ReadyBerry에서 얻은 것">
+      <PortfolioSection title="5. 성과 및 배운 점 – ReadyVery에서 얻은 것">
         <h3>프로젝트 성과</h3>
         <ul className={styles.descList}>
           <li>
@@ -188,8 +188,8 @@ export default function Portfolio() {
         <h3>배운 점 & 성장 포인트</h3>
         <ul className={styles.descList}>
           <li>
-            기획–디자인–백엔드–마케팅과의 협업 과정을 통해, 서비스 전반을 바라보는
-            시야 확보
+            기획–디자인–백엔드–마케팅과의 협업 과정을 통해, 서비스 전반을
+            바라보는 시야 확보
           </li>
           <li>
             실제 점주 및 사용자 피드백을 반영하며, 비즈니스 관점에서 기능을
@@ -206,7 +206,7 @@ export default function Portfolio() {
         </ul>
 
         <p className={styles.closing}>
-          ReadyBerry는 단순한 팀 프로젝트를 넘어,
+          ReadyVery는 단순한 팀 프로젝트를 넘어,
           <br />
           <strong>
             실제 사용자를 가진 서비스에서 성능·UX·비즈니스 요구를 동시에

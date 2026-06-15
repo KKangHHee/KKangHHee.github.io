@@ -8,7 +8,7 @@ export default function Portfolio() {
   return (
     <PortfolioPageLayout
       title="인턴 과제"
-      subtitle="레거시 SMS/알림톡 관리자 웹서비스 마이그레이션 및 운영 기능 보강 (웅진 그룹 IT혁신팀 인턴)"
+      subtitle="레거시 SMS/알림톡 관리자 웹서비스 마이그레이션 및 운영 기능 보강"
     >
       <PortfolioSection title="1. 프로젝트 요약">
         <ul className={styles.descList}>
@@ -227,12 +227,6 @@ export default function Portfolio() {
               label:
                 "서로 다른 두 DB를 조인할 수 없을 때: 인메모리 조인과 트레이드오프",
               description: "멀티 데이터소스 설계 판단과 IN절 인메모리 조인",
-            },
-            {
-              href: "/blog/oracle11g-hibernate-pagination",
-              label:
-                "Oracle 11g에서 Hibernate 6 페이징이 깨질 때: ROWNUM 2단계 조회",
-              description: "레거시 DB 버전 호환성 트러블슈팅",
             },
           ]}
         />

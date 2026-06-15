@@ -86,10 +86,10 @@ export const PROJECTS: ProjectProps[] = [
     ],
   },
 
-  // ✅ 3. ReadyBerry
+  // ✅ 3. ReadyVery
   {
     organization: "교내 팀 프로젝트",
-    title: "ReadyBerry (Front-End)",
+    title: "ReadyVery (Front-End)",
     period: "2023.12 ~ 2024.05 (5개월)",
     role: "프론트엔드 개발 및 API 인터페이스 설계",
     stack: "React, TypeScript, Recoil, Axios, React Query, Toss Payments SDK",
