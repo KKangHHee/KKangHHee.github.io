@@ -81,7 +81,7 @@ function SkillCard({ title, icon, description, skills }: SkillItem) {
  */
 const ProjectShowcase = [
   {
-    title: "ReadyBerry",
+    title: "ReadyVery",
     description: "테이블 오더 서비스 애플리케이션",
     tech: ["Spring Boot", "MySQL", "Redis", "WebSocket"],
     link: "/docs/projects/readyberry",

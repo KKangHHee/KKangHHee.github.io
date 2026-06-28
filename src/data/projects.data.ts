@@ -3,6 +3,40 @@ import { ProjectProps } from "@site/src/components/resume/projectItem/ProjectIte
 export const PROJECTS: ProjectProps[] = [
   // ✅ 1. Bargain Hunter
   {
+    organization: "인턴 과제",
+    title: "사내 메시지 발송 관리 서비스 마이그레이션 (Full Stack)",
+    period: "2026.03.03 ~ 2026.06.02 (3개월)",
+    role: "Java 백엔드 인턴 — 레거시 마이그레이션 및 기능 보강 (풀스택 수행)",
+    stack:
+      "Java 17, Spring Boot, Thymeleaf, JPA, QueryDSL, MariaDB, Oracle, Alpine.js",
+    members: "3인",
+    service: "SMS/알림톡 발송 내역을 관리하는 사내 웹서비스",
+    flows: [
+      {
+        title: "멀티 데이터소스 환경에서의 발송 이력 조회",
+        domain: "멀티 DB(Oracle + MariaDB) 발송 이력 조회",
+        problem:
+          "메타데이터(MariaDB)와 발송 이력(Oracle)이 분리되어 단일 쿼리 조인 불가",
+        solution:
+          "메타데이터 단일 DB 중앙화 및 데이터 규모 기반 IN절 인메모리 조인 채택으로",
+        result: "메모리에서 조인 및 저장 트랜잭션 복잡도 최소화",
+      },
+      {
+        title: "수기 운영 데이터의 정합성 문제 해소",
+        domain: "조직/사용자 데이터 운영",
+        problem: "논리적 FK와 수기 관리로 인한 상·하위 활성 상태 불일치",
+        solution: "메타데이터 단일 DB 중앙화 및 계단식 soft-delete 자동화로",
+        result: "정합성 불일치 87건(부서 245건 중) 해소 및 운영 휴먼에러 차단",
+      },
+    ],
+    extras: [
+      "레거시 스택(JSP + MyBatis) → Spring Boot + Thymeleaf + JPA/QueryDSL 마이그레이션 및 JSON API 기반 뷰 분리 설계",
+      "평문 저장 비밀번호를 BCrypt로 일괄 마이그레이션하여 보안 취약점 해소",
+      "@JsonView + ResponseBodyAdvice로 역할별 응답 필드 제어 (서버 단일 방어)",
+      "Mockito 서비스 단위 테스트 및 Testcontainers/검증 DB로 Oracle 방언·bulk 처리 검증",
+    ],
+  },
+  {
     organization: "팀 프로젝트",
     title: "Bargain Hunter (Full Stack)",
     period: "2025.07 ~ 2025.10 (4개월)",
@@ -52,10 +86,10 @@ export const PROJECTS: ProjectProps[] = [
     ],
   },
 
-  // ✅ 3. ReadyBerry
+  // ✅ 3. ReadyVery
   {
     organization: "교내 팀 프로젝트",
-    title: "ReadyBerry (Front-End)",
+    title: "ReadyVery (Front-End)",
     period: "2023.12 ~ 2024.05 (5개월)",
     role: "프론트엔드 개발 및 API 인터페이스 설계",
     stack: "React, TypeScript, Recoil, Axios, React Query, Toss Payments SDK",

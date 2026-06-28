@@ -60,10 +60,14 @@ export default function Resume() {
           <ul className={styles.stackTextList}>
             <li>
               <strong>Backend</strong> : Java, Spring Boot, Spring Security,
-              JPA, MyBatis
+              JPA, QueryDSL, MyBatis
             </li>
             <li>
-              <strong>DB / Cache</strong> : MySQL, PostgreSQL, Redis
+              <strong>DB / Cache</strong> : MySQL, PostgreSQL, MariaDB, Oracle,
+              Redis
+            </li>
+            <li>
+              <strong>Test</strong> : JUnit5, Mockito, Testcontainers
             </li>
             <li>
               <strong>Infra</strong> : AWS, Docker, GitHub Actions, Jenkins

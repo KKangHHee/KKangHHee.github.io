@@ -19,7 +19,11 @@ const config: Config = {
   deploymentBranch: "gh-pages", // deployment branch
 
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "warn",
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: "warn",
+    },
+  },
 
   i18n: {
     defaultLocale: "ko", // settings language
