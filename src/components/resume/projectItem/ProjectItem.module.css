@@ -129,37 +129,12 @@
   /* #333 */
 }
 
-/* 🏷 기술 스택 컨테이너 */
-.stackContainer {
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  align-items: center;
-}
-
-/* 🎨 기술 스택 배지 */
-.stackBadge {
-  display: inline-flex;
-  align-items: center;
-  padding: 2px 4px;
-  /* 패딩 증가 */
-  background-color: #f0f0f0;
+.stackText {
   color: var(--color-secondary);
-  /* #333 */
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
   font-size: var(--font-size-small);
-  /* 0.85rem → 0.9rem 증가 */
-  font-weight: 600;
-  line-height: 1.4;
-  transition: all 0.2s ease;
-}
-
-.stackBadge:hover {
-  background-color: #e8e8e8;
-  border-color: #ccc;
-  transform: translateY(-1px);
+  font-weight: 500;
+  line-height: 1.6;
+  word-break: keep-all;
 }
 
 /* ========================================
@@ -219,13 +194,6 @@
    🖨 PDF 출력 최적화
    ======================================== */
 @media print {
-  .stackBadge {
-    background-color: #f0f0f0 !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-    border: 1px solid #d1d5db !important;
-  }
-
   .meta {
     background-color: #f8f9fa !important;
     -webkit-print-color-adjust: exact;

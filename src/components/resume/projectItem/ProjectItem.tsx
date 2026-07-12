@@ -37,13 +37,7 @@ export default function ProjectItem({
           </div>
           <div className={styles.metaItem}>
             <dt>• 기술 스택</dt>
-            <dd className={styles.stackContainer}>
-              {stack.map((technology) => (
-                <span key={technology} className={styles.stackBadge}>
-                  {technology}
-                </span>
-              ))}
-            </dd>
+            <dd className={styles.stackText}>{stack.join(" · ")}</dd>
           </div>
         </dl>
 
