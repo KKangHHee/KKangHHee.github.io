@@ -3,9 +3,6 @@
 Java/Spring 기반 백엔드 개발 경험과 프로젝트별 문제 해결 과정을 정리한 Docusaurus 포트폴리오입니다.
 
 - 사이트: [kkanghhee.github.io](https://kkanghhee.github.io)
-- 이력서: [`/resume`](https://kkanghhee.github.io/resume)
-- GitHub: [github.com/KKangHHee](https://github.com/KKangHHee)
-- Email: [skh8609@gmail.com](mailto:skh8609@gmail.com)
 
 ## 주요 콘텐츠
 
@@ -34,20 +31,3 @@ Java/Spring 기반 백엔드 개발 경험과 프로젝트별 문제 해결 과�
 ├── docusaurus.config.ts
 └── sidebars.ts
 ```
-
-## 기술 스택
-
-- Docusaurus 3
-- React 19
-- TypeScript
-- CSS Modules
-- GitHub Pages
-
-## 로컬 실행
-
-```bash
-npm install
-npm start
-```
-
-프로덕션 빌드는 `npm run build`로 확인할 수 있습니다.

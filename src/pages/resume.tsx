@@ -7,8 +7,33 @@ export default function Resume() {
   return (
     <Layout title="Resume">
       <main className={styles.container}>
+        {/* 기본 정보*/}
         <section className={styles.header}>
-          {/* 1. 프로필 사진 영역 */}
+          <div className={styles.intro}>
+            <div className={styles.nameLine}>
+              <h1 className={styles.name}>신강희</h1>
+              <span className={styles.role}>Backend Developer</span>
+            </div>
+
+            <div className={styles.contactBox}>
+              <p>
+                <strong>Email.</strong>
+                <a href="mailto:skh8609@naver.com">skh8609@naver.com</a>
+              </p>
+
+              <p>
+                <strong>GitHub.</strong>
+                <a
+                  href="https://github.com/KKangHHee"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  github.com/KKangHHee
+                </a>
+              </p>
+            </div>
+          </div>
+
           <div className={styles.profileWrapper}>
             <img
               src="/img/resume/profileimg.jpg"
@@ -16,45 +41,37 @@ export default function Resume() {
               className={styles.profileImg}
             />
           </div>
-
-          {/* 2. 중앙 이름 영역 */}
-          <div className={styles.intro}>
-            <div className={styles.nameLine}>
-              <h1 className={styles.name}>신강희</h1>
-              <span className={styles.role}>Backend Developer</span>
-            </div>
-          </div>
-
-          {/* 3. 우측 연락처 영역 */}
-          <div className={styles.contactBox}>
-            <p>
-              <strong>Email.</strong> skh8609@gmail.com
-            </p>
-            <p>
-              <strong>GitHub.</strong>{" "}
-              <a href="https://github.com/KKangHHee">github.com/KKangHHee</a>
-            </p>
-            <p>
-              <strong>Blog.</strong>{" "}
-              <a href="https://hee-ya07.tistory.com/">hee-ya07.tistory.com</a>
-            </p>
-          </div>
         </section>
-
+        {/* 소개 */}
         <section className={styles.section}>
           <h2>Summary</h2>
           <p className={styles.summary}>
-            Java/Spring 기반의 신입 백엔드 개발자로,
+            사용자의 불편을 이해하고,
+            <strong> 기술을 통해 더 나은 경험을 제공하는 개발</strong>
+            을 지향합니다.
             <br />
-            복잡한 동적 쿼리를 MyBatis로 최적화하여
-            <strong> DB 평균 응답 시간을 36% 단축</strong>한 경험이 있습니다.
+            프론트엔드 프로젝트와 백엔드 인턴 경험을 거치며, 좋은 서비스는
+            보이는 기능뿐 아니라 실제 업무와 운영 흐름을 이해할 때 완성된다는
+            점을 배웠습니다.
             <br />
-            프론트엔드 개발 경험을 통해
-            <strong> 견고한 서버 설계와 시스템의 중요성</strong>을 체감했고,
-            사용자 경험을 지탱하는 백엔드를 만드는 개발자를 지향합니다.
+            맡은 문제의 배경과 원인을 끝까지 살피며,
+            <strong>
+              {" "}
+              작은 개선을 꾸준히 쌓아 신뢰할 수 있는 서비스를 만드는 개발자
+            </strong>
+            로 성장하고 있습니다.
           </p>
         </section>
 
+        {/* 경험 */}
+        <section className={styles.section}>
+          <h2>Experience</h2>
+          {PROJECTS.map((project, idx) => (
+            <ProjectItem key={idx} {...project} />
+          ))}
+        </section>
+
+        {/* 기술 스택 */}
         <section className={styles.section}>
           <h2>Stack & Tools</h2>
           <ul className={styles.stackTextList}>
@@ -77,13 +94,7 @@ export default function Resume() {
             </li>
           </ul>
         </section>
-
-        <section className={styles.section}>
-          <h2>Projects</h2>
-          {PROJECTS.map((project, idx) => (
-            <ProjectItem key={idx} {...project} />
-          ))}
-        </section>
+        {/* 학력 / 자격증 */}
         <div className={styles.bottomGrid}>
           {/* 왼쪽: Education */}
           <section className={styles.section}>
