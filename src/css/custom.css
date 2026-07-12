@@ -4,6 +4,21 @@
  * This file overrides the default Infima styles.
  */
 
+:root {
+  --resume-color-primary: #171717;
+  --resume-color-secondary: #383838;
+  --resume-color-tertiary: #5f6368;
+  --resume-color-muted: #737373;
+  --resume-color-border: #e0e0e0;
+
+  --resume-font-h1: 2.25rem;
+  --resume-font-h2: 1.25rem;
+  --resume-font-h3: 1.125rem;
+  --resume-font-base: 0.95rem;
+  --resume-font-small: 0.875rem;
+  --resume-font-xs: 0.85rem;
+}
+
 /* 🌐 Light Mode */
 :root {
   --ifm-color-primary: #2e8555;

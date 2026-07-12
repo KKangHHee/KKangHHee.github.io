@@ -73,7 +73,7 @@ export const PROJECTS: ProjectProps[] = [
 
   // ✅ 2. Security Ticket
   {
-    organization: "팀 프로젝트",
+    organization: "교육 내 팀 프로젝트",
     title: "Security Ticket",
     period: "2025.04 - 2025.05",
     service:

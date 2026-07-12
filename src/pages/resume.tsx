@@ -72,7 +72,7 @@ export default function Resume() {
         </section>
 
         {/* 기술 스택 */}
-        <section className={styles.section}>
+        <section className={`${styles.section} ${styles.stackSection}`}>
           <h2>Stack & Tools</h2>
           <ul className={styles.stackTextList}>
             <li>
