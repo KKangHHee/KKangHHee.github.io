@@ -26,22 +26,28 @@ export default function ProjectItem({
       </header>
 
       <div className={styles.projectContent}>
-        <ul className={styles.metaList}>
-          <li className={styles.metaItem}>
-            <strong className={styles.metaLabel}>서비스</strong>
-            <span className={styles.metaValue}>{service}</span>
-          </li>
-          <li className={styles.metaItem}>
-            <strong className={styles.metaLabel}>담당 역할</strong>
-            <span className={styles.metaValue}>{role}</span>
-          </li>
-          <li className={styles.metaItem}>
-            <strong className={styles.metaLabel}>기술 스택</strong>
-            <span className={`${styles.metaValue} ${styles.stackText}`}>
+        <dl className={styles.metaList}>
+          <div className={styles.metaItem}>
+            <dt className={styles.metaLabel}>
+              <strong>서비스</strong>
+            </dt>
+            <dd className={styles.metaValue}>{service}</dd>
+          </div>
+          <div className={styles.metaItem}>
+            <dt className={styles.metaLabel}>
+              <strong>담당 역할</strong>
+            </dt>
+            <dd className={styles.metaValue}>{role}</dd>
+          </div>
+          <div className={styles.metaItem}>
+            <dt className={styles.metaLabel}>
+              <strong>기술 스택</strong>
+            </dt>
+            <dd className={`${styles.metaValue} ${styles.stackText}`}>
               {stack.join(" · ")}
-            </span>
-          </li>
-        </ul>
+            </dd>
+          </div>
+        </dl>
 
         {highlights.length > 0 && (
           <section className={styles.highlightsSection}>
@@ -54,7 +60,9 @@ export default function ProjectItem({
                   {title && (
                     <strong className={styles.highlightTitle}>{title}</strong>
                   )}
-                  <p className={styles.highlightDescription}>{description}</p>
+                  <span className={styles.highlightDescription}>
+                    {description}
+                  </span>
                 </li>
               ))}
             </ul>

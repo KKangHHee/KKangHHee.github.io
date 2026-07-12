@@ -58,7 +58,7 @@
   margin: 0;
   color: var(--resume-color-primary);
   font-size: var(--resume-font-h1);
-  font-weight: 750;
+  font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.04em;
 }
@@ -66,7 +66,7 @@
 .role {
   color: #3f4f65;
   font-size: var(--resume-font-base);
-  font-weight: 650;
+  font-weight: 600;
   white-space: nowrap;
 }
 
@@ -80,7 +80,7 @@
 
 .summary strong {
   color: #25364d;
-  font-weight: 650;
+  font-weight: 600;
 }
 
 /* 📧 연락처 박스 */
@@ -109,7 +109,7 @@
 
 .contactBox strong {
   color: var(--resume-color-tertiary);
-  font-weight: 650;
+  font-weight: 600;
 }
 
 .contactBox a {
@@ -133,7 +133,7 @@
 .section h2 {
   font-size: var(--resume-font-h2);
   /* 1.3rem → 1.5rem 증가 */
-  font-weight: 750;
+  font-weight: 700;
   color: var(--resume-color-primary);
   border-bottom: 1px solid #aeb4bc;
   padding-bottom: 0.35rem;
@@ -155,7 +155,7 @@
 
 .section li strong {
   color: #252525;
-  font-weight: 650;
+  font-weight: 600;
 }
 
 /* 🛠 기술 스택 리스트 */
@@ -173,7 +173,7 @@
 
 .stackTextList strong {
   color: #25364d;
-  font-weight: 650;
+  font-weight: 600;
   font-size: var(--resume-font-base);
 }
 
@@ -197,13 +197,13 @@
 
 .infoTitle strong {
   color: var(--resume-color-primary);
-  font-weight: 650;
+  font-weight: 600;
 }
 
 .period {
   font-size: 0.85rem;
   color: var(--resume-color-muted);
-  font-weight: 450;
+  font-weight: 500;
 }
 
 .subDesc {
