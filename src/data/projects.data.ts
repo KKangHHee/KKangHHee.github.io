@@ -9,9 +9,15 @@ export const PROJECTS: ProjectProps[] = [
     service: "SMS/알림톡 발송 이력과 조직/채널 정보를 관리하는 사내 웹서비스",
     role: "레거시 마이그레이션 및 운영 기능 개선",
     members: "3인",
-
     stack: [
-      "Java 17, Spring Boot, JPA, QueryDSL, MariaDB, Oracle, Thymeleaf, Alpine.js",
+      "Java 17",
+      "Spring Boot",
+      "JPA",
+      "QueryDSL",
+      "Oracle",
+      "MariaDB",
+      "Thymeleaf",
+      "Alpine.js",
     ],
     highlights: [
       {
