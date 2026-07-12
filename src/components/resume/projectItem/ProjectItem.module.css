@@ -4,31 +4,23 @@
 
 /* 📐 타이포그래피 변수 (resume.module.css와 통일) */
 :root {
-  --font-size-h3: 1.25rem;
+  --font-size-h3: 1.125rem;
   /* 20px - 프로젝트 제목 */
   --font-size-h4: 1.1rem;
   /* 17.6px - 하위 섹션 */
-  --font-size-base: 1rem;
+  --font-size-base: 0.95rem;
   /* 16px - 본문 */
-  --font-size-small: 0.9rem;
+  --font-size-small: 0.875rem;
   /* 14.4px - 보조 */
-  --color-primary: #111;
+  --color-primary: #171717;
   /* 최상위 제목 */
-  --color-secondary: #333;
+  --color-secondary: #383838;
   /* 본문 */
-  --color-tertiary: #555;
+  --color-tertiary: #686d73;
   /* 보조 */
   --color-border: #e0e0e0;
   /* 구분선 */
 }
-
-/* 🎯 프로젝트 카드 */
-/* .project {
-  margin-bottom: 3rem;
-  color: var(--color-secondary);
-  padding-bottom: 0;
-  border-bottom: none;
-} */
 
 .project {
   margin: 0;
@@ -68,7 +60,7 @@
   flex-shrink: 0;
   color: var(--color-tertiary);
   font-size: var(--font-size-small);
-  font-weight: 700;
+  font-weight: 550;
 }
 
 .title {
@@ -84,7 +76,7 @@
   margin: 0;
   color: var(--color-tertiary);
   font-size: var(--font-size-small);
-  font-weight: 500;
+  font-weight: 450;
   white-space: nowrap;
 }
 
@@ -109,9 +101,8 @@
 }
 
 .metaItem dt {
-  font-weight: 600;
-  color: var(--color-primary);
-  /* #111 */
+  font-weight: 650;
+  color: #4d535a;
   min-width: 90px;
   margin-right: 12px;
   flex-shrink: 0;
@@ -132,7 +123,7 @@
 .stackText {
   color: var(--color-secondary);
   font-size: var(--font-size-small);
-  font-weight: 500;
+  font-weight: 450;
   line-height: 1.6;
   word-break: keep-all;
 }
@@ -171,8 +162,8 @@
 /* 🔖 주요 경험 제목 */
 .highlightTitle {
   font-size: var(--font-size-base);
-  font-weight: 700;
-  color: var(--color-primary);
+  font-weight: 650;
+  color: #25364d;
   line-height: 1.5;
 }
 
@@ -187,7 +178,7 @@
   margin: 0;
   font-size: var(--font-size-small);
   line-height: 1.6;
-  color: var(--color-secondary);
+  color: #454545;
 }
 
 /* ========================================

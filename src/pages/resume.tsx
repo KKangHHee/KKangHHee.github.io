@@ -5,7 +5,7 @@ import styles from "./resume.module.css";
 
 export default function Resume() {
   return (
-    <Layout title="Resume">
+    <Layout title="신강희 | 백엔드 개발자 이력서">
       <main className={styles.container}>
         {/* 기본 정보*/}
         <section className={styles.header}>
@@ -99,7 +99,7 @@ export default function Resume() {
             <div className={styles.infoItem}>
               <div className={styles.infoTitle}>
                 <strong>[SK플래닛] 웹풀스택 개발자 과정</strong>
-                <span className={styles.period}>(2024.12 ~ 2025.05)</span>
+                <span className={styles.period}>(2024.12 - 2025.05)</span>
               </div>
               <ul className={styles.subDesc}>
                 <li>Java/Spring Boot, JS/React 기반 풀스택 교육 수료</li>
@@ -109,7 +109,7 @@ export default function Resume() {
             <div className={styles.infoItem}>
               <div className={styles.infoTitle}>
                 <strong>[가톨릭대학교] 컴퓨터정보공학부</strong>
-                <span className={styles.period}>(2019.03 ~ 2025.08)</span>
+                <span className={styles.period}>(2019.03 - 2025.08)</span>
               </div>
               <ul className={styles.subDesc}>
                 <li>학점: 4.0 / 4.5</li>
