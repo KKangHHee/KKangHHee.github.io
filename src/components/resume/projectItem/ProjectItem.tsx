@@ -13,22 +13,23 @@ export default function ProjectItem({
 }: ProjectProps) {
   return (
     <article className={styles.project}>
-      <header>
-        <h3 className={styles.title}>
-          <span className={styles.organization}>[{organization}]</span> {title}
-        </h3>
+      <header className={styles.header}>
+        <div className={styles.titleArea}>
+          <span className={styles.organization}>[{organization}]</span>
+          <h3 className={styles.title}>{title}</h3>
+        </div>
+        <div>
+          <span className={styles.period}>{members} 구성</span>
+          <span> | </span>
+          <time className={styles.period}>({period})</time>
+        </div>
       </header>
+
       <div className={styles.content}>
         <dl className={styles.meta}>
           <div className={styles.metaItem}>
             <dt>• 서비스</dt>
             <dd>{service}</dd>
-          </div>
-          <div className={styles.metaItem}>
-            <dt>• 기간 / 인원</dt>
-            <dd>
-              {period} | {members}
-            </dd>
           </div>
           <div className={styles.metaItem}>
             <dt>• 담당 역할</dt>
@@ -48,7 +49,6 @@ export default function ProjectItem({
 
         {highlights.length > 0 && (
           <section className={styles.flowSection}>
-            <h4 className={styles.solutionEx}>[주요 경험 및 성과]</h4>
             <ul className={styles.flowList}>
               {highlights.map(({ title, description }, index) => (
                 <li
@@ -56,7 +56,9 @@ export default function ProjectItem({
                   className={styles.flowItem}
                 >
                   {title && (
-                    <strong className={styles.flowTitle}>{title}</strong>
+                    <strong className={styles.flowTitle}>
+                      {index}) {title}
+                    </strong>
                   )}
                   <p className={styles.problemContainer}>{description}</p>
                 </li>

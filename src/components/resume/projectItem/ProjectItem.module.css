@@ -12,64 +12,81 @@
   /* 16px - 본문 */
   --font-size-small: 0.9rem;
   /* 14.4px - 보조 */
-  --font-size-xs: 0.85rem;
-  /* 13.6px - 메타 */
-
   --color-primary: #111;
   /* 최상위 제목 */
   --color-secondary: #333;
   /* 본문 */
   --color-tertiary: #555;
   /* 보조 */
-  --color-muted: #777;
-  /* 메타 정보 */
   --color-border: #e0e0e0;
   /* 구분선 */
-  --color-highlight: #f8f9fa;
-  /* 배경 강조 */
 }
 
 /* 🎯 프로젝트 카드 */
 .project {
   margin-bottom: 3rem;
   color: var(--color-secondary);
-  /* #333 통일 */
-  /* padding-bottom: 2rem;
-  border-bottom: 1px solid var(--color-border); */
   padding-bottom: 0;
-  border-bottom: none;
-}
-
-.project:last-child {
   border-bottom: none;
 }
 
 /* ========================================
    📌 프로젝트 헤더
    ======================================== */
+
+.header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.titleArea {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.organization {
+  flex-shrink: 0;
+  color: var(--color-tertiary);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+}
+
 .title {
+  margin: 0;
+  color: var(--color-primary);
   font-size: var(--font-size-h3);
-  /* 1.25rem 유지 */
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+
+.period {
+  color: var(--color-muted);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* .title {
+  font-size: var(--font-size-h3);
   font-weight: 700;
   margin-bottom: 1rem;
   color: var(--color-primary);
-  /* #111 */
   letter-spacing: -0.3px;
   line-height: 1.4;
 }
 
 .organization {
   color: var(--color-tertiary);
-  /* #555 */
   font-weight: 600;
   font-size: var(--font-size-base);
-  /* 1rem */
-}
-
-.content {
-  padding-left: 0.5rem;
-  border-left: 1px solid var(--color-border);
-}
+} */
 
 /* ========================================
    📋 메타 정보 (DL 스타일)
@@ -145,29 +162,26 @@
    💡 핵심 문제 해결 섹션
    ======================================== */
 .flowSection {
-  margin-top: 1.5rem;
+  margin-top: 0.5rem;
 }
 
-.solutionEx {
-  font-size: var(--font-size-h4);
-  /* 1.1rem */
-  font-weight: 700;
-  color: var(--color-primary);
-  /* #111 */
-  margin: 1.5rem 0 1rem 0;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--color-border);
+.flowSection ul {
+  padding: 0;
 }
 
 .flowList {
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
   padding-left: 0;
   list-style: none;
 }
 
 .flowItem {
-  margin-bottom: 1.5rem;
   line-height: 1.7;
+  padding-left: 0.1rem;
+  color: var(--color-secondary);
+  font-size: var(--font-size-small);
+  line-height: 1.55;
+  word-break: keep-all;
 }
 
 .flowItem:last-child {
@@ -186,98 +200,30 @@
   line-height: 1.5;
 }
 
-/* 📍 도메인 및 문제 설명 */
-.problemContainer,
-.solutionContainer {
+/* .flowTitle::after {
+  content: " —";
+  color: var(--color-tertiary);
+} */
+
+/* 📍 주요 경험 설명 */
+.problemContainer {
   padding-left: 12px;
   margin-bottom: 0.4rem;
   font-size: var(--font-size-small);
   /* 0.9rem */
   line-height: 1.6;
-}
-
-.domain {
-  color: var(--color-tertiary);
-  /* #555 */
-  font-weight: 600;
-  font-size: var(--font-size-small);
-  /* 0.9rem */
-}
-
-.problem {
   color: var(--color-secondary);
-  /* #333 */
-  font-weight: 500;
-}
-
-.solution {
-  color: var(--color-secondary);
-  /* #333 */
-  font-weight: 500;
-}
-
-/* ✨ 결과 강조 */
-.result {
-  background-color: transparent;
-  color: var(--color-primary);
-  /* #111 */
-  font-weight: 700;
-  text-decoration: underline;
-  text-decoration-color: #fbbf24;
-  /* 강조 색상 */
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
-}
-
-/* 🎯 화살표 아이콘 */
-.arrow {
-  margin-right: 6px;
-  color: var(--color-primary);
-  /* #111 */
-  font-weight: bold;
-}
-
-/* ========================================
-   📌 추가 기여 섹션
-   ======================================== */
-.extraFooter {
-  margin-top: 1.5rem;
-}
-
-.extraList {
-  margin-top: 0.8rem;
-  padding-left: 1.5rem;
-  list-style: disc;
-}
-
-.extraList li {
-  margin-bottom: 0.6rem;
-  font-size: var(--font-size-small);
-  /* 0.9rem */
-  line-height: 1.6;
-  color: var(--color-secondary);
-  /* #333 */
 }
 
 /* ========================================
    🖨 PDF 출력 최적화
    ======================================== */
 @media print {
-  /* .project {
-    page-break-inside: avoid;
-    break-inside: avoid;
-  } */
-
   .stackBadge {
     background-color: #f0f0f0 !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
     border: 1px solid #d1d5db !important;
-  }
-
-  .result {
-    color: #000 !important;
-    text-decoration-color: #000 !important;
   }
 
   .meta {
