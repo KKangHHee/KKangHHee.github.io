@@ -5,8 +5,8 @@ export const PROJECTS: ProjectProps[] = [
   {
     organization: "인턴",
     title: "사내 메시지 발송 관리 서비스 마이그레이션",
-    period: "2026.03 ~ 2026.06",
-    service: "SMS/알림톡 발송 이력과 조직/채널 정보를 관리하는 사내 웹서비스",
+    period: "2026.03 - 2026.06",
+    service: "SMS/알림톡 발송 이력과 조직·채널 정보를 관리하는 사내 웹서비스",
     role: "레거시 마이그레이션 및 운영 기능 개선",
     members: "3인",
     stack: [
@@ -28,12 +28,12 @@ export const PROJECTS: ProjectProps[] = [
       {
         title: "수기 운영 데이터 시스템화",
         description:
-          "수기 처리로 관리되던 조직 정보를 웹 기반 관리 기능으로 전환하고 논리적 연관 관계를 부여하고, 계단식 soft-delete를 적용해 부서 데이터의 상·하위 상태 불일치를 정비했습니다.",
+          "수기 처리로 관리되던 조직 정보를 웹 기반 관리 기능으로 전환하고 상·하위 상태 변경 규칙과 계단식 soft-delete를 적용해 부서 데이터의 상·하위 상태 불일치를 정비했습니다.",
       },
       {
         title: "마이그레이션 및 보안 개선",
         description:
-          "JSP·MyBatis 기반 기능을 Spring Boot·JPA/QueryDSL 구조로 전환하고, 보안 취약점 해소를 위해 평문 비밀번호 BCrypt 이관하였습니다.",
+          "JSP·MyBatis 기반 기능을 Spring Boot·JPA/QueryDSL 구조로 전환하고, 보안 취약점 해소를 위해 기존 평문 비밀번호를 BCrypt로 이관했습니다.",
       },
       {
         title: "Alpine.js 도입을 통한 UI 로직 간소화",
@@ -45,9 +45,9 @@ export const PROJECTS: ProjectProps[] = [
   {
     organization: "팀 프로젝트",
     title: "Bargain Hunter",
-    period: "2025.07 ~ 2025.10",
+    period: "2025.07 - 2025.10",
     service: "관광지 탐색과 LLM 기반 가격 비교 기능을 제공하는 서비스",
-    role: "인증/인가 아키텍쳐 및 사용자 도메인 담당",
+    role: "인증·인가 아키텍처 및 사용자 도메인 담당",
     members: "4인",
     stack: [
       "Java",
@@ -75,11 +75,11 @@ export const PROJECTS: ProjectProps[] = [
   {
     organization: "팀 프로젝트",
     title: "Security Ticket",
-    period: "2025.04 ~ 2025.05",
+    period: "2025.04 - 2025.05",
     service:
       "Excel·이메일 중심의 수동 점검 프로세스를 디지털화한 웹 기반 관리 시스템",
     role: "사용자 관리 도메인 및 백엔드 API 설계",
-    members: "BE 8인 · FE 3인",
+    members: "BE 8인 / FE 3인",
     stack: [
       "Java",
       "Spring Boot",
@@ -112,10 +112,10 @@ export const PROJECTS: ProjectProps[] = [
   {
     organization: "팀 프로젝트",
     title: "ReadyVery",
-    period: "2023.12 ~ 2024.05",
+    period: "2023.12 - 2024.05",
     service: "로컬 카페의 사전 주문과 결제를 지원하는 패스트오더 서비스",
     role: "프론트엔드 개발 및 API 인터페이스 설계",
-    members: "BE 2인 · FE 4인",
+    members: "BE 2인 / FE 4인",
     stack: [
       "React",
       "TypeScript",

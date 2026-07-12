@@ -23,10 +23,24 @@
 }
 
 /* 🎯 프로젝트 카드 */
-.project {
+/* .project {
   margin-bottom: 3rem;
   color: var(--color-secondary);
   padding-bottom: 0;
+  border-bottom: none;
+} */
+
+.project {
+  margin: 0;
+  padding: 1.05rem 0 1.15rem;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.project:first-child {
+  padding-top: 0;
+}
+
+.project:last-child {
   border-bottom: none;
 }
 
@@ -42,7 +56,7 @@
   margin-bottom: 0.3rem;
 }
 
-.titleArea {
+.projectIdentity {
   display: flex;
   align-items: baseline;
   flex-wrap: wrap;
@@ -53,7 +67,7 @@
 .organization {
   flex-shrink: 0;
   color: var(--color-tertiary);
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-small);
   font-weight: 700;
 }
 
@@ -66,27 +80,17 @@
   letter-spacing: -0.02em;
 }
 
-.period {
-  color: var(--color-muted);
-  font-size: var(--font-size-xs);
+.projectMeta {
+  margin: 0;
+  color: var(--color-tertiary);
+  font-size: var(--font-size-small);
   font-weight: 500;
   white-space: nowrap;
 }
 
-/* .title {
-  font-size: var(--font-size-h3);
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: var(--color-primary);
-  letter-spacing: -0.3px;
-  line-height: 1.4;
+.projectContent {
+  margin-top: 0.75rem;
 }
-
-.organization {
-  color: var(--color-tertiary);
-  font-weight: 600;
-  font-size: var(--font-size-base);
-} */
 
 /* ========================================
    📋 메타 정보 (DL 스타일)
@@ -161,22 +165,23 @@
 /* ========================================
    💡 핵심 문제 해결 섹션
    ======================================== */
-.flowSection {
+.highlightsSection {
   margin-top: 0.5rem;
 }
 
-.flowSection ul {
+.highlightsSection ul {
   padding: 0;
 }
 
-.flowList {
-  /* margin-top: 1rem; */
+.highlightList {
+  margin-top: 1rem;
   padding-left: 0;
-  list-style: none;
+  list-style: disc;
+  list-style-position: inside;
 }
 
-.flowItem {
-  line-height: 1.7;
+.highlightItem {
+  margin-bottom: 1rem;
   padding-left: 0.1rem;
   color: var(--color-secondary);
   font-size: var(--font-size-small);
@@ -184,33 +189,28 @@
   word-break: keep-all;
 }
 
-.flowItem:last-child {
+.highlightItem:last-child {
   margin-bottom: 0;
 }
 
-/* 🔖 문제 해결 제목 */
-.flowTitle {
-  display: block;
+/* 🔖 주요 경험 제목 */
+.highlightTitle {
   font-size: var(--font-size-base);
-  /* 1rem */
   font-weight: 700;
   color: var(--color-primary);
-  /* #111 */
-  margin-bottom: 0.6rem;
   line-height: 1.5;
 }
 
-/* .flowTitle::after {
-  content: " —";
+.highlightTitle::after {
+  content: " — ";
   color: var(--color-tertiary);
-} */
+}
 
 /* 📍 주요 경험 설명 */
-.problemContainer {
-  padding-left: 12px;
-  margin-bottom: 0.4rem;
+.highlightDescription {
+  display: inline;
+  margin: 0;
   font-size: var(--font-size-small);
-  /* 0.9rem */
   line-height: 1.6;
   color: var(--color-secondary);
 }
@@ -255,7 +255,12 @@
     font-size: 1.1rem;
   }
 
-  .solutionEx {
-    font-size: 1rem;
+  .header {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+
+  .projectMeta {
+    white-space: normal;
   }
 }

@@ -162,7 +162,7 @@
 }
 
 .section li {
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.3rem;
   font-size: var(--font-size-base);
   line-height: 1.6;
   color: var(--color-secondary);
@@ -180,7 +180,7 @@
 }
 
 .stackTextList li {
-  margin-bottom: 0.8rem;
+  margin: 0;
   font-size: var(--font-size-base);
   line-height: 1.6;
   color: var(--color-secondary);
