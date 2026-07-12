@@ -1,6 +1,5 @@
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import HomepageFeatures from "@site/src/components/HomepageFeatures";
 import Heading from "@theme/Heading";
 import Layout from "@theme/Layout";
 import clsx from "clsx";
@@ -73,9 +72,6 @@ function HomepageHeader() {
             >
               <img src="/img/linkedin.svg" alt="LinkedIn" />
             </a>
-            <a href="mailto:skh8609@naver.com" className={styles.socialLink}>
-              <img src="/img/email.svg" alt="Email" />
-            </a>
           </div>
         </div>
       </div>
@@ -94,9 +90,6 @@ export default function Home(): ReactNode {
       description="Spring Boot 백엔드 개발자 신강희의 포트폴리오입니다. 프로젝트 경험과 기술 스택을 확인하세요."
     >
       <HomepageHeader />
-      <main>
-        <HomepageFeatures />
-      </main>
     </Layout>
   );
 }

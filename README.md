@@ -24,7 +24,7 @@ Java/Spring 기반 백엔드 개발 경험과 프로젝트별 문제 해결 과�
 │   └── projects/              # 프로젝트 상세 문서
 │       ├── bargain-hunter/
 │       ├── msg-manage/
-│       ├── readyberry/
+│       ├── readyvery/
 │       └── security-ticket/
 ├── src/
 │   ├── components/            # 포트폴리오·이력서 공통 컴포넌트
