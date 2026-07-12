@@ -137,13 +137,21 @@
 
 /* 🔖 주요 경험 제목 */
 .highlightTitle {
+  padding: 0 0.08em;
   font-size: var(--resume-font-base);
   font-weight: 600;
   color: #25364d;
   line-height: 1.5;
+  background-image: linear-gradient(to top,
+      rgba(250, 204, 21, 0.28) 0,
+      rgba(250, 204, 21, 0.28) 0.38em,
+      transparent 0.38em);
+  background-repeat: no-repeat;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
-.highlightTitle::after {
+.highlightDescription::before {
   content: " — ";
   color: var(--resume-color-tertiary);
 }
@@ -190,6 +198,11 @@
 
   .metaList {
     background-color: #f8f9fa !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .highlightTitle {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }

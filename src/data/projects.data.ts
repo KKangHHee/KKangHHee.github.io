@@ -100,11 +100,6 @@ export const PROJECTS: ProjectProps[] = [
         description:
           "JSON 로그인, 로그인 실패 횟수, 계정 잠금, 최초 로그인 여부 등 비즈니스 요구사항을 반영하기 위해 Spring Security의 인증 흐름을 확장했습니다.",
       },
-      {
-        title: "백엔드 협업 기준 표준화",
-        description:
-          "8명의 백엔드 개발자가 일관된 방식으로 API를 구현할 수 있도록 공통 응답·예외 처리 구조와 코드 컨벤션을 정리하고, 프론트엔드 협업을 위한 통합 API 규약 문서를 작성했습니다.",
-      },
     ],
   },
 
