@@ -87,37 +87,34 @@
 /* ========================================
    📋 메타 정보 (DL 스타일)
    ======================================== */
-.meta {
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
+.metaList {
+  margin: 0;
+  padding-left: 1.15rem;
+  list-style: disc;
 }
 
 .metaItem {
-  display: flex;
+  display: list-item;
+  margin-bottom: 0.2rem;
   font-size: var(--font-size-small);
-  /* 0.9rem → 통일 */
-  line-height: 1.5;
+  line-height: 1.55;
+  color: var(--color-secondary);
 }
 
-.metaItem dt {
+.metaLabel {
+  display: inline-block;
   font-weight: 650;
   color: #4d535a;
-  min-width: 90px;
-  margin-right: 12px;
-  flex-shrink: 0;
+  min-width: 80px;
 }
 
-.metaItem dt::after {
-  content: ":";
-  margin-left: 2px;
+.metaLabel::after {
+  content: ": ";
+  color: var(--color-tertiary);
 }
 
-.metaItem dd {
-  margin: 0;
-  flex: 1;
+.metaValue {
   color: var(--color-secondary);
-  /* #333 */
 }
 
 .stackText {
@@ -137,6 +134,7 @@
 
 .highlightsSection ul {
   padding: 0;
+  margin: 0;
 }
 
 .highlightList {
@@ -185,7 +183,7 @@
    🖨 PDF 출력 최적화
    ======================================== */
 @media print {
-  .meta {
+  .metaList {
     background-color: #f8f9fa !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
@@ -196,18 +194,14 @@
    📱 반응형 디자인
    ======================================== */
 @media screen and (max-width: 768px) {
-  .meta {
+  .metaList {
     padding: 0.8rem;
+    padding-left: 2rem;
   }
 
-  .metaItem {
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .metaItem dt {
+  .metaLabel {
     min-width: auto;
-    margin-bottom: 2px;
+    margin-right: 0.3rem;
   }
 
   .title {

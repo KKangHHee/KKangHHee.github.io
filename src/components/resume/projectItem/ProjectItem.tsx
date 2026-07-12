@@ -26,20 +26,22 @@ export default function ProjectItem({
       </header>
 
       <div className={styles.projectContent}>
-        <dl className={styles.meta}>
-          <div className={styles.metaItem}>
-            <dt>• 서비스</dt>
-            <dd>{service}</dd>
-          </div>
-          <div className={styles.metaItem}>
-            <dt>• 담당 역할</dt>
-            <dd>{role}</dd>
-          </div>
-          <div className={styles.metaItem}>
-            <dt>• 기술 스택</dt>
-            <dd className={styles.stackText}>{stack.join(" · ")}</dd>
-          </div>
-        </dl>
+        <ul className={styles.metaList}>
+          <li className={styles.metaItem}>
+            <strong className={styles.metaLabel}>서비스</strong>
+            <span className={styles.metaValue}>{service}</span>
+          </li>
+          <li className={styles.metaItem}>
+            <strong className={styles.metaLabel}>담당 역할</strong>
+            <span className={styles.metaValue}>{role}</span>
+          </li>
+          <li className={styles.metaItem}>
+            <strong className={styles.metaLabel}>기술 스택</strong>
+            <span className={`${styles.metaValue} ${styles.stackText}`}>
+              {stack.join(" · ")}
+            </span>
+          </li>
+        </ul>
 
         {highlights.length > 0 && (
           <section className={styles.highlightsSection}>
