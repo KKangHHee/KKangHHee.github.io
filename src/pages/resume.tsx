@@ -80,20 +80,17 @@ export default function Resume() {
               JPA, QueryDSL, MyBatis
             </li>
             <li>
-              <strong>DB / Cache</strong> : MySQL, PostgreSQL, MariaDB, Oracle,
-              Redis
+              <strong>Database</strong> : Oracle, MariaDB, MySQL, PostgreSQL
             </li>
             <li>
-              <strong>Test</strong> : JUnit5, Mockito
-            </li>
-            <li>
-              <strong>Infra</strong> : AWS, Docker, GitHub Actions, Jenkins
+              <strong>Testing / Infra</strong> : JUnit, Mockito, Docker
             </li>
             <li>
               <strong>Frontend</strong> : React, TypeScript
             </li>
           </ul>
         </section>
+
         {/* 학력 / 자격증 */}
         <div className={styles.bottomGrid}>
           {/* 왼쪽: Education */}
@@ -101,20 +98,21 @@ export default function Resume() {
             <h2>Education</h2>
             <div className={styles.infoItem}>
               <div className={styles.infoTitle}>
-                <strong>웹 풀스택 개발자 과정</strong>
+                <strong>[SK플래닛] 웹풀스택 개발자 과정</strong>
                 <span className={styles.period}>(2024.12 ~ 2025.05)</span>
               </div>
               <ul className={styles.subDesc}>
-                <li>Java/Spring Boot 기반 REST API 설계 및 실무 중심 교육</li>
+                <li>Java/Spring Boot, JS/React 기반 풀스택 교육 수료</li>
               </ul>
             </div>
 
             <div className={styles.infoItem}>
               <div className={styles.infoTitle}>
-                <strong>가톨릭대학교 컴퓨터정보공학부</strong>
+                <strong>[가톨릭대학교] 컴퓨터정보공학부</strong>
                 <span className={styles.period}>(2019.03 ~ 2025.08)</span>
               </div>
               <ul className={styles.subDesc}>
+                <li>학점: 4.0 / 4.5</li>
                 <li>주요 이수: 데이터베이스 설계, 데이터 통신, 운영체제</li>
               </ul>
             </div>
@@ -122,86 +120,45 @@ export default function Resume() {
 
           {/* 오른쪽: Certifications & Activities */}
           <section className={styles.section}>
-            <h2>Certs & Activities</h2>
+            <h2>Certifications</h2>
             <div className={styles.infoItem}>
-              <div className={styles.infoTitle}>
-                <strong>Certifications</strong>
-              </div>
-              <ul className={styles.subDesc}>
-                <li>정보처리기사 (2024.12)</li>
-                <li>SQLD (SQL 개발자, 2024.12)</li>
-              </ul>
-            </div>
-
-            <div className={styles.infoItem}>
-              <div className={styles.infoTitle}>
-                <strong>Activities</strong>
-              </div>
               <ul className={styles.subDesc}>
                 <li>
-                  <strong>교내 DB 튜터</strong>
-                  (2024.09)
-                  <br /> : 쿼리 작성 및 정규화 지도
+                  정보처리기사 <span className={styles.period}> (2024.12)</span>
                 </li>
                 <li>
-                  <strong>하나소셜벤처</strong> (2024.07)
-                  <br />: 서비스 기획 및 피칭 수료
+                  SQLD <span className={styles.period}> (2024.12)</span>
                 </li>
                 <li>
-                  <strong>UMC IT 동아리</strong>
-                  (2023.03)
-                  <br />: 프론트엔드 협업 프로젝트
+                  TOEIC SPEAKING / IL
+                  <span className={styles.period}> (2025.12)</span>
                 </li>
               </ul>
             </div>
           </section>
         </div>
-        {/* <section className={styles.section}>
-          <h2>Education</h2>
-          <ul>
-            <li>
-              <strong>웹 풀스택 개발자 과정</strong> (2024.12 ~ 2025.05)
-              <ul>
-                <li>Spring Boot 기반 REST API 설계, DB 튜닝 실습</li>
-              </ul>
-            </li>
-            <li>
-              <strong>가톨릭대학교 컴퓨터정보공학부</strong> (2019.03 ~ 2025.08
-              | 졸업)
-              <ul>
-                <li>
-                  주요 이수 과목: 데이터베이스 설계, 데이터 통신, 운영체제
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </section>
-
         <section className={styles.section}>
-          <h2>Certifications & Activities</h2>
-          <ul>
-            <li>
-              <strong>정보처리기사</strong> (2024.12 | 한국산업인력공단)
-            </li>
-            <li>
-              <strong>SQLD</strong> (2024.12 | 한국데이터산업진흥원)
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <strong>교내 데이터베이스 튜터</strong> (2024.09 ~ 2024.11) – DB
-              기초/정규화/쿼리 작성 튜터링 진행
-            </li>
-            <li>
-              <strong>하나소셜벤처유니버시티 – 청년 창업 교육 수료</strong>{" "}
-              (2024.07) — 창업 아이템 기획/피칭 경험
-            </li>
-            <li>
-              <strong>UMC 대학생 IT 연합 동아리</strong> (2023.03 ~ 2023.08) —
-              프론트 협업 경험
-            </li>
-          </ul>
-        </section> */}
+          <h2>Activities</h2>
+          <div className={styles.infoItem}>
+            <ul className={styles.subDesc}>
+              <li>
+                <strong>데이터베이스 설계 튜터</strong>
+                <span className={styles.period}> (2024.09 – 2024.11)</span>
+                &nbsp;:&nbsp; 데이터 모델링, 정규화, SQL 실습 지도
+              </li>
+              <li>
+                <strong>하나소셜벤처</strong>{" "}
+                <span className={styles.period}> (2024.07)</span>&nbsp;:&nbsp;
+                서비스 기획 및 피칭 수료
+              </li>
+              <li>
+                <strong>UMC IT 동아리</strong>
+                <span className={styles.period}> (2023.03 – 2023.08)</span>
+                &nbsp;:&nbsp; 프론트엔드 스터디와 팀 프로젝트 참여
+              </li>
+            </ul>
+          </div>
+        </section>
       </main>
     </Layout>
   );
