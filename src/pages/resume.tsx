@@ -67,7 +67,7 @@ export default function Resume() {
               Redis
             </li>
             <li>
-              <strong>Test</strong> : JUnit5, Mockito, Testcontainers
+              <strong>Test</strong> : JUnit5, Mockito
             </li>
             <li>
               <strong>Infra</strong> : AWS, Docker, GitHub Actions, Jenkins

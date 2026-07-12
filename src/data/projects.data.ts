@@ -1,12 +1,12 @@
 import { ProjectProps } from "@site/src/components/resume/projectItem/ProjectItemType";
 
 export const PROJECTS: ProjectProps[] = [
-  // ✅ 1. Bargain Hunter
+  // ✅ 1. 웅진 인턴
   {
     organization: "인턴 과제",
-    title: "사내 메시지 발송 관리 서비스 마이그레이션 (Full Stack)",
+    title: "사내 메시지 발송 관리 서비스 마이그레이션 (Backend)",
     period: "2026.03.03 ~ 2026.06.02 (3개월)",
-    role: "Java 백엔드 인턴 — 레거시 마이그레이션 및 기능 보강 (풀스택 수행)",
+    role: "Java 백엔드 인턴 — 레거시 마이그레이션 및 기능 보강",
     stack:
       "Java 17, Spring Boot, Thymeleaf, JPA, QueryDSL, MariaDB, Oracle, Alpine.js",
     members: "3인",
@@ -33,12 +33,12 @@ export const PROJECTS: ProjectProps[] = [
       "레거시 스택(JSP + MyBatis) → Spring Boot + Thymeleaf + JPA/QueryDSL 마이그레이션 및 JSON API 기반 뷰 분리 설계",
       "평문 저장 비밀번호를 BCrypt로 일괄 마이그레이션하여 보안 취약점 해소",
       "@JsonView + ResponseBodyAdvice로 역할별 응답 필드 제어 (서버 단일 방어)",
-      "Mockito 서비스 단위 테스트 및 Testcontainers/검증 DB로 Oracle 방언·bulk 처리 검증",
+      "Mockito 서비스 단위 테스트 및 실제 Oracle 11g 환경에서 방언·bulk 처리 검증",
     ],
   },
   {
     organization: "팀 프로젝트",
-    title: "Bargain Hunter (Full Stack)",
+    title: "Bargain Hunter (Backend)",
     period: "2025.07 ~ 2025.10 (4개월)",
     role: "인증/인가 마이크로서비스 설계 주도 및 사용자 도메인 담당",
     stack: "Java, Spring Boot, PostgreSQL, Redis, Docker, K8s",
@@ -50,7 +50,7 @@ export const PROJECTS: ProjectProps[] = [
         domain: "이메일 인증 API",
         problem: "SMTP 연동 시 블로킹 발생으로 인한 응답 지연(2.5s)",
         solution: "Spring Event + @Async 비동기 처리 도입으로",
-        result: "응답 시간 92% 개선 (0.2s) 및 처리량 10배 향상",
+        result: "비동기 처리로 응답 시간 92% 개선 (2.5s → 0.2s)",
       },
     ],
     extras: [
@@ -76,7 +76,7 @@ export const PROJECTS: ProjectProps[] = [
         domain: "복합 조건 검색",
         problem: "JPA Specification 사용 시 쿼리 가독성 저하 및 성능 한계",
         solution: "MyBatis 하이브리드 도입 및 EXISTS 서브쿼리 최적화로",
-        result: "평균 응답 시간 36% 개선 및 최대 응답 시간 88.5% 단축",
+        result: "평균 응답 시간 36.8% 개선 (24.45ms → 15.51ms)",
       },
     ],
     extras: [

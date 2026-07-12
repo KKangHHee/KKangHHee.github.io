@@ -1,97 +1,53 @@
-# 신강희 포트폴리오
+# 신강희 백엔드 포트폴리오
 
-## 📖 소개
+Java/Spring 기반 백엔드 개발 경험과 프로젝트별 문제 해결 과정을 정리한 Docusaurus 포트폴리오입니다.
 
-### 주소
+- 사이트: [kkanghhee.github.io](https://kkanghhee.github.io)
+- 이력서: [`/resume`](https://kkanghhee.github.io/resume)
+- GitHub: [github.com/KKangHHee](https://github.com/KKangHHee)
+- Email: [skh8609@gmail.com](mailto:skh8609@gmail.com)
 
-> [🌐 kanghee's github pages](https://kkanghhee.github.io)
+## 주요 콘텐츠
 
-### 주요 내용
+- `src/pages/portfolio/`: 프로젝트별 요약과 핵심 성과
+- `docs/projects/`: 프로젝트 상세 문서와 트러블슈팅
+- `blog/posts/`: 기술 문제 해결 과정을 정리한 글
+- `src/pages/resume.tsx`: 웹 이력서
 
-- 📄 **About**: 경력, 학력, 자격증 및 활동 내역 등 기본 정보
-- 💼 **Projects**: 주요 프로젝트 상세 설명
-- 🔧 **Troubleshooting**: 기술적 이슈 해결 과정
+## 프로젝트 구조
 
-## 📁 프로젝트 구조
-
-```
+```text
 .
-├── blog/                      # 포스트 (Troubleshooting 등)
-│   └── troubleshooting/
-│       ├── bargain-hunter/    # Bargain Hunter 트러블슈팅
-│       ├── security-ticket/   # 보안 티켓 트러블슈팅
-│       └── readyvery/         # 레디베리 트러블슈팅
-├── docs/                      # 프로젝트 문서
-│   ├── bargain-hunter/        # Bargain Hunter 프로젝트
-│   ├── security-ticket/       # 보안 티켓 관리 플랫폼
-│   └── readyvery/             # 레디베리 프로젝트
+├── blog/
+│   └── posts/                 # 기술 블로그 글
+├── docs/
+│   └── projects/              # 프로젝트 상세 문서
+│       ├── bargain-hunter/
+│       ├── msg-manage/
+│       ├── readyberry/
+│       └── security-ticket/
 ├── src/
-│   ├── pages/                 # 커스텀 페이지
-│   │   ├── index.tsx          # 메인 페이지
-│   │   └── about.md           # About 페이지
-│   └── css/
-│       └── custom.css         # 커스텀 스타일
-├── static/                    # 정적 파일
-├── docusaurus.config.ts       # Docusaurus 설정
-└── sidebars.ts                # 사이드바 설정
+│   ├── components/            # 포트폴리오·이력서 공통 컴포넌트
+│   ├── data/                  # 프로젝트 데이터
+│   └── pages/                 # 홈·이력서·프로젝트 페이지
+├── static/                    # 이미지 등 정적 자산
+├── docusaurus.config.ts
+└── sidebars.ts
 ```
 
-## 🎨 주요 기능
+## 기술 스택
 
-### 1. 프로젝트 문서화
+- Docusaurus 3
+- React 19
+- TypeScript
+- CSS Modules
+- GitHub Pages
 
-- 각 프로젝트별 상세한 기술 스택, 담당 역할, 성과 문서화
-- 사이드바를 통한 체계적인 문서 구조
+## 로컬 실행
 
-### 2. 트러블슈팅 블로그
-
-- 프로젝트별 기술적 이슈 해결 과정 공유
-- 코드 예시와 함께 상세한 설명
-
-### 3. PDF 출력 최적화
-
-- 인쇄/PDF 저장 시 최적화된 레이아웃
-- 불필요한 요소 자동 제거
-
-### 4. 반응형 디자인
-
-- 다크 모드 지원
-
-## 💻 기술 스택
-
-- **Framework**: Docusaurus 3.x
-- **Language**: TypeScript
-- **Styling**: CSS Modules
-- **Deployment**: GitHub Pages
-
-## 📝 문서 작성 가이드
-
-### 프로젝트 문서 추가
-
-1. `docs/` 디렉터리에 프로젝트 폴더 생성
-2. 다음 파일들 작성:
-   - `overview.md`: 프로젝트 개요
-   - `tech-stack.md`: 기술 스택
-   - `my-role.md`: 담당 역할
-   - `achievements.md`: 주요 성과
-3. `sidebars.ts`에 사이드바 항목 추가
-
-### 트러블슈팅 포스트 추가
-
-1. `blog/troubleshooting/{프로젝트명}/` 디렉터리에 `.md` 파일 생성
-2. Front Matter 작성:
-
-```markdown
----
-slug: {프로젝트명}/{포스트명}
-title: 포스트 제목
-authors: [shin]
-tags: [태그1, 태그2]
----
+```bash
+npm install
+npm start
 ```
 
-## 📞 연락처
-
-- **Email**: skh8609@naver.com
-- **GitHub**: [github.com/KKangHHee](https://github.com/KKangHHee)
-- **Blog**: [hee-ya07.tistory.com](https://hee-ya07.tistory.com/)
+프로덕션 빌드는 `npm run build`로 확인할 수 있습니다.

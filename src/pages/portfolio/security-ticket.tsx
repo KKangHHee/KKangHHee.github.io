@@ -138,31 +138,13 @@ export default function Portfolio() {
                     <td>15.51ms</td>
                     <td className={styles.down}>36.8% ↓</td>
                   </tr>
-                  <tr>
-                    <td>최대 응답시간</td>
-                    <td>83.67ms</td>
-                    <td>54ms</td>
-                    <td className={styles.down}>35% ↓</td>
-                  </tr>
-                  <tr>
-                    <td>처리량 (TPS)</td>
-                    <td>221.77</td>
-                    <td>273.34</td>
-                    <td className={styles.up}>23% ↑</td>
-                  </tr>
                 </tbody>
               </table>
             </div>
           </div>
           <ul className={styles.descList}>
             <li>
-              평균 응답시간: <strong>24.56ms → 15.51ms (36.8% 개선)</strong>
-            </li>
-            <li>
-              최대 응답시간: <strong>473ms → 54ms (88.5% 단축)</strong>
-            </li>
-            <li>
-              처리량: <strong>66.7 TPS → 273 TPS (약 3.9배 향상)</strong>
+              평균 응답시간: <strong>24.45ms → 15.51ms (36.8% 개선)</strong>
             </li>
             <li>복합 검색 조건에서도 안정적인 응답 시간 유지</li>
           </ul>
