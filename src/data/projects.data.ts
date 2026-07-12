@@ -3,14 +3,14 @@ import { ProjectProps } from "@site/src/components/resume/projectItem/ProjectIte
 export const PROJECTS: ProjectProps[] = [
   // ✅ 1. 웅진 인턴
   {
-    organization: "인턴 과제",
-    title: "사내 메시지 발송 관리 서비스 마이그레이션 (Backend)",
-    period: "2026.03.03 ~ 2026.06.02 (3개월)",
+    organization: "인턴",
+    title: "사내 메시지 발송 관리 서비스 마이그레이션",
+    period: "2026.03 ~ 2026.06",
     role: "Java 백엔드 인턴 — 레거시 마이그레이션 및 기능 보강",
     stack:
       "Java 17, Spring Boot, Thymeleaf, JPA, QueryDSL, MariaDB, Oracle, Alpine.js",
     members: "3인",
-    service: "SMS/알림톡 발송 내역을 관리하는 사내 웹서비스",
+    service: "SMS/알림톡 발송 이력과 조직/채널 정보를 관리하는 사내 웹서비스",
     flows: [
       {
         title: "멀티 데이터소스 환경에서의 발송 이력 조회",
@@ -38,8 +38,8 @@ export const PROJECTS: ProjectProps[] = [
   },
   {
     organization: "팀 프로젝트",
-    title: "Bargain Hunter (Backend)",
-    period: "2025.07 ~ 2025.10 (4개월)",
+    title: "Bargain Hunter",
+    period: "2025.07 ~ 2025.10",
     role: "인증/인가 마이크로서비스 설계 주도 및 사용자 도메인 담당",
     stack: "Java, Spring Boot, PostgreSQL, Redis, Docker, K8s",
     members: "4인",
@@ -63,13 +63,14 @@ export const PROJECTS: ProjectProps[] = [
 
   // ✅ 2. Security Ticket
   {
-    organization: "교육 내 팀 프로젝트",
-    title: "Security Ticket (Back-End)",
-    period: "2025.04 ~ 2025.05 (2개월)",
+    organization: "팀 프로젝트",
+    title: "Security Ticket",
+    period: "2025.04 ~ 2025.05",
     role: "백엔드 API 설계 및 사용자 관리 도메인 개발",
     stack: "Java, Spring Boot, MySQL, MyBatis, Redis, Docker",
     members: "BE 8인, FE 3인",
-    service: "수동 점검 프로세스를 디지털화한 웹 기반 관리 시스템",
+    service:
+      "Excel·이메일 중심의 수동 점검 프로세스를 디지털화한 웹 기반 관리 시스템",
     flows: [
       {
         title: "영속성 프레임워크 하이브리드 운영 및 쿼리 최적화",
@@ -88,15 +89,16 @@ export const PROJECTS: ProjectProps[] = [
 
   // ✅ 3. ReadyVery
   {
-    organization: "교내 팀 프로젝트",
-    title: "ReadyVery (Front-End)",
-    period: "2023.12 ~ 2024.05 (5개월)",
+    organization: "팀 프로젝트",
+    title: "ReadyVery",
+    period: "2023.12 ~ 2024.05",
     role: "프론트엔드 개발 및 API 인터페이스 설계",
     stack: "React, TypeScript, Recoil, Axios, React Query, Toss Payments SDK",
     members: "BE 2인, FE 4인",
-    service: "로컬 카페용 패스트오더 서비스",
+    service: "로컬 카페의 사전 주문과 결제를 지원하는 패스트오더 서비스",
     extras: [
-      "결제 SDK 라이프사이클 최적화 및 useRef 관리로 결제 로딩 시간 70% 단축(3s→1s)",
+      "결제 SDK 생명주기 개선 —상태 변경마다 Toss Payments SDK가 반복 초기화되는 문제를 확인하고 인스턴스를 useRef로 관리해 결제 로딩 시간을 약 3초에서 1초로 단축했습니다.",
+      "실사용 서비스 운영 —대학 축제와 인근 카페 2곳에서 서비스를 운영하며 점주·사용자의 피드백을 반영",
       "결제 모듈 연동 과정에서 데이터 정합성의 중요성을 체감하여 백엔드로 전향하는 계기 형성 ",
     ],
   },
