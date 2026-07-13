@@ -8,14 +8,15 @@ export default function Portfolio() {
   return (
     <PortfolioPageLayout
       title="인턴 과제"
-      subtitle="레거시 SMS/알림톡 관리자 웹서비스 마이그레이션 및 운영 기능 보강"
+      subtitle="기존 기능을 옮기는 데 그치지 않고 운영·데이터·조회 구조를 다시 설계한 프로젝트"
     >
       <PortfolioSection title="1. 프로젝트 요약">
         <ul className={styles.descList}>
           <li>
-            <strong>한 줄 정의:</strong> 레거시(Spring + JSP + MyBatis) 기반
-            SMS/알림톡 발송 관리 서비스를 현대적 스택으로 마이그레이션하고,
-            수기로 운영되던 조직 데이터 관리를 시스템화한 프로젝트
+            <strong>한 줄 정의:</strong> Spring·JSP·MyBatis 기반의 사내 메시지
+            관리 서비스를 Spring Boot 기반으로 마이그레이션하면서 수기 데이터
+            관리, 이종 DB 중복 저장, 화면·서버 결합도, 발송 이력 페이징 문제를
+            개선한 프로젝트
           </li>
           <li>
             <strong>소속:</strong> 웅진 그룹 IT혁신팀 (Java 백엔드 인턴)
@@ -24,20 +25,22 @@ export default function Portfolio() {
             <strong>기간:</strong> 2026.03.03 ~ 2026.06.02 (약 3개월)
           </li>
           <li>
-            <strong>나의 역할:</strong> 백엔드(Java/Spring Boot) 직무로 참여하여
-            풀스택 수행
+            <strong>나의 역할:</strong> 기존 서비스 분석, Java 백엔드 개발 및
+            관리자 화면 구현
             <ol>
               <li>레거시 스택 마이그레이션 및 JSON API 기반 뷰 분리 설계</li>
               <li>멀티 데이터소스(Oracle + MariaDB) 조회 구조 설계 및 구현</li>
               <li>조직 데이터 CRUD 시스템화 및 계단식 soft-delete 구현</li>
+              <li>앵커 기반 발송 이력 조회와 신규 데이터 알림 구현</li>
               <li>
                 평문 비밀번호 BCrypt 마이그레이션 등 데이터 정합성·보안 개선
               </li>
             </ol>
           </li>
           <li>
-            <strong>핵심 성과:</strong> 수기 운영 → 웹 기반 시스템화, 멀티 DB
-            발송 이력 조회 구현, 데이터 정합성 불일치 및 보안 취약점 해소
+            <strong>핵심 성과:</strong> 수기 운영 규칙 시스템화, 메타데이터
+            일원화, 화면과 JSON API 책임 분리, 변화하는 발송 이력의 조회 기준
+            고정
           </li>
         </ul>
       </PortfolioSection>
@@ -222,6 +225,12 @@ export default function Portfolio() {
       <PortfolioSection title="5. 관련 블로그 포스팅">
         <PortfolioBlogLinks
           items={[
+            {
+              href: "/blog/anchor-based-live-history-pagination",
+              label:
+                "계속 추가되는 데이터에서 페이지 기준을 유지하는 방법: 앵커 기반 조회",
+              description: "페이지 번호 UI를 유지하면서 조회 기준 고정",
+            },
             {
               href: "/blog/multi-datasource-in-memory-join",
               label:
