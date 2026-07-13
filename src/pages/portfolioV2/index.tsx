@@ -20,30 +20,43 @@ export default function PortfolioV2Index() {
   return (
     <Layout title="신강희 | 백엔드 개발자 포트폴리오">
       <main className={`${styles.page} ${styles.fullPortfolio}`}>
-        <header className={styles.profileHero}>
-          <div>
-            <h1>신강희</h1>
-            <p className={styles.profileRole}>Backend Developer</p>
+        <header className={styles.header}>
+          <div className={styles.intro}>
+            <div className={styles.nameLine}>
+              <h1 className={styles.name}>신강희</h1>
+              <span className={styles.role}>Backend Developer</span>
+            </div>
+
+            <div className={styles.contactBox}>
+              <p>
+                <strong>Email.</strong>
+                <a href="mailto:skh8609@naver.com">skh8609@naver.com</a>
+              </p>
+
+              <p>
+                <strong>GitHub.</strong>
+                <a
+                  href="https://github.com/KKangHHee"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  github.com/KKangHHee
+                </a>
+              </p>
+            </div>
             <p className={styles.lead}>
               사용자의 불편과 운영 과정의 문제를 이해하고, 기술을 통해 신뢰할 수
               있는 구조로 개선하는 개발자입니다.
             </p>
-            <address className={styles.contactList}>
-              <a href="mailto:skh8609@naver.com">skh8609@naver.com</a>
-              <a
-                href="https://github.com/KKangHHee"
-                target="_blank"
-                rel="noreferrer"
-              >
-                github.com/KKangHHee
-              </a>
-            </address>
           </div>
-          <img
-            className={styles.profileImage}
-            src="/img/resume/profileimg.jpg"
-            alt="신강희 프로필"
-          />
+
+          <div className={styles.profileWrapper}>
+            <img
+              src="/img/resume/profileimg.jpg"
+              alt="신강희 프로필"
+              className={styles.profileImg}
+            />
+          </div>
         </header>
 
         <section className={styles.section} aria-labelledby="projects-heading">

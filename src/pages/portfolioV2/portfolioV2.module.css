@@ -16,6 +16,100 @@
   letter-spacing: -0.015em;
 }
 
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  /* padding-bottom: 1.5rem; */
+}
+
+.profileWrapper {
+  flex-shrink: 0;
+}
+
+.profileImg {
+  display: block;
+  width: 110px;
+  aspect-ratio: 3 / 4;
+  border: 1px solid var(--resume-color-border);
+  border-radius: 4px;
+  object-fit: cover;
+  background-color: #f5f5f5;
+}
+
+/* 📝 소개 영역 */
+.intro {
+  flex: 1;
+  min-width: 0;
+  padding-top: 0.15rem;
+}
+
+/* 이름 + 직무 */
+.nameLine {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.name {
+  margin: 0;
+  color: var(--resume-color-primary);
+  font-size: var(--resume-font-h1);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+}
+
+.role {
+  color: #3f4f65;
+  font-size: var(--resume-font-base);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* 📧 연락처 박스 */
+.contactBox {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+  color: var(--resume-color-secondary);
+  font-size: var(--resume-font-small);
+  line-height: 1.5;
+}
+
+.contactBox p {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  margin: 0;
+}
+
+.contactBox p+p {
+  margin-left: 0.75rem;
+  padding-left: 0.75rem;
+  border-left: 1px solid var(--resume-color-border);
+}
+
+.contactBox strong {
+  color: var(--resume-color-tertiary);
+  font-weight: 600;
+}
+
+.contactBox a {
+  color: var(--resume-color-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contactBox a:hover {
+  color: var(--resume-color-primary);
+  text-decoration: underline;
+}
+
 /* Profile */
 .profileHero {
   display: grid;
