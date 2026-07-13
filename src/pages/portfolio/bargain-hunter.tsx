@@ -69,8 +69,8 @@ export default function Portfolio() {
       </PortfolioSection>
 
       <PortfolioSection title="3. 핵심 문제 해결 및 성과">
-        <PortfolioTroubleCard title="Trouble 1. 비동기 처리를 통한 성능 최적화">
-          <h4>1) Problem</h4>
+        <PortfolioTroubleCard title="Case 1. SMTP 대기 시간을 사용자 응답 경로에서 분리">
+          <h4>1) 문제 맥락</h4>
           <ul className={styles.descList}>
             <li>
               이메일 인증 API 응답 시간이 평균 <strong>2.5초</strong>
@@ -81,7 +81,7 @@ export default function Portfolio() {
             </li>
           </ul>
 
-          <h4>2) Action</h4>
+          <h4>2) 선택 기준과 구현</h4>
           <ul className={styles.descList}>
             <li>
               Spring Event + <code>@Async</code> 기반 비동기 구조 도입
@@ -90,7 +90,7 @@ export default function Portfolio() {
             <li>별도 ThreadPool에서 이벤트 처리</li>
           </ul>
 
-          <h4>3) Result</h4>
+          <h4>3) 검증 결과</h4>
           <ul className={styles.descList}>
             <li>
               평균 응답시간 <strong>2.5s → 0.2s (92% 개선)</strong>
@@ -99,7 +99,7 @@ export default function Portfolio() {
             <li>회원가입의 이메일 인증 UX 개선</li>
           </ul>
 
-          <h4>4) Deep Dive</h4>
+          <h4>4) 설계 회고 및 관련 기록</h4>
           <ul className={styles.descList}>
             <li>
               관련 포스팅:
@@ -115,6 +115,57 @@ export default function Portfolio() {
             <li>
               <code>TransactionPhase.AFTER_COMMIT</code> 기반 데이터 정합성 처리
               학습
+            </li>
+          </ul>
+        </PortfolioTroubleCard>
+
+        <PortfolioTroubleCard title="Case 2. Gateway와 Auth Service의 인증 책임 분리">
+          <h4>1) 문제 맥락</h4>
+          <ul className={styles.descList}>
+            <li>
+              마이크로서비스마다 JWT 검증을 구현하면 인증 코드와 보안 정책이
+              중복되고, 정책 변경 시 여러 서비스를 함께 수정해야 했습니다.
+            </li>
+            <li>
+              반대로 Gateway가 로그인과 토큰 발급까지 담당하면 사용자 도메인과
+              라우팅 계층의 책임이 섞이는 문제가 있었습니다.
+            </li>
+          </ul>
+
+          <h4>2) 선택 기준과 구현</h4>
+          <ul className={styles.descList}>
+            <li>
+              Gateway는 요청의 JWT 서명·만료 검증과 사용자 식별자 전달만
+              담당하도록 공통 필터를 구성했습니다.
+            </li>
+            <li>
+              로그인, 토큰 발급·재발급과 사용자 상태 확인은 Auth Service에 남겨
+              인증 도메인의 책임을 유지했습니다.
+            </li>
+            <li>
+              인증이 필요 없는 경로를 명시적으로 관리하고, 내부 서비스에는
+              검증된 사용자 정보를 헤더로 전달했습니다.
+            </li>
+          </ul>
+
+          <h4>3) 검증 결과</h4>
+          <ul className={styles.descList}>
+            <li>
+              서비스별 중복 JWT 검증 로직을 제거하고 인증 정책의 변경 지점을
+              축소했습니다.
+            </li>
+            <li>
+              라우팅 계층과 사용자 도메인의 경계를 유지해 신규 서비스 추가 시
+              인증 적용을 단순화했습니다.
+            </li>
+          </ul>
+
+          <h4>4) 설계 회고</h4>
+          <ul className={styles.descList}>
+            <li>
+              Gateway가 전달하는 헤더를 외부 요청이 위조하지 못하도록 내부
+              네트워크 경계와 헤더 제거 정책이 함께 필요하다는 점을 설계
+              조건으로 정리했습니다.
             </li>
           </ul>
         </PortfolioTroubleCard>

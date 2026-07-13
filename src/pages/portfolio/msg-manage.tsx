@@ -46,8 +46,8 @@ export default function Portfolio() {
       </PortfolioSection>
 
       <PortfolioSection title="3. 핵심 문제 해결 및 성과">
-        <PortfolioTroubleCard title="Trouble 1. 수기 메타데이터 관리 시스템화">
-          <h4>1) Problem</h4>
+        <PortfolioTroubleCard title="Case 1. 수기 메타데이터 관리 규칙의 시스템화">
+          <h4>1) 문제 맥락</h4>
           <ul className={styles.descList}>
             <li>
               회사·부서·사용자·채널 정보를 운영자가 DB에서 직접 SQL로 관리해
@@ -59,7 +59,7 @@ export default function Portfolio() {
             </li>
           </ul>
 
-          <h4>2) Action</h4>
+          <h4>2) 선택 기준과 구현</h4>
           <ul className={styles.descList}>
             <li>회사·부서·사용자·채널 정보를 관리하는 웹 기반 CRUD 구축</li>
             <li>
@@ -71,27 +71,23 @@ export default function Portfolio() {
             </li>
           </ul>
 
-          <h4>3) Result</h4>
+          <h4>3) 검증 결과</h4>
           <ul className={styles.descList}>
             <li>SQL에 의존하던 운영 절차를 시스템화해 관리 접근성을 개선</li>
             <li>상·하위 상태 불일치와 잘못된 참조 데이터를 정비</li>
           </ul>
         </PortfolioTroubleCard>
 
-        <PortfolioTroubleCard title="Trouble 2. 메타데이터 일원화와 서비스 레벨 조인">
-          <h4>1) Problem</h4>
+        <PortfolioTroubleCard title="Case 2. 쓰기 정합성을 우선한 메타데이터 일원화">
+          <h4>1) 문제 맥락</h4>
           <ul className={styles.descList}>
             <li>
               회사·사용자 메타데이터가 Oracle과 MariaDB에 중복 저장되어 변경 시
               두 DB의 정합성을 함께 관리해야 하는 부담이 존재
             </li>
-            <li>
-              메타데이터와 발송 이력이 서로 다른 DB에 있어 단일 쿼리로
-              회사·사용자 기준 발송 이력을 조회할 수 없음
-            </li>
           </ul>
 
-          <h4>2) Action</h4>
+          <h4>2) 선택 기준과 구현</h4>
           <ul className={styles.descList}>
             <li>중복 관리하던 메타데이터를 MariaDB로 일원화</li>
             <li>
@@ -106,7 +102,7 @@ export default function Portfolio() {
             </li>
           </ul>
 
-          <h4>3) Result</h4>
+          <h4>3) 검증 결과</h4>
           <ul className={styles.descList}>
             <li>
               이중 저장에 따른 정합성 관리 부담과 저장 트랜잭션 복잡도 감소
@@ -114,7 +110,7 @@ export default function Portfolio() {
             <li>분리된 두 DB에서도 회사·사용자 기준 발송 이력 조회 구현</li>
           </ul>
 
-          <h4>4) Deep Dive</h4>
+          <h4>4) 설계 회고 및 관련 기록</h4>
           <ul className={styles.descList}>
             <li>
               <a
@@ -129,8 +125,8 @@ export default function Portfolio() {
           </ul>
         </PortfolioTroubleCard>
 
-        <PortfolioTroubleCard title="Trouble 3. 변화하는 발송 이력의 조회 기준 고정">
-          <h4>1) Problem</h4>
+        <PortfolioTroubleCard title="Case 3. 변화하는 데이터셋의 조회 시점 고정">
+          <h4>1) 문제 맥락</h4>
           <ul className={styles.descList}>
             <li>
               발송 이력이 계속 추가되어 페이지를 이동하는 사이 정렬 순서가
@@ -142,7 +138,7 @@ export default function Portfolio() {
             </li>
           </ul>
 
-          <h4>2) Action</h4>
+          <h4>2) 선택 기준과 구현</h4>
           <ul className={styles.descList}>
             <li>최초 조회 시점의 정렬 기준을 앵커로 저장해 조회 범위를 고정</li>
             <li>
@@ -152,7 +148,7 @@ export default function Portfolio() {
             <li>사용자가 갱신할 때 새 앵커를 적용해 최신 조회 범위로 전환</li>
           </ul>
 
-          <h4>3) Result</h4>
+          <h4>3) 검증 결과</h4>
           <ul className={styles.descList}>
             <li>
               페이지 이동 중 중복·누락 가능성을 줄이고 조회 흐름을 일관되게 유지
@@ -162,7 +158,7 @@ export default function Portfolio() {
             </li>
           </ul>
 
-          <h4>4) Deep Dive</h4>
+          <h4>4) 설계 회고 및 관련 기록</h4>
           <ul className={styles.descList}>
             <li>
               <a
@@ -177,8 +173,8 @@ export default function Portfolio() {
           </ul>
         </PortfolioTroubleCard>
 
-        <PortfolioTroubleCard title="Trouble 4. Alpine.js 도입을 통한 UI 로직 간소화">
-          <h4>1) Problem</h4>
+        <PortfolioTroubleCard title="Case 4. 화면 골격과 JSON API의 책임 분리">
+          <h4>1) 문제 맥락</h4>
           <ul className={styles.descList}>
             <li>
               Thymeleaf 화면에서 DOM 조회와 이벤트 처리 코드를 Vanilla
@@ -190,7 +186,7 @@ export default function Portfolio() {
             </li>
           </ul>
 
-          <h4>2) Action</h4>
+          <h4>2) 선택 기준과 구현</h4>
           <ul className={styles.descList}>
             <li>
               Thymeleaf는 레이아웃과 초기 화면 골격을 담당하도록 역할을 한정
@@ -202,7 +198,7 @@ export default function Portfolio() {
             </li>
           </ul>
 
-          <h4>3) Result</h4>
+          <h4>3) 검증 결과</h4>
           <ul className={styles.descList}>
             <li>
               반복적인 JavaScript 코드를 줄여 화면 로직의 가독성과 유지보수성

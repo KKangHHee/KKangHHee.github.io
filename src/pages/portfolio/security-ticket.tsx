@@ -68,8 +68,8 @@ export default function Portfolio() {
       </PortfolioSection>
 
       <PortfolioSection title="3. 핵심 문제 해결 및 성과">
-        <PortfolioTroubleCard title="Trouble 1. MyBatis 하이브리드 도입 및 EXISTS 서브쿼리를 통한 복합 검색 최적화">
-          <h4>1) Problem</h4>
+        <PortfolioTroubleCard title="Case 1. 조회 특성에 맞춘 JPA·MyBatis 하이브리드 전략">
+          <h4>1) 문제 맥락</h4>
           <ul className={styles.descList}>
             <li>복합 조건 검색 시, JPA Specification 사용 시,</li>
             <li>
@@ -78,7 +78,7 @@ export default function Portfolio() {
             </li>
           </ul>
 
-          <h4>2) Action</h4>
+          <h4>2) 선택 기준과 구현</h4>
           <ul className={styles.descList}>
             <li>
               <code>MyBatis</code>의 부분적 도입을 통한 성능 향상
@@ -93,7 +93,7 @@ export default function Portfolio() {
             </li>
           </ul>
 
-          <h4>3) Result</h4>
+          <h4>3) 검증 결과</h4>
           <div className={styles.archGrid}>
             <div>
               <strong>그래프</strong>
@@ -132,7 +132,7 @@ export default function Portfolio() {
             <li>복합 검색 조건에서도 안정적인 응답 시간 유지</li>
           </ul>
 
-          <h4>4) Deep Dive</h4>
+          <h4>4) 설계 회고 및 관련 기록</h4>
           <ul className={styles.descList}>
             <li>
               <a
@@ -153,6 +153,61 @@ export default function Portfolio() {
               </a>
             </li>
             <li>Spring Security 내부 동작 이해</li>
+          </ul>
+        </PortfolioTroubleCard>
+
+        <PortfolioTroubleCard title="Case 2. 비즈니스 규칙을 반영한 세션 인증 흐름 확장">
+          <h4>1) 문제 맥락</h4>
+          <ul className={styles.descList}>
+            <li>
+              기본 폼 로그인만으로는 JSON 요청, 로그인 실패 횟수, 계정 잠금,
+              최초 로그인 여부를 함께 처리하기 어려웠습니다.
+            </li>
+            <li>
+              인증 성공 여부뿐 아니라 실패 원인별 응답과 계정 상태 변경까지
+              일관된 흐름으로 관리해야 했습니다.
+            </li>
+          </ul>
+
+          <h4>2) 선택 기준과 구현</h4>
+          <ul className={styles.descList}>
+            <li>
+              JSON 요청을 읽는 인증 필터와 커스텀 AuthenticationProvider를
+              구성했습니다.
+            </li>
+            <li>
+              성공·실패 Handler에서 공통 응답 규격을 사용하고, 실패 횟수 누적과
+              임계치 도달 시 계정 잠금 규칙을 연결했습니다.
+            </li>
+            <li>
+              최초 로그인 사용자는 비밀번호 변경 흐름으로 이동하도록 상태를
+              응답에 포함했습니다.
+            </li>
+          </ul>
+
+          <h4>3) 검증 결과</h4>
+          <ul className={styles.descList}>
+            <li>
+              프론트엔드가 실패 원인과 사용자 상태에 따라 일관되게 화면을 분기할
+              수 있게 했습니다.
+            </li>
+            <li>
+              인증 규칙을 Controller 밖의 Spring Security 흐름에 모아 변경
+              지점을 명확히 했습니다.
+            </li>
+          </ul>
+
+          <h4>4) 설계 회고 및 관련 기록</h4>
+          <ul className={styles.descList}>
+            <li>
+              <a
+                href="/blog/spring-boot-custom-session-authentication"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Spring Boot에서 Session 인증을 커스텀하는 이유와 실전 구현
+              </a>
+            </li>
           </ul>
         </PortfolioTroubleCard>
       </PortfolioSection>

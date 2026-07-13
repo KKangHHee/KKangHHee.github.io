@@ -37,20 +37,9 @@ export default function Portfolio() {
         "교내 축제와 학교 인근 카페 2곳에서 실사용 운영",
       ]}
     >
-      <PortfolioSection title="2. 시스템 아키텍처">
-        <ul className={styles.descList}>
-          <li>
-            <strong>구조:</strong> 사용자·점주 화면을 분리한 React 클라이언트와
-            REST API 연동 구조
-          </li>
-        </ul>
-
-        <div className={styles.archGrid}></div>
-      </PortfolioSection>
-
-      <PortfolioSection title="3. 핵심 문제 해결 및 성과">
-        <PortfolioTroubleCard title="Trouble 1. Toss Payments SDK 통합 및 결제 시스템 구축">
-          <h4>1) Problem</h4>
+      <PortfolioSection title="2. 핵심 문제 해결 및 성과">
+        <PortfolioTroubleCard title="Case 1. 결제 SDK 생명주기와 금액 갱신 책임 분리">
+          <h4>1) 문제 맥락</h4>
           <ul className={styles.descList}>
             <li>
               Toss Payments Widget 초기화 시 <strong>3~5초</strong> 소요
@@ -63,7 +52,7 @@ export default function Portfolio() {
             </li>
           </ul>
 
-          <h4>2) Action</h4>
+          <h4>2) 선택 기준과 구현</h4>
           <ul className={styles.descList}>
             <li>
               <code>useEffect([])</code>로 SDK 초기화를{" "}
@@ -78,7 +67,7 @@ export default function Portfolio() {
             </li>
           </ul>
 
-          <h4>3) Result</h4>
+          <h4>3) 검증 결과</h4>
           <ul className={styles.descList}>
             <li>
               결제 페이지 로딩 시간 <strong>3~5초 → 1초 (약 70% 개선)</strong>
@@ -91,15 +80,67 @@ export default function Portfolio() {
             </li>
           </ul>
 
-          <h4>4) Deep Dive</h4>
+          <h4>4) 설계 회고</h4>
           <ul className={styles.descList}>
             <li>SDK 초기화 로직과 결제 요청 로직을 명확히 분리</li>
             <li>서버 금액 계산 → 클라이언트 반영 구조로 보안/정합성 </li>
           </ul>
         </PortfolioTroubleCard>
+
+        <PortfolioTroubleCard title="Case 2. 실제 매장 운영을 통해 주문 흐름 개선">
+          <h4>1) 문제 맥락</h4>
+          <ul className={styles.descList}>
+            <li>
+              개발 환경에서 완성한 주문 흐름이 혼잡한 축제와 실제 카페
+              운영에서도 충분히 이해하기 쉽고 안정적인지 확인할 필요가
+              있었습니다.
+            </li>
+            <li>
+              사용자 화면뿐 아니라 주문을 접수하는 점주의 업무 흐름까지 함께
+              맞춰야 했습니다.
+            </li>
+          </ul>
+
+          <h4>2) 선택 기준과 구현</h4>
+          <ul className={styles.descList}>
+            <li>
+              교내 축제와 학교 인근 카페 2곳에 서비스를 배포해 실제 주문을
+              관찰했습니다.
+            </li>
+            <li>
+              점주와 사용자의 피드백을 기능별로 정리하고 주문 확인, 상태 안내,
+              결제 과정에서 혼동이 큰 항목부터 우선 반영했습니다.
+            </li>
+            <li>
+              프론트엔드와 백엔드의 요청·응답 규격을 함께 조정해 운영 중 데이터
+              불일치를 줄였습니다.
+            </li>
+          </ul>
+
+          <h4>3) 검증 결과</h4>
+          <ul className={styles.descList}>
+            <li>
+              축제와 카페 2곳에서 실제 주문 서비스를 운영하며 전체 주문 흐름을
+              검증했습니다.
+            </li>
+            <li>
+              기능 완성도뿐 아니라 점주의 업무 비용과 장애 대응까지 고려하는
+              기준을 얻었습니다.
+            </li>
+          </ul>
+
+          <h4>4) 설계 회고</h4>
+          <ul className={styles.descList}>
+            <li>
+              운영 지표와 장애 기록을 처음부터 구조화했다면 개선 전후를 더
+              객관적으로 비교할 수 있었으며, 이후 프로젝트에서는 관측 가능성을
+              초기 설계에 포함했습니다.
+            </li>
+          </ul>
+        </PortfolioTroubleCard>
       </PortfolioSection>
 
-      <PortfolioSection title="5. 성과 및 배운 점 – ReadyVery에서 얻은 것">
+      <PortfolioSection title="3. 성과 및 배운 점 – ReadyVery에서 얻은 것">
         <h3>프로젝트 성과</h3>
         <ul className={styles.descList}>
           <li>
@@ -126,19 +167,9 @@ export default function Portfolio() {
           </li>
           <li>
             “동작하는 코드”가 아니라
-            <strong> “운영 가능한 코드”</strong>를 만드는 개발자로 성장
+            <strong> “운영 가능한 코드”</strong>를 만드는 개발자를 목표로
           </li>
         </ul>
-
-        <p className={styles.closing}>
-          ReadyVery는 단순한 팀 프로젝트를 넘어,
-          <br />
-          <strong>
-            실제 사용자를 가진 서비스에서 성능·UX·비즈니스 요구를 동시에
-            만족시키는 경험을 한 첫 운영형 프로젝트
-          </strong>
-          였습니다.
-        </p>
       </PortfolioSection>
     </ProjectOverview>
   );
