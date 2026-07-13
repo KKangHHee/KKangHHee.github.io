@@ -122,7 +122,19 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
                     <td>평균 응답시간</td>
                     <td>24.45ms</td>
                     <td>15.51ms</td>
-                    <td className={styles.down}>36.8% ↓</td>
+                    <td>36.8% ↓</td>
+                  </tr>
+                  <tr>
+                    <td>최대 응답시간</td>
+                    <td>83.67ms</td>
+                    <td>54ms</td>
+                    <td>35%↓</td>
+                  </tr>
+                  <tr>
+                    <td>처리량(TPS)</td>
+                    <td>221.77</td>
+                    <td>273.34</td>
+                    <td>23%↑</td>
                   </tr>
                 </tbody>
               </table>

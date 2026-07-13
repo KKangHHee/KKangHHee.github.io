@@ -45,7 +45,7 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           <h4>1) 문제 맥락</h4>
           <ul className={styles.descList}>
             <li>
-              Toss Payments Widget 초기화 시 <strong>3~5초</strong> 소요
+              Toss Payments Widget 초기화 시 <strong>3초</strong> 소요
             </li>
             <li>
               쿠폰/포인트 적용 시 <strong>화면 깜빡임</strong> 발생
@@ -73,7 +73,7 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           <h4>3) 검증 결과</h4>
           <ul className={styles.descList}>
             <li>
-              결제 페이지 로딩 시간 <strong>3~5초 → 1초 (약 70% 개선)</strong>
+              결제 페이지 로딩 시간 <strong>3초 → 1초 (약 70% 개선)</strong>
             </li>
             <li>
               <code>useEffect</code> 실행 횟수 <strong>8~12회 → 1회</strong>

@@ -46,25 +46,9 @@ export default function PortfolioV2Index() {
           />
         </header>
 
-        <section className={styles.section} aria-labelledby="about-heading">
-          <div className={styles.sectionHeading}>
-            <p className={styles.sectionIndex}>01</p>
-            <div>
-              <h2 id="about-heading">About</h2>
-            </div>
-          </div>
-          <p className={styles.aboutText}>
-            프론트엔드 프로젝트와 백엔드 인턴 경험을 거치며 좋은 서비스는 보이는
-            기능뿐 아니라 실제 업무와 운영 흐름을 이해할 때 완성된다는 점을
-            배웠습니다. 맡은 문제의 원인을 끝까지 살피고 작은 개선을 꾸준히
-            쌓아, 운영하기 쉽고 변화에 대응할 수 있는 서비스를 만드는 것을
-            지향합니다.
-          </p>
-        </section>
-
         <section className={styles.section} aria-labelledby="projects-heading">
           <div className={styles.sectionHeading}>
-            <p className={styles.sectionIndex}>02</p>
+            <p className={styles.sectionIndex}>01</p>
             <div>
               <h2 id="projects-heading">Projects &amp; Experience</h2>
               <p>
@@ -88,7 +72,7 @@ export default function PortfolioV2Index() {
 
         <section className={styles.section} aria-labelledby="skills-heading">
           <div className={styles.sectionHeading}>
-            <p className={styles.sectionIndex}>03</p>
+            <p className={styles.sectionIndex}>02</p>
             <div>
               <h2 id="skills-heading">Stack &amp; Tools</h2>
             </div>
@@ -108,7 +92,7 @@ export default function PortfolioV2Index() {
           aria-labelledby="background-heading"
         >
           <div className={styles.sectionHeading}>
-            <p className={styles.sectionIndex}>04</p>
+            <p className={styles.sectionIndex}>03</p>
             <div>
               <h2 id="background-heading">Education &amp; Credentials</h2>
             </div>
