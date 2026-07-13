@@ -40,7 +40,7 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
         "교내 축제와 학교 인근 카페 2곳에서 실사용 운영",
       ]}
     >
-      <PortfolioSection title="2. 핵심 문제 해결 및 성과">
+      <PortfolioSection title="1. 핵심 문제 해결 및 성과">
         <PortfolioTroubleCard title="Case 1. 결제 SDK 생명주기와 금액 갱신 책임 분리">
           <h4>1) 문제 맥락</h4>
           <ul className={styles.descList}>
@@ -143,7 +143,7 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
         </PortfolioTroubleCard>
       </PortfolioSection>
 
-      <PortfolioSection title="3. 성과 및 배운 점 – ReadyVery에서 얻은 것">
+      <PortfolioSection title="2. 성과 및 배운 점 – ReadyVery에서 얻은 것">
         <h3>프로젝트 성과</h3>
         <ul className={styles.descList}>
           <li>

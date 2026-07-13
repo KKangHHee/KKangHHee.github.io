@@ -31,24 +31,7 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
         "메타데이터 일원화와 앵커 기반 발송 이력 조회 구현",
       ]}
     >
-      <PortfolioSection title="2. 기술 스택 및 시스템 아키텍처">
-        <ul className={styles.descList}>
-          <li>
-            <strong>Thymeleaf·Alpine.js:</strong> 서버는 화면 골격을 제공하고,
-            JSON API와 선언형 UI 상태 관리로 화면 책임을 분리
-          </li>
-          <li>
-            <strong>JPA·QueryDSL:</strong> 메타데이터 CRUD, 동적 검색 조건 및
-            계단식 비활성화를 위한 bulk UPDATE 구현
-          </li>
-          <li>
-            <strong>멀티 데이터소스:</strong> MariaDB의 메타데이터와 Oracle의
-            발송 이력을 서비스 계층에서 조합하는 구조
-          </li>
-        </ul>
-      </PortfolioSection>
-
-      <PortfolioSection title="3. 핵심 문제 해결 및 성과">
+      <PortfolioSection title="1. 핵심 문제 해결 및 성과">
         <PortfolioTroubleCard title="Case 1. 수기 메타데이터 관리 규칙의 시스템화">
           <h4>1) 문제 맥락</h4>
           <ul className={styles.descList}>
@@ -214,7 +197,7 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
         </PortfolioTroubleCard>
       </PortfolioSection>
 
-      <PortfolioSection title="4. 테스트 전략">
+      <PortfolioSection title="2. 테스트 전략">
         <ul className={styles.descList}>
           <li>
             <strong>Service 레이어:</strong> Mockito 기반 단위 테스트로 CRUD,
@@ -231,7 +214,7 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
         </ul>
       </PortfolioSection>
 
-      <PortfolioSection title="5. 관련 블로그 포스팅">
+      <PortfolioSection title="3. 관련 블로그 포스팅">
         <PortfolioBlogLinks
           items={[
             {

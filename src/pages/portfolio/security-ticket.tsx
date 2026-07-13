@@ -32,7 +32,7 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
         "공통 응답·예외 처리 및 통합 API 규약 표준화",
       ]}
     >
-      <PortfolioSection title="2. 시스템 아키텍처">
+      <PortfolioSection title="1. 시스템 아키텍처">
         <ul className={styles.descList}>
           <li>
             <strong>GitLab, nginX: </strong>폐쇄망 기반 온프레미스 + Nexus로
@@ -70,7 +70,7 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
         </div>
       </PortfolioSection>
 
-      <PortfolioSection title="3. 핵심 문제 해결 및 성과">
+      <PortfolioSection title="2. 핵심 문제 해결 및 성과">
         <PortfolioTroubleCard title="Case 1. 조회 특성에 맞춘 JPA·MyBatis 하이브리드 전략">
           <h4>1) 문제 맥락</h4>
           <ul className={styles.descList}>
@@ -227,7 +227,7 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
         </PortfolioTroubleCard>
       </PortfolioSection>
 
-      <PortfolioSection title="4. 관련 블로그 포스팅">
+      <PortfolioSection title="3. 관련 블로그 포스팅">
         <PortfolioBlogLinks
           items={[
             {

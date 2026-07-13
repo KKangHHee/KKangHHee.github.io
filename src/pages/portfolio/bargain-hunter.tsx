@@ -35,7 +35,7 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
         "Gateway 공통 JWT 검증과 Auth Service 책임 분리",
       ]}
     >
-      <PortfolioSection title="2. 기술 스택 및 시스템 아키텍처">
+      <PortfolioSection title="1. 시스템 아키텍처">
         <ul className={styles.descList}>
           <li>
             <strong>redis</strong> TTL 기능을 활용하여 일회성 인증 코드의 자동
@@ -71,7 +71,7 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
         </div>
       </PortfolioSection>
 
-      <PortfolioSection title="3. 핵심 문제 해결 및 성과">
+      <PortfolioSection title="2. 핵심 문제 해결 및 성과">
         <PortfolioTroubleCard title="Case 1. SMTP 대기 시간을 사용자 응답 경로에서 분리">
           <h4>1) 문제 맥락</h4>
           <ul className={styles.descList}>
@@ -174,7 +174,7 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
         </PortfolioTroubleCard>
       </PortfolioSection>
 
-      <PortfolioSection title="4. 관련 블로그 포스팅">
+      <PortfolioSection title="3. 관련 블로그 포스팅">
         <PortfolioBlogLinks
           items={[
             {
