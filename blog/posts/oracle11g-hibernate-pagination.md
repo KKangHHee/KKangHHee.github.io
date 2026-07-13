@@ -8,9 +8,9 @@ tags: []
 
 # Oracle 11g에서 Hibernate 6 페이징이 깨질 때
 
-> "로컬에선 잘 되던 페이징이, 운영 DB(Oracle 11g)에 붙이니 SQL 문법 에러가 난다?"
+> 개발 환경에서는 정상 동작하던 페이징이 Oracle 11g에서 SQL 문법 오류를 일으켰습니다.
 
-레거시 마이그레이션 중에 만난, **DB 버전 호환성** 때문에 생긴 페이징 문제와 해결 과정을 정리합니다.
+레거시 마이그레이션 과정에서 **Hibernate 6이 생성한 SQL과 Oracle 11g의 문법이 호환되지 않는 문제**를 만났습니다. 원인을 확인하고 ROWNUM과 QueryDSL을 조합해 해결한 과정을 정리합니다.
 
 <!-- truncate -->
 
@@ -18,7 +18,7 @@ tags: []
 
 ## 1. 문제
 
-Spring Boot(Hibernate 6.x) + QueryDSL로 페이징 쿼리를 작성했더니, Hibernate가 이런 표준 SQL을 만들어 냅니다.
+Spring Boot(Hibernate 6.x)와 QueryDSL로 페이징 쿼리를 작성하면 Hibernate는 다음 SQL을 생성합니다.
 
 ```sql
 SELECT ...
@@ -27,9 +27,9 @@ ORDER BY sent_at DESC
 OFFSET ? ROWS FETCH FIRST ? ROWS ONLY
 ```
 
-`OFFSET ... FETCH` 는 SQL 표준 페이징 문법입니다. 그런데 이 구문은 **Oracle 12c부터** 지원됩니다. 운영 DB는 **Oracle 11g**였고, 11g는 이 문법을 모릅니다. 그 결과 문법 에러가 났습니다.
+`OFFSET ... FETCH`는 SQL 표준 페이징 문법이지만 Oracle에서는 **12c부터** 지원합니다. 운영 DB는 **Oracle 11g**였기 때문에 이 구문을 해석하지 못하고 문법 오류를 반환했습니다.
 
-> 즉, 코드 문제가 아니라 **DB 버전이 신문법을 못 따라오는** 호환성 문제였습니다.
+> 애플리케이션 로직이 아니라 프레임워크가 생성한 SQL과 운영 DB 버전 사이의 호환성 문제였습니다.
 
 ---
 
@@ -80,10 +80,10 @@ List<SendHistory> rows = queryFactory
         .fetch();
 ```
 
-이렇게 나누면 좋은 점이 두 가지입니다.
+두 단계로 분리하면 다음 장점을 얻을 수 있습니다.
 
-- 복잡한 페이징(ROWNUM)은 **DB가 잘하는 native 쿼리**에 맡기고,
-- 정작 손이 많이 가는 **검색 조건/매핑은 QueryDSL의 타입 안전성**으로 처리한다.
+- ROWNUM 기반 페이징은 **native 쿼리**로 명확하게 제어합니다.
+- 동적 검색 조건과 본문 매핑은 **QueryDSL의 타입 안전성**을 활용합니다.
 
 ### 주의 1) IN 절은 순서를 보장하지 않는다
 
@@ -114,4 +114,4 @@ List<SendHistory> ordered = ids.stream()
 | **해결** | native ROWNUM으로 ID만 페이징 → QueryDSL IN 절로 본문 조회  |
 | **주의** | IN 절 순서 미보장 → 메모리 재정렬 / count는 별도 쿼리       |
 
-레거시 환경에서는 "최신 프레임워크가 만들어 주는 SQL이 항상 통하는 건 아니다"라는 걸 체감했습니다. 결국 **DB가 이해할 수 있는 형태로 맞춰주는** 게 핵심이었습니다.
+최신 프레임워크가 생성하는 SQL이 모든 레거시 DB에서 동작하는 것은 아닙니다. 운영 DB의 버전과 방언을 확인하고, 호환되지 않는 부분만 native 쿼리로 제한하는 것이 이번 해결의 핵심이었습니다.
