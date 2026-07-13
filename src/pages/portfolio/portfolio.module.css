@@ -21,23 +21,112 @@
   line-height: 1.7;
 }
 
-/* Header */
-.header {
-  margin-bottom: 2.5rem;
-  border-bottom: 2px solid var(--color-border);
-  padding-bottom: 1.2rem;
+.overview {
+  margin-bottom: 2.8rem;
+  padding: 0 0 2rem;
+  border-bottom: 1px solid var(--color-border);
 }
 
-.title {
+.overviewEyebrow {
+  margin: 0 0 0.45rem;
+  color: var(--color-tertiary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.overviewTitle {
   font-size: var(--font-size-h1);
   font-weight: 700;
   margin: 0 0 0.4rem;
   color: var(--color-primary);
 }
 
-.subtitle {
-  font-size: var(--font-size-small);
+.overviewSummary {
+  max-width: 700px;
+  margin: 0.55rem 0 1.4rem;
+  color: var(--color-secondary);
+  font-size: 1rem;
+  line-height: 1.65;
+  word-break: keep-all;
+}
+
+.overviewMeta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem 1.5rem;
+  margin: 0;
+  padding: 1rem 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.overviewMeta>div {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  gap: 0.6rem;
+}
+
+.overviewMeta dt {
   color: var(--color-tertiary);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.overviewMeta dd {
+  margin: 0;
+  color: var(--color-secondary);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.overviewStack {
+  grid-column: 1 / -1;
+}
+
+.overviewLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.overviewLinks a {
+  padding: 0.45rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-primary);
+  font-size: 0.84rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.overviewAchievements {
+  margin-top: 1.2rem;
+  padding: 1rem 1.1rem;
+  background: #f7f8fa;
+}
+
+.overviewAchievements h2 {
+  margin: 0 0 0.55rem;
+  color: var(--color-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.overviewAchievements ul {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.overviewAchievements li {
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.overviewAchievements li:last-child {
+  margin-bottom: 0;
 }
 
 /* Sections */
@@ -198,6 +287,20 @@
   color: #111827;
   /* gray-900 */
   font-weight: 600;
+}
+
+@media screen and (max-width: 640px) {
+  .container {
+    padding: 24px 20px;
+  }
+
+  .overviewMeta {
+    grid-template-columns: 1fr;
+  }
+
+  .overviewStack {
+    grid-column: auto;
+  }
 }
 
 /* ========================================

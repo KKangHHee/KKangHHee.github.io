@@ -1,126 +1,60 @@
-import PortfolioPageLayout from "@site/src/components/portfolio/PortfolioPageLayout";
+import ProjectOverview from "@site/src/components/portfolio/ProjectOverview";
 import PortfolioSection from "@site/src/components/portfolio/PortfolioSection";
 import PortfolioTroubleCard from "@site/src/components/portfolio/PortfolioTroubleCard";
 import styles from "./portfolio.module.css";
 
 export default function Portfolio() {
   return (
-    <PortfolioPageLayout
-      title="ReadyVery"
-      subtitle="지역 기반 카페 대상 패스트 오더 서비스"
+    <ProjectOverview
+      projectName="ReadyVery"
+      summary="로컬 카페의 사전 주문과 결제를 지원하고 실제 매장에서 운영한 패스트오더 서비스"
+      period="2023.12 - 2024.05"
+      team="BE 2인 / FE 4인"
+      role="프론트엔드 개발 및 API 인터페이스 설계"
+      stack={[
+        "React",
+        "TypeScript",
+        "React Query",
+        "Recoil",
+        "Toss Payments SDK",
+      ]}
+      links={[
+        {
+          label: "GitHub",
+          href: "https://github.com/readyvery/readyFront",
+        },
+        {
+          label: "사용자 서비스",
+          href: "https://ready.marinesnow34.com/",
+        },
+        {
+          label: "점주 서비스",
+          href: "https://ceo-ready.marinesnow34.com/",
+        },
+      ]}
+      achievements={[
+        "결제 SDK 재초기화를 제거해 로딩시간 약 70% 단축 (3초 → 1초)",
+        "교내 축제와 학교 인근 카페 2곳에서 실사용 운영",
+      ]}
     >
-      <PortfolioSection title="1. 프로젝트 요약">
-        <ul className={styles.descList}>
-          <li>
-            <strong>한 줄 정의:</strong> 로컬 카페용 패스트오더 서비스
-          </li>
-          <li>
-            <strong>
-              <a
-                href="https://github.com/readyvery/readyFront"
-                target="_blank"
-                rel="noreferrer"
-              >
-                GitHub 주소
-              </a>
-            </strong>
-          </li>
-          <li>
-            <strong>팀 구성:</strong> BE 2인, FE 4인
-          </li>
-          <li>
-            <strong>기간:</strong> 2023.12 ~ 2024.05 (5개월)
-          </li>
-          <li>
-            <strong>나의 역할:</strong> 프론트엔드 개발 및 API 인터페이스 설계
-            <ol>
-              <li>Toss Payments SDK 통합 및 결제 시스템 연결</li>
-              <li>사용자향 페이지 개발</li>
-            </ol>
-          </li>
-          <li>
-            <strong>핵심 성과:</strong> 결제 SDK 라이프사이클 최적화 및 useRef
-            관리로 결제 로딩 시간 70% 단축(3s→1s)
-          </li>
-        </ul>
-      </PortfolioSection>
-
       <PortfolioSection title="2. 기술 스택 및 시스템 아키텍처">
         <ul className={styles.descList}>
           <li>
-            <strong>기술 스택:</strong> Java 17, Spring Boot 3, PostgreSQL,
-            Redis, Docker, Kubernetes
+            <strong>기술 스택:</strong> React, TypeScript, React Query, Recoil,
+            Axios, Toss Payments SDK
           </li>
           <ul>
             <li>
-              <strong>redis</strong> TTL 기능을 활용하여 일회성 인증 코드의 자동
-              소멸 및 메모리 관리 최적화.
+              <strong>React Query:</strong> 서버 상태 조회와 캐시 관리
             </li>
           </ul>
           <li>
-            <strong>구조:</strong> API Gateway + Microservices + DB + Redis
-            Cache 구조
+            <strong>구조:</strong> 사용자·점주 화면을 분리한 React 클라이언트와
+            REST API 연동 구조
           </li>
         </ul>
 
-        <div className={styles.archGrid}>
-          <div>
-            <strong>디렉토리 구조(점주)</strong>
-            <pre className={styles.codeBlock}>
-              <code>
-                {`src/
-├── components/
-│   ├── views/ # 공통 뷰
-│   └── Sales/ # 매출 관리 차트
-├── pages/
-│   ├── OrderManage/
-│   ├── ...
-├── hooks/
-├── Atom/
-├── util/
-└── constants/`}
-              </code>
-            </pre>
-          </div>
-
-          <div>
-            <strong>디렉토리 구조(고객)</strong>
-            <pre className={styles.codeBlock}>
-              <code>
-                {`src/
-├── components/
-│   ├── Authentication/
-│   └── views/
-├── pages/
-│   ├── HomePage/
-│   ├── PaymentPage/
-│   └── MyPage/
-├── hooks/
-├── Atom/
-├── utils/
-└── constants/`}
-              </code>
-            </pre>
-          </div>
-        </div>
-        <div className={styles.archGrid}>
-          <div>
-            <strong>ERD(점주)</strong>
-            <img
-              src="/img/portfolio/readyvery/erd.png"
-              className={styles.archImage}
-              alt="시스템 다이어그램"
-            />
-          </div>
-          <div>
-            <strong>ERD(고객)</strong>
-            <img
-              src="/img/portfolio/readyvery/erd_customer.png"
-              className={styles.archImage}
-              alt="시스템 다이어그램"
-            />
-          </div>
-        </div>
+        <div className={styles.archGrid}></div>
       </PortfolioSection>
 
       <PortfolioSection title="3. 핵심 문제 해결 및 성과">
@@ -215,6 +149,6 @@ export default function Portfolio() {
           였습니다.
         </p>
       </PortfolioSection>
-    </PortfolioPageLayout>
+    </ProjectOverview>
   );
 }

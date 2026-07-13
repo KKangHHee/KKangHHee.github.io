@@ -1,60 +1,37 @@
 import PortfolioBlogLinks from "@site/src/components/portfolio/PortfolioBlogLinks";
-import PortfolioPageLayout from "@site/src/components/portfolio/PortfolioPageLayout";
+import ProjectOverview from "@site/src/components/portfolio/ProjectOverview";
 import PortfolioSection from "@site/src/components/portfolio/PortfolioSection";
 import PortfolioTroubleCard from "@site/src/components/portfolio/PortfolioTroubleCard";
 import styles from "./portfolio.module.css";
 
 export default function Portfolio() {
   return (
-    <PortfolioPageLayout
-      title="Bargain Hunter"
-      subtitle="전국의 관광지, 문화명소를 지도로 탐색하고, 리뷰를 남기며, LLM 기반 가격 비교까지 가능한 서비스"
+    <ProjectOverview
+      projectName="Bargain Hunter"
+      summary="지도를 활용해 국내 관광지를 탐색하고 LLM 기반 가격 비교 기능을 제공하는 서비스"
+      period="2025.07 - 2025.10"
+      team="4인 (BE 3인 / FE 1인)"
+      role="인증·인가 아키텍처 및 사용자 도메인 담당"
+      stack={[
+        "Java 17",
+        "Spring Boot 3",
+        "Spring Cloud Gateway",
+        "PostgreSQL",
+        "Redis",
+        "Docker",
+        "Kubernetes",
+      ]}
+      links={[
+        {
+          label: "GitHub",
+          href: "https://github.com/JocketDan/jocketdanBackend",
+        },
+      ]}
+      achievements={[
+        "이메일 인증 API 응답시간 92% 단축 (2.5초 → 0.2초)",
+        "Gateway 공통 JWT 검증과 Auth Service 책임 분리",
+      ]}
     >
-      <PortfolioSection title="1. 프로젝트 요약">
-        <ul className={styles.descList}>
-          <li>
-            <strong>한 줄 정의:</strong> 지도를 활용한 국내 관광지 정보 제공 및
-            LLM 기반 가격 비교 서비스
-          </li>
-          <li>
-            <strong>
-              <a
-                href="https://github.com/JocketDan/jocketdanBackend"
-                target="_blank"
-                rel="noreferrer"
-              >
-                GitHub 주소
-              </a>
-            </strong>
-          </li>
-          <li>
-            <strong>팀 구성:</strong> 4인(BE 3, FE 1)
-          </li>
-          <li>
-            <strong>기간:</strong> 2025.07 ~ 2025.10 (4개월)
-          </li>
-          <li>
-            <strong>나의 역할:</strong> 인증/인가 MSA 설계 및 유저 도메인 개발
-            <ol>
-              <li>
-                Spring Cloud Gateway를 통한 중앙 집중형 JWT 검증 및 서비스
-                오버헤드 최소화
-              </li>
-              <li>Auth Service 담당자로서 전체 인증/인가 아키텍처 설계 주도</li>
-              <li>
-                OAuth2 PKCE 플로우 적용으로 Authorization Code Interception 방지
-                - 추후 모바일 앱으로 확장 고려
-              </li>
-              <li>Redis HINCRBY를 활용한 동시성 제어</li>
-            </ol>
-          </li>
-          <li>
-            <strong>핵심 성과:</strong> 이메일 인증 응답 속도 92% 개선, 인증
-            보안 무결성 강화
-          </li>
-        </ul>
-      </PortfolioSection>
-
       <PortfolioSection title="2. 기술 스택 및 시스템 아키텍처">
         <ul className={styles.descList}>
           <li>
@@ -171,6 +148,6 @@ export default function Portfolio() {
           ]}
         />
       </PortfolioSection>
-    </PortfolioPageLayout>
+    </ProjectOverview>
   );
 }

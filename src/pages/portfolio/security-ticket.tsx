@@ -1,45 +1,32 @@
 import PortfolioBlogLinks from "@site/src/components/portfolio/PortfolioBlogLinks";
-import PortfolioPageLayout from "@site/src/components/portfolio/PortfolioPageLayout";
+import ProjectOverview from "@site/src/components/portfolio/ProjectOverview";
 import PortfolioSection from "@site/src/components/portfolio/PortfolioSection";
 import PortfolioTroubleCard from "@site/src/components/portfolio/PortfolioTroubleCard";
 import styles from "./portfolio.module.css";
 
 export default function Portfolio() {
   return (
-    <PortfolioPageLayout
-      title="Security Ticket"
-      subtitle="수동 점검 프로세스를 디지털화한 웹 기반 관리 시스템"
+    <ProjectOverview
+      projectName="Security Ticket"
+      summary="Excel·이메일 중심의 수동 보안 점검 프로세스를 웹 기반으로 전환한 관리 시스템"
+      period="2025.04 - 2025.05"
+      team="BE 8인 / FE 3인"
+      role="사용자 관리 도메인 및 백엔드 API 설계"
+      stack={[
+        "Java",
+        "Spring Boot 3",
+        "Spring Security",
+        "JPA",
+        "MyBatis",
+        "MySQL",
+        "Redis",
+        "Docker",
+      ]}
+      achievements={[
+        "복합 검색 평균 응답시간 36.8% 단축 (24.45ms → 15.51ms)",
+        "공통 응답·예외 처리 및 통합 API 규약 표준화",
+      ]}
     >
-      <PortfolioSection title="1. 프로젝트 요약">
-        <ul className={styles.descList}>
-          <li>
-            <strong>한 줄 정의:</strong> Excel·이메일 중심의 수동 프로세스 → 웹
-            기반 자동화 전환
-          </li>
-          <li>
-            <strong>팀 구성:</strong> BE 8명 (A팀 4명, B팀 4명), FE 3명
-          </li>
-          <li>
-            <strong>기간:</strong> 2025.04 ~ 2025.05 (2개월)
-          </li>
-          <li>
-            <strong>나의 역할:</strong> 백엔드 API 설계 및 사용자 관리 도메인
-            개발
-            <ol>
-              <li>코드 컨벤션 정의, 공통 응답 및 예외 처리 표준화 주도</li>
-              <li>
-                팀 내 통합 API 규약 문서 작성 → BE/FE 협업 속도 및 구현 일관성
-                향상
-              </li>
-            </ol>
-          </li>
-          <li>
-            <strong>핵심 성과:</strong> MyBatis 하이브리드 도입을 통한 복합 검색
-            최적화
-          </li>
-        </ul>
-      </PortfolioSection>
-
       <PortfolioSection title="2. 기술 스택 및 시스템 아키텍처">
         <ul className={styles.descList}>
           <li>
@@ -191,6 +178,6 @@ export default function Portfolio() {
           ]}
         />
       </PortfolioSection>
-    </PortfolioPageLayout>
+    </ProjectOverview>
   );
 }
