@@ -31,60 +31,87 @@ export default function Portfolio() {
       <PortfolioSection title="2. 기술 스택 및 시스템 아키텍처">
         <ul className={styles.descList}>
           <li>
-            <strong>Thymeleaf:</strong> 레이아웃/프래그먼트 중심의 HTML 껍데기
-            역할로 한정하고, 데이터는 JSON API로 분리하여 추후 CSR 전환 가능한
-            구조 확보
+            <strong>Thymeleaf·Alpine.js:</strong> 서버는 화면 골격을 제공하고,
+            JSON API와 선언형 UI 상태 관리로 화면 책임을 분리
           </li>
           <li>
-            <strong>QueryDSL:</strong> 동적 검색 조건 및 bulk UPDATE(계단식
-            비활성화) 처리
+            <strong>JPA·QueryDSL:</strong> 메타데이터 CRUD, 동적 검색 조건 및
+            계단식 비활성화를 위한 bulk UPDATE 구현
           </li>
           <li>
-            <strong>구조:</strong> 단일 서버에서 서비스별로 분리된 다중
-            DB(메타데이터 1 + 발송 이력 1)를 함께 다루는 멀티 데이터소스 구조
+            <strong>멀티 데이터소스:</strong> MariaDB의 메타데이터와 Oracle의
+            발송 이력을 서비스 계층에서 조합하는 구조
           </li>
         </ul>
       </PortfolioSection>
 
       <PortfolioSection title="3. 핵심 문제 해결 및 성과">
-        <PortfolioTroubleCard title="Trouble 1. 멀티 데이터소스 환경에서의 발송 이력 조회 (인메모리 조인)">
+        <PortfolioTroubleCard title="Trouble 1. 수기 메타데이터 관리 시스템화">
           <h4>1) Problem</h4>
           <ul className={styles.descList}>
             <li>
-              메타데이터(회사/부서/사용자)는 <strong>MariaDB</strong>, 발송
-              이력은 <strong>Oracle</strong>에 저장되어 단일 쿼리 조인 불가
+              회사·부서·사용자·채널 정보를 운영자가 DB에서 직접 SQL로 관리해
+              변경 과정의 휴먼 에러와 이력 추적의 어려움이 존재
             </li>
             <li>
-              기존에는 각 DB에 메타데이터를 중복 저장했으나, 시스템화 시 여러
-              DB에 걸친 <strong>저장 트랜잭션 정합성</strong>이 복잡해지는 문제
+              상위 조직은 비활성화됐지만 하위 조직은 활성 상태로 남는 등 상·하위
+              데이터의 상태 불일치가 누적
             </li>
           </ul>
 
           <h4>2) Action</h4>
           <ul className={styles.descList}>
+            <li>회사·부서·사용자·채널 정보를 관리하는 웹 기반 CRUD 구축</li>
             <li>
-              메타데이터를 <strong>MariaDB에 중앙화</strong>하여 저장 트랜잭션
-              복잡도를 줄임
+              상위 데이터 비활성화 시 하위 데이터도 함께 비활성화하는
+              <strong> 계단식 soft-delete</strong> 적용
             </li>
             <li>
-              MariaDB에서 조회 조건에 맞는 ID를 먼저 추출한 뒤, Oracle 발송
-              이력을 조회하고 애플리케이션에서 매핑하는{" "}
-              <strong>인메모리 조인</strong> 구조 적용
-            </li>
-            <li>
-              회사당 사용자 규모와 전체 데이터 규모를 기준으로 <code>IN</code>절
-              조회가 허용 가능하다고 판단
+              생성자·수정자·변경 일시를 기록해 변경 이력을 추적하도록 구성
             </li>
           </ul>
 
           <h4>3) Result</h4>
           <ul className={styles.descList}>
-            <li>저장 트랜잭션 복잡도 제거 및 데이터 정합성 확보</li>
-            <li>서로 다른 두 DB에 걸친 발송 이력 조회 기능 구현</li>
+            <li>SQL에 의존하던 운영 절차를 시스템화해 관리 접근성을 개선</li>
+            <li>상·하위 상태 불일치와 잘못된 참조 데이터를 정비</li>
+          </ul>
+        </PortfolioTroubleCard>
+
+        <PortfolioTroubleCard title="Trouble 2. 메타데이터 일원화와 서비스 레벨 조인">
+          <h4>1) Problem</h4>
+          <ul className={styles.descList}>
             <li>
-              데이터 규모가 커질 경우 분산 저장이 유리하다는{" "}
-              <strong>트레이드오프 기준</strong>까지 정리
+              회사·사용자 메타데이터가 Oracle과 MariaDB에 중복 저장되어 변경 시
+              두 DB의 정합성을 함께 관리해야 하는 부담이 존재
             </li>
+            <li>
+              메타데이터와 발송 이력이 서로 다른 DB에 있어 단일 쿼리로
+              회사·사용자 기준 발송 이력을 조회할 수 없음
+            </li>
+          </ul>
+
+          <h4>2) Action</h4>
+          <ul className={styles.descList}>
+            <li>중복 관리하던 메타데이터를 MariaDB로 일원화</li>
+            <li>
+              <strong>
+                MariaDB 후보 ID 조회 → Oracle 발송 이력 조회 → 서비스 계층 매핑
+              </strong>
+              순서로 조회 구조 구현
+            </li>
+            <li>
+              실제 사용자와 조회 데이터 규모를 기준으로 IN절과 애플리케이션
+              매핑의 적용 가능 범위를 검토
+            </li>
+          </ul>
+
+          <h4>3) Result</h4>
+          <ul className={styles.descList}>
+            <li>
+              이중 저장에 따른 정합성 관리 부담과 저장 트랜잭션 복잡도 감소
+            </li>
+            <li>분리된 두 DB에서도 회사·사용자 기준 발송 이력 조회 구현</li>
           </ul>
 
           <h4>4) Deep Dive</h4>
@@ -99,84 +126,90 @@ export default function Portfolio() {
                 트레이드오프
               </a>
             </li>
-            <li>
-              레거시 ID와 신규 ID를 잇기 위해 <code>LEGACY_ID</code> 기반 Bridge
-              패턴(<code>UserBridgeService</code> 등) 도입
-            </li>
           </ul>
         </PortfolioTroubleCard>
 
-        <PortfolioTroubleCard title="Trouble 2. 수기 운영 데이터의 정합성 문제와 계단식 soft-delete">
+        <PortfolioTroubleCard title="Trouble 3. 변화하는 발송 이력의 조회 기준 고정">
           <h4>1) Problem</h4>
           <ul className={styles.descList}>
             <li>
-              회사/부서/사용자 데이터를 운영자가 DB에 직접 SQL로 수기 관리 →{" "}
-              <strong>휴먼 에러로 인한 정합성 오류</strong> 누적
+              발송 이력이 계속 추가되어 페이지를 이동하는 사이 정렬 순서가
+              바뀌고, 이미 본 데이터가 다시 나오거나 일부 데이터를 건너뛸 수
+              있음
             </li>
             <li>
-              FK가 논리적으로만 설정되어, 상위(회사)는 비활성화인데 하위(부서)는
-              활성화인 건이 <strong>부서 245건 중 87건</strong> 존재, 삭제된
-              상위 부서를 참조하는 건도 2건 존재
+              조회 중 새로 들어온 데이터와 기존 조회 범위를 구분하기 어려움
             </li>
           </ul>
 
           <h4>2) Action</h4>
           <ul className={styles.descList}>
-            <li>웹 UI 기반 회사/부서/채널/사용자 CRUD 시스템 구축</li>
+            <li>최초 조회 시점의 정렬 기준을 앵커로 저장해 조회 범위를 고정</li>
             <li>
-              상위 데이터 비활성화 시 하위 데이터를 함께 비활성화하는{" "}
-              <strong>계단식 soft-delete</strong> 로직 구현
+              앵커 이후 유입된 데이터는 목록에 즉시 섞지 않고 신규 건수로 별도
+              표시
             </li>
-            <li>
-              DB FK cascade로 처리하기 어려운 soft-delete 정책을 애플리케이션
-              레벨에서 일관되게 적용
-            </li>
+            <li>사용자가 갱신할 때 새 앵커를 적용해 최신 조회 범위로 전환</li>
           </ul>
 
           <h4>3) Result</h4>
           <ul className={styles.descList}>
-            <li>정합성 불일치 87건 해소 및 참조 정합성 오류 2건 제거</li>
             <li>
-              비개발자 담당자도 SQL 없이 웹 화면으로 조직 데이터 관리 가능
+              페이지 이동 중 중복·누락 가능성을 줄이고 조회 흐름을 일관되게 유지
+            </li>
+            <li>
+              실시간 신규 데이터의 존재를 알리면서도 사용자의 현재 위치를 보존
+            </li>
+          </ul>
+
+          <h4>4) Deep Dive</h4>
+          <ul className={styles.descList}>
+            <li>
+              <a
+                href="/blog/anchor-based-live-history-pagination"
+                target="_blank"
+                rel="noreferrer"
+              >
+                계속 추가되는 데이터에서 페이지 기준을 유지하는 방법: 앵커 기반
+                조회
+              </a>
             </li>
           </ul>
         </PortfolioTroubleCard>
 
-        <PortfolioTroubleCard title="Trouble 3. 데이터 마이그레이션 — 보안·운영 규칙 정비">
+        <PortfolioTroubleCard title="Trouble 4. Alpine.js 도입을 통한 UI 로직 간소화">
           <h4>1) Problem</h4>
           <ul className={styles.descList}>
             <li>
-              사용자 비밀번호가 DB에 <strong>평문</strong>으로 저장되어 보안
-              취약점 존재
+              Thymeleaf 화면에서 DOM 조회와 이벤트 처리 코드를 Vanilla
+              JavaScript로 반복 작성해 화면 로직이 장황해짐
             </li>
             <li>
-              login ID가 명확한 운영 규칙 없이 생성되어 있었고, 일부 데이터에는
-              문서화된 규칙 자체가 부재
+              Fragment에 서버 데이터를 직접 전달하는 구조는 화면과 서버의 결합을
+              높여 이후 클라이언트 렌더링 방식으로 전환하기 어려움
             </li>
           </ul>
 
           <h4>2) Action</h4>
           <ul className={styles.descList}>
             <li>
-              신규 테이블 설계 후 데이터 이관 과정에서 평문 비밀번호를{" "}
-              <strong>BCrypt로 일괄 암호화</strong> (기존 사용자는 동일
-              비밀번호로 로그인 가능하여 재설정 불필요)
+              Thymeleaf는 레이아웃과 초기 화면 골격을 담당하도록 역할을 한정
             </li>
+            <li>목록·상세 데이터는 Fragment 대신 JSON API로 제공</li>
             <li>
-              운영 규칙이 확인된 부분은 그대로 따르고, 규칙이 없던 부분은 기획
-              단계에서 새 운영 규칙(회사 이니셜 + 식별번호)을 수립하여 적용
+              Alpine.js로 UI 상태와 이벤트를 선언적으로 처리해 직접적인 DOM
+              조작을 축소
             </li>
-            <li>각 테이블에 생성자/수정자/일자 컬럼을 추가해 감사 추적 확보</li>
           </ul>
 
           <h4>3) Result</h4>
           <ul className={styles.descList}>
             <li>
-              평문 비밀번호 보안 취약점 해소, 운영 규칙 문서화 및 시스템 반영
+              반복적인 JavaScript 코드를 줄여 화면 로직의 가독성과 유지보수성
+              개선
             </li>
             <li>
-              외부 발송 시스템이 참조하는 기존 ID는 <code>LEGACY_ID</code>로
-              보존하여 영향 없이 전환 완료
+              화면과 데이터 전달 구조의 결합을 낮춰 JSON API 재사용 기반 확보
             </li>
           </ul>
         </PortfolioTroubleCard>
