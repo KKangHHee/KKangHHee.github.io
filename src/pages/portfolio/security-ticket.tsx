@@ -1,12 +1,13 @@
 import PortfolioBlogLinks from "@site/src/components/portfolio/PortfolioBlogLinks";
-import ProjectOverview from "@site/src/components/portfolio/ProjectOverview";
 import PortfolioSection from "@site/src/components/portfolio/PortfolioSection";
 import PortfolioTroubleCard from "@site/src/components/portfolio/PortfolioTroubleCard";
+import ProjectOverview from "@site/src/components/portfolio/ProjectOverview";
 import styles from "./portfolio.module.css";
 
 export default function Portfolio() {
   return (
     <ProjectOverview
+      organization="교육 내 팀 프로젝트"
       projectName="Security Ticket"
       summary="Excel·이메일 중심의 수동 보안 점검 프로세스를 웹 기반으로 전환한 관리 시스템"
       period="2025.04 - 2025.05"
@@ -20,6 +21,7 @@ export default function Portfolio() {
         "MyBatis",
         "MySQL",
         "Redis",
+        "nginX",
         "Docker",
       ]}
       achievements={[
@@ -27,18 +29,12 @@ export default function Portfolio() {
         "공통 응답·예외 처리 및 통합 API 규약 표준화",
       ]}
     >
-      <PortfolioSection title="2. 기술 스택 및 시스템 아키텍처">
+      <PortfolioSection title="2. 시스템 아키텍처">
         <ul className={styles.descList}>
           <li>
-            <strong>기술 스택:</strong> Java, Spring Boot 3, MySQL, Redis,
-            Docker, GitLab, nginX
+            <strong>GitLab, nginX: </strong>폐쇄망 기반 온프레미스 + Nexus로
+            패키지 관리
           </li>
-          <ul>
-            <li>
-              <strong>GitLab, nginX: </strong>폐쇄망 기반 온프레미스 + Nexus로
-              패키지 관리
-            </li>
-          </ul>
           <li>
             <strong>구조:</strong> On-Premises 기반 개발/운영 존 분리 구조
           </li>

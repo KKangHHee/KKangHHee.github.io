@@ -7,6 +7,7 @@ import styles from "./portfolio.module.css";
 export default function Portfolio() {
   return (
     <ProjectOverview
+      organization="인턴 내 프로젝트"
       projectName="사내 메시지 발송 관리 서비스 마이그레이션"
       summary="레거시를 그대로 옮기지 않고 기존 운영에서 발생한 문제를 분석해 데이터 관리와 조회 구조를 다시 설계한 프로젝트"
       period="2026.03.03 - 2026.06.02"
@@ -30,20 +31,14 @@ export default function Portfolio() {
       <PortfolioSection title="2. 기술 스택 및 시스템 아키텍처">
         <ul className={styles.descList}>
           <li>
-            <strong>기술 스택:</strong> Java 17, Spring Boot, Thymeleaf, JPA,
-            QueryDSL, MariaDB, Oracle 11g, Alpine.js, Axios
+            <strong>Thymeleaf:</strong> 레이아웃/프래그먼트 중심의 HTML 껍데기
+            역할로 한정하고, 데이터는 JSON API로 분리하여 추후 CSR 전환 가능한
+            구조 확보
           </li>
-          <ul>
-            <li>
-              <strong>Thymeleaf:</strong> 레이아웃/프래그먼트 중심의 HTML 껍데기
-              역할로 한정하고, 데이터는 JSON API로 분리하여 추후 CSR 전환 가능한
-              구조 확보
-            </li>
-            <li>
-              <strong>QueryDSL:</strong> 동적 검색 조건 및 bulk UPDATE(계단식
-              비활성화) 처리
-            </li>
-          </ul>
+          <li>
+            <strong>QueryDSL:</strong> 동적 검색 조건 및 bulk UPDATE(계단식
+            비활성화) 처리
+          </li>
           <li>
             <strong>구조:</strong> 단일 서버에서 서비스별로 분리된 다중
             DB(메타데이터 1 + 발송 이력 1)를 함께 다루는 멀티 데이터소스 구조

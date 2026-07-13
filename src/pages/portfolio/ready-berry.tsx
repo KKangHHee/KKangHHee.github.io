@@ -1,6 +1,6 @@
-import ProjectOverview from "@site/src/components/portfolio/ProjectOverview";
 import PortfolioSection from "@site/src/components/portfolio/PortfolioSection";
 import PortfolioTroubleCard from "@site/src/components/portfolio/PortfolioTroubleCard";
+import ProjectOverview from "@site/src/components/portfolio/ProjectOverview";
 import styles from "./portfolio.module.css";
 
 export default function Portfolio() {
@@ -37,17 +37,8 @@ export default function Portfolio() {
         "교내 축제와 학교 인근 카페 2곳에서 실사용 운영",
       ]}
     >
-      <PortfolioSection title="2. 기술 스택 및 시스템 아키텍처">
+      <PortfolioSection title="2. 시스템 아키텍처">
         <ul className={styles.descList}>
-          <li>
-            <strong>기술 스택:</strong> React, TypeScript, React Query, Recoil,
-            Axios, Toss Payments SDK
-          </li>
-          <ul>
-            <li>
-              <strong>React Query:</strong> 서버 상태 조회와 캐시 관리
-            </li>
-          </ul>
           <li>
             <strong>구조:</strong> 사용자·점주 화면을 분리한 React 클라이언트와
             REST API 연동 구조

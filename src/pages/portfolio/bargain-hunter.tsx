@@ -1,7 +1,7 @@
 import PortfolioBlogLinks from "@site/src/components/portfolio/PortfolioBlogLinks";
-import ProjectOverview from "@site/src/components/portfolio/ProjectOverview";
 import PortfolioSection from "@site/src/components/portfolio/PortfolioSection";
 import PortfolioTroubleCard from "@site/src/components/portfolio/PortfolioTroubleCard";
+import ProjectOverview from "@site/src/components/portfolio/ProjectOverview";
 import styles from "./portfolio.module.css";
 
 export default function Portfolio() {
@@ -35,15 +35,9 @@ export default function Portfolio() {
       <PortfolioSection title="2. 기술 스택 및 시스템 아키텍처">
         <ul className={styles.descList}>
           <li>
-            <strong>기술 스택:</strong> Java 17, Spring Boot 3, PostgreSQL,
-            Redis, Docker, Kubernetes
+            <strong>redis</strong> TTL 기능을 활용하여 일회성 인증 코드의 자동
+            소멸 및 메모리 관리 최적화.
           </li>
-          <ul>
-            <li>
-              <strong>redis</strong> TTL 기능을 활용하여 일회성 인증 코드의 자동
-              소멸 및 메모리 관리 최적화.
-            </li>
-          </ul>
           <li>
             <strong>구조:</strong> API Gateway + Microservices + DB + Redis
             Cache 구조

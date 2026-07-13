@@ -1,6 +1,6 @@
-import type { PropsWithChildren } from "react";
-import Layout from "@theme/Layout";
 import styles from "@site/src/pages/portfolio/portfolio.module.css";
+import Layout from "@theme/Layout";
+import type { PropsWithChildren } from "react";
 
 export type ProjectLink = {
   label: string;
@@ -8,6 +8,7 @@ export type ProjectLink = {
 };
 
 type ProjectOverviewProps = PropsWithChildren<{
+  organization?: string;
   pageTitle?: string;
   projectName: string;
   summary: string;
@@ -20,6 +21,7 @@ type ProjectOverviewProps = PropsWithChildren<{
 }>;
 
 export default function ProjectOverview({
+  organization = "팀 프로젝트",
   pageTitle,
   projectName,
   summary,
@@ -35,7 +37,7 @@ export default function ProjectOverview({
     <Layout title={pageTitle ?? `${projectName} | Project Portfolio`}>
       <main className={styles.container}>
         <header className={styles.overview}>
-          <p className={styles.overviewEyebrow}>PROJECT</p>
+          <p className={styles.overviewEyebrow}>[{organization}]</p>
           <h1 className={styles.overviewTitle}>{projectName}</h1>
           <p className={styles.overviewSummary}>{summary}</p>
 
