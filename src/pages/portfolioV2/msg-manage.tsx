@@ -169,9 +169,6 @@ export default function MessageManagementPortfolio() {
             <Link to="/blog/multi-datasource-in-memory-join">
               멀티 DB 설계 글 보기
             </Link>
-            <Link to="/blog/oracle11g-hibernate-pagination">
-              Oracle 11g 페이징 글 보기
-            </Link>
           </div>
         </section>
       </main>

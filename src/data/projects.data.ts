@@ -7,7 +7,7 @@ export const PROJECTS: ProjectProps[] = [
     title: "사내 메시지 발송 관리 서비스 마이그레이션",
     period: "2026.03 - 2026.06",
     service: "SMS/알림톡 발송 이력과 조직·채널 정보를 관리하는 사내 웹서비스",
-    role: "레거시 마이그레이션 및 운영 기능 개선",
+    role: "레거시 서비스 마이그레이션, 메타데이터 관리 기능 및 발송 이력 조회 구조 개선",
     members: "3인",
     stack: [
       "Java 17",
@@ -21,19 +21,19 @@ export const PROJECTS: ProjectProps[] = [
     ],
     highlights: [
       {
-        title: "멀티 DB 조회 구조 설계",
-        description:
-          "Oracle 발송 이력과 MariaDB 조직 정보가 분리된 환경에서 후보 ID 조회 → Oracle IN 조회 → 애플리케이션 매핑 구조를 적용해 회사·사용자 기준 발송 이력 조회를 구현했습니다.",
-      },
-      {
         title: "수기 운영 데이터 시스템화",
         description:
           "수기 처리로 관리되던 조직 정보를 웹 기반 관리 기능으로 전환하고 상·하위 상태 변경 규칙과 계단식 soft-delete를 적용해 부서 데이터의 상·하위 상태 불일치를 정비했습니다.",
       },
       {
-        title: "마이그레이션 및 보안 개선",
+        title: "메타데이터 일원화 및 멀티 DB 조회 설계",
         description:
-          "JSP·MyBatis 기반 기능을 Spring Boot·JPA/QueryDSL 구조로 전환하고, 보안 취약점 해소를 위해 기존 평문 비밀번호를 BCrypt로 이관했습니다.",
+          "Oracle과 MariaDB에 중복 관리되던 메타데이터를 MariaDB로 일원화해 이중 저장에 따른 정합성 관리 부담을 줄였습니다. 조회 시에는 MariaDB 후보 ID 조회 → Oracle 발송 이력 조회 → 서비스 계층 매핑 구조로 회사·사용자 기준 조회를 구현했습니다.",
+      },
+      {
+        title: "신규 데이터 유입 환경의 조회 기준 고정",
+        description:
+          "최초 조회 시점의 정렬 기준을 앵커로 고정하고, 이후 유입된 데이터는 신규 건수로 별도 표시해 페이지 이동 중 조회 기준이 변하는 문제를 줄였습니다.",
       },
       {
         title: "Alpine.js 도입을 통한 UI 로직 간소화",
