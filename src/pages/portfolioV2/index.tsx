@@ -22,7 +22,6 @@ export default function PortfolioV2Index() {
       <main className={`${styles.page} ${styles.fullPortfolio}`}>
         <header className={styles.profileHero}>
           <div>
-            <p className={styles.eyebrow}>BACKEND DEVELOPER PORTFOLIO</p>
             <h1>신강희</h1>
             <p className={styles.profileRole}>Backend Developer</p>
             <p className={styles.lead}>
@@ -52,7 +51,6 @@ export default function PortfolioV2Index() {
             <p className={styles.sectionIndex}>01</p>
             <div>
               <h2 id="about-heading">About</h2>
-              <p>기능 구현을 넘어 문제의 배경과 운영 흐름을 살핍니다.</p>
             </div>
           </div>
           <p className={styles.aboutText}>
@@ -118,21 +116,18 @@ export default function PortfolioV2Index() {
           <div className={styles.backgroundColumns}>
             <article>
               <h3>Education</h3>
-              <dl className={styles.historyList}>
-                <ul className={styles.simpleList}>
-                  <li>
-                    {" "}
-                    SK플래닛 웹풀스택 개발자 과정 · 2024.12 - 2025.05 ·
-                    Java/Spring Boot, JS/React 과정 수료
-                  </li>
-                  <li>
-                    가톨릭대학교 컴퓨터정보공학부 · 2019.03 - 2025.08 · 학점 4.0
-                    / 4.5
-                  </li>
-                </ul>
-              </dl>
+              <ul className={styles.simpleList}>
+                <li>
+                  SK플래닛 웹풀스택 개발자 과정 · 2024.12 - 2025.05 ·
+                  Java/Spring Boot, JS/React 과정 수료
+                </li>
+                <li>
+                  가톨릭대학교 컴퓨터정보공학부 · 2019.03 - 2025.08 · 학점 4.0 /
+                  4.5
+                </li>
+              </ul>
             </article>
-            <article className={styles.activities}>
+            <article>
               <h3>Activities</h3>
               <ul className={styles.simpleList}>
                 <li>데이터베이스 설계 튜터 · 2024.09 - 2024.11</li>

@@ -5,6 +5,10 @@
  */
 
 :root {
+  --portfolio-font-family:
+    "SUIT Variable", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+    "Segoe UI", sans-serif;
+
   --resume-color-primary: #171717;
   --resume-color-secondary: #383838;
   --resume-color-tertiary: #5f6368;
