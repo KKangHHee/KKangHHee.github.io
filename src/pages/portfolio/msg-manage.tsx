@@ -50,7 +50,7 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
             <li>회사·부서·사용자·채널 정보를 관리하는 웹 기반 CRUD 구축</li>
             <li>
               상위 데이터 비활성화 시 하위 데이터도 함께 비활성화하는
-              <strong> 계단식 soft-delete</strong> 적용
+              <mark className={styles.keyHighlight}>계단식 soft-delete</mark> 적용
             </li>
             <li>
               생성자·수정자·변경 일시를 기록해 변경 이력을 추적하도록 구성
@@ -77,9 +77,9 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           <ul className={styles.descList}>
             <li>중복 관리하던 메타데이터를 MariaDB로 일원화</li>
             <li>
-              <strong>
+              <mark className={styles.keyHighlight}>
                 MariaDB 후보 ID 조회 → Oracle 발송 이력 조회 → 서비스 계층 매핑
-              </strong>
+              </mark>
               순서로 조회 구조 구현
             </li>
             <li>
@@ -112,7 +112,10 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
 
           <h4>2) 선택 기준과 구현</h4>
           <ul className={styles.descList}>
-            <li>최초 조회 시점의 정렬 기준을 앵커로 저장해 조회 범위를 고정</li>
+            <li>
+              최초 조회 시점의 정렬 기준을
+              <mark className={styles.keyHighlight}>앵커로 저장해 조회 범위를 고정</mark>
+            </li>
             <li>
               앵커 이후 유입된 데이터는 목록에 즉시 섞지 않고 신규 건수로 별도
               표시
@@ -149,7 +152,10 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
             <li>
               Thymeleaf는 레이아웃과 초기 화면 골격을 담당하도록 역할을 한정
             </li>
-            <li>목록·상세 데이터는 Fragment 대신 JSON API로 제공</li>
+            <li>
+              목록·상세 데이터는 Fragment 대신
+              <mark className={styles.keyHighlight}>JSON API로 제공</mark>
+            </li>
             <li>
               Alpine.js로 UI 상태와 이벤트를 선언적으로 처리해 직접적인 DOM
               조작을 축소

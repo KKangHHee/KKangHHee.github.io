@@ -178,6 +178,17 @@
   font-weight: 600;
 }
 
+.keyHighlight {
+  margin: 0 0.16em;
+  padding: 0 0.08em;
+  color: var(--portfolio-ink);
+  font-weight: 600;
+  background:
+    linear-gradient(transparent 58%, rgba(254, 215, 102, 0.5) 58%);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
 .blogDesc {
   margin-left: 6px;
   color: var(--portfolio-muted);
@@ -347,6 +358,10 @@
 
   .overviewLinks {
     display: none;
+  }
+
+  .keyHighlight {
+    background: linear-gradient(transparent 62%, #d7d7d7 62%);
   }
 
   a {

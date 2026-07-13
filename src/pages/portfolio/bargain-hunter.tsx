@@ -96,7 +96,8 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           <h4>3) 검증 결과</h4>
           <ul className={styles.descList}>
             <li>
-              평균 응답시간 <strong>2.5s → 0.2s (92% 개선)</strong>
+              평균 응답시간
+              <mark className={styles.keyHighlight}>2.5s → 0.2s (92% 개선)</mark>
             </li>
             <li>처리량 약 10배 향상(10 req/s → 100+ req/s)</li>
             <li>회원가입의 이메일 인증 UX 개선</li>
@@ -128,12 +129,15 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           <h4>2) 선택 기준과 구현</h4>
           <ul className={styles.descList}>
             <li>
-              Gateway는 요청의 JWT 서명·만료 검증과 사용자 식별자 전달만
-              담당하도록 공통 필터를 구성했습니다.
+              <mark className={styles.keyHighlight}>
+                Gateway는 JWT 검증과 사용자 식별자 전달만 담당
+              </mark>
+              하도록 공통 필터를 구성했습니다.
             </li>
             <li>
-              로그인, 토큰 발급·재발급과 사용자 상태 확인은 Auth Service에 남겨
-              인증 도메인의 책임을 유지했습니다.
+              로그인, 토큰 발급·재발급과 사용자 상태 확인은
+              <mark className={styles.keyHighlight}>Auth Service의 책임</mark>으로
+              남겼습니다.
             </li>
             <li>
               인증이 필요 없는 경로를 명시적으로 관리하고, 내부 서비스에는

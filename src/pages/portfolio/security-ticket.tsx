@@ -95,7 +95,9 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
             </li>
             <li>
               추가 2) JOIN →{" "}
-              <strong>EXISTS 서브쿼리 기반 카운팅을 통한 쿼리 최적화</strong>
+              <mark className={styles.keyHighlight}>
+                EXISTS 서브쿼리 기반 카운팅을 통한 쿼리 최적화
+              </mark>
             </li>
           </ul>
 
@@ -145,7 +147,10 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           </div>
           <ul className={styles.descList}>
             <li>
-              평균 응답시간: <strong>24.45ms → 15.51ms (36.8% 개선)</strong>
+              평균 응답시간:
+              <mark className={styles.keyHighlight}>
+                24.45ms → 15.51ms (36.8% 개선)
+              </mark>
             </li>
             <li>복합 검색 조건에서도 안정적인 응답 시간 유지</li>
           </ul>

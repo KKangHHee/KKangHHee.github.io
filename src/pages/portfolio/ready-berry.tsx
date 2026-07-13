@@ -73,13 +73,15 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           <h4>3) 검증 결과</h4>
           <ul className={styles.descList}>
             <li>
-              결제 페이지 로딩 시간 <strong>3초 → 1초 (약 70% 개선)</strong>
+              결제 페이지 로딩 시간
+              <mark className={styles.keyHighlight}>3초 → 1초 (약 70% 개선)</mark>
             </li>
             <li>
-              <code>useEffect</code> 실행 횟수 <strong>8~12회 → 1회</strong>
+              <code>useEffect</code> 실행 횟수
+              <mark className={styles.keyHighlight}>8~12회 → 1회</mark>
             </li>
             <li>
-              화면 깜빡임 현상 <strong>완전 제거</strong>
+              화면 깜빡임 현상 <mark className={styles.keyHighlight}>완전 제거</mark>
             </li>
           </ul>
 
@@ -123,8 +125,10 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           <h4>3) 검증 결과</h4>
           <ul className={styles.descList}>
             <li>
-              축제와 카페 2곳에서 실제 주문 서비스를 운영하며 전체 주문 흐름을
-              검증했습니다.
+              <mark className={styles.keyHighlight}>
+                축제와 카페 2곳에서 실제 주문 서비스를 운영
+              </mark>
+              하며 전체 주문 흐름을 검증했습니다.
             </li>
             <li>
               기능 완성도뿐 아니라 점주의 업무 비용과 장애 대응까지 고려하는
