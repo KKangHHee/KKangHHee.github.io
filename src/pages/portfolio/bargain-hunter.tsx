@@ -38,8 +38,8 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
       <PortfolioSection title="1. 시스템 아키텍처">
         <ul className={styles.descList}>
           <li>
-            <strong>redis</strong> TTL 기능을 활용하여 일회성 인증 코드의 자동
-            소멸 및 메모리 관리 최적화.
+            <strong>redis</strong> TTL 기능을 활용하여 일회성 인증 코드의 만료를
+            자동화하고, 유효 시간이 지난 코드를 별도 삭제 작업 없이 정리
           </li>
           <li>
             <strong>구조:</strong> API Gateway + Microservices + DB + Redis
@@ -57,14 +57,19 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           </div>
 
           <div>
-            <strong>디렉토리 구조</strong>
+            <strong>구조</strong>
             <pre className={styles.codeBlock}>
               <code>
-                {`├─ gateway/   # API Gateway
-├─ auth/      # 인증 및 사용자 관리 서비스
-├─ review/    # 리뷰 서비스
-├─ tour/      # 관광지 정보 서비스
-└─ util/      # LLM 서비스`}
+                {`Gateway
+- JWT 검증
+- 사용자 식별자 전달
+- 라우팅
+
+Auth Service
+- 로그인
+- 토큰 발급·재발급
+- 이메일 인증
+- 사용자 상태 확인`}
               </code>
             </pre>
           </div>
@@ -90,14 +95,16 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
               Spring Event + <code>@Async</code> 기반 비동기 구조 도입
             </li>
             <li>회원가입 로직과 메일 발송 로직 분리</li>
-            <li>별도 ThreadPool에서 이벤트 처리</li>
+            <li>@Async를 통해 별도 스레드에서 SMTP 통신 처리</li>
           </ul>
 
           <h4>3) 검증 결과</h4>
           <ul className={styles.descList}>
             <li>
               평균 응답시간
-              <mark className={styles.keyHighlight}>2.5s → 0.2s (92% 개선)</mark>
+              <mark className={styles.keyHighlight}>
+                2.5s → 0.2s (92% 개선)
+              </mark>
             </li>
             <li>처리량 약 10배 향상(10 req/s → 100+ req/s)</li>
             <li>회원가입의 이메일 인증 UX 개선</li>
@@ -105,7 +112,10 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
 
           <h4>4) 설계 회고</h4>
           <ul className={styles.descList}>
-            <li>비동기로 분리된 서버 간 장애 격리 구조 이해</li>
+            <li>
+              회원가입 요청 흐름과 SMTP 메일 발송 책임을 분리해, 외부 I/O 지연과
+              사용자 응답을 분리
+            </li>
             <li>
               <code>TransactionPhase.AFTER_COMMIT</code> 기반 데이터 정합성 처리
               학습
@@ -136,8 +146,8 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
             </li>
             <li>
               로그인, 토큰 발급·재발급과 사용자 상태 확인은
-              <mark className={styles.keyHighlight}>Auth Service의 책임</mark>으로
-              남겼습니다.
+              <mark className={styles.keyHighlight}>Auth Service의 책임</mark>
+              으로 남겼습니다.
             </li>
             <li>
               인증이 필요 없는 경로를 명시적으로 관리하고, 내부 서비스에는

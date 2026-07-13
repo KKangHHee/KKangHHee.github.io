@@ -27,7 +27,7 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
         "Alpine.js",
       ]}
       achievements={[
-        "부서 데이터 상·하위 상태 불일치 건 및 참조 오류 정비",
+        "부서 245건 중 상·하위 상태 불일치 87건 및 참조 오류 정비",
         "메타데이터 일원화와 앵커 기반 발송 이력 조회 구현",
       ]}
     >
@@ -50,7 +50,10 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
             <li>회사·부서·사용자·채널 정보를 관리하는 웹 기반 CRUD 구축</li>
             <li>
               상위 데이터 비활성화 시 하위 데이터도 함께 비활성화하는
-              <mark className={styles.keyHighlight}>계단식 soft-delete</mark> 적용
+              <mark className={styles.keyHighlight}>
+                계단식 soft-delete
+              </mark>{" "}
+              적용
             </li>
             <li>
               생성자·수정자·변경 일시를 기록해 변경 이력을 추적하도록 구성
@@ -114,7 +117,9 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           <ul className={styles.descList}>
             <li>
               최초 조회 시점의 정렬 기준을
-              <mark className={styles.keyHighlight}>앵커로 저장해 조회 범위를 고정</mark>
+              <mark className={styles.keyHighlight}>
+                앵커로 저장해 조회 범위를 고정
+              </mark>
             </li>
             <li>
               앵커 이후 유입된 데이터는 목록에 즉시 섞지 않고 신규 건수로 별도
@@ -129,7 +134,8 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
               페이지 이동 중 중복·누락 가능성을 줄이고 조회 흐름을 일관되게 유지
             </li>
             <li>
-              실시간 신규 데이터의 존재를 알리면서도 사용자의 현재 위치를 보존
+              조회 이후 유입된 신규 데이터의 존재를 별도로 알리면서, 사용자의
+              현재 페이지와 조회 기준을 유지
             </li>
           </ul>
         </PortfolioTroubleCard>
@@ -186,8 +192,8 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
             파라미터, 응답 구조, 실패 케이스 검증
           </li>
           <li>
-            <strong>DB 레이어:</strong> Oracle 11g 호환성, QueryDSL bulk UPDATE,
-            페이징 쿼리는 실제 DB 환경에서 검증
+            <strong>DB 레이어:</strong>실제 Oracle 11g 환경에서 검색 조건별 조회
+            결과와 페이징 동작을 확인, QueryDSL bulk UPDATE 결과를 검증
           </li>
         </ul>
       </PortfolioSection>

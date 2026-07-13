@@ -51,9 +51,6 @@ export default function PortfolioV2Index() {
             <p className={styles.sectionIndex}>01</p>
             <div>
               <h2 id="projects-heading">Projects &amp; Experience</h2>
-              <p>
-                담당 역할과 문제 해결 과정, 결과를 전체 내용으로 제공합니다.
-              </p>
             </div>
           </div>
           <div className={styles.importedProject}>

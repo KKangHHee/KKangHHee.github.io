@@ -74,21 +74,23 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           <ul className={styles.descList}>
             <li>
               결제 페이지 로딩 시간
-              <mark className={styles.keyHighlight}>3초 → 1초 (약 70% 개선)</mark>
+              <mark className={styles.keyHighlight}>
+                3초 → 1초 (약 70% 개선)
+              </mark>
             </li>
             <li>
               <code>useEffect</code> 실행 횟수
               <mark className={styles.keyHighlight}>8~12회 → 1회</mark>
             </li>
             <li>
-              화면 깜빡임 현상 <mark className={styles.keyHighlight}>완전 제거</mark>
+              화면 깜빡임 현상 <mark className={styles.keyHighlight}>개선</mark>
             </li>
           </ul>
 
           <h4>4) 설계 회고</h4>
           <ul className={styles.descList}>
             <li>SDK 초기화 로직과 결제 요청 로직을 명확히 분리</li>
-            <li>서버 금액 계산 → 클라이언트 반영 구조로 보안/정합성 </li>
+            <li>서버 금액 계산 → 클라이언트 반영 구조로 보안/정합성 보완</li>
           </ul>
         </PortfolioTroubleCard>
 

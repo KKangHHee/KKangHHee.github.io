@@ -30,7 +30,6 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
       achievements={[
         "복합 검색 평균 응답시간 36.8% 단축 (24.45ms → 15.51ms)",
         "Controller 기반 커스텀 세션 인증 흐름 구현",
-        "공통 응답·예외 처리 및 통합 API 규약 표준화",
       ]}
     >
       <PortfolioSection title="1. 시스템 아키텍처">
