@@ -1,14 +1,10 @@
-import Link from "@docusaurus/Link";
-import { PROJECTS } from "@site/src/data/projects.data";
 import Layout from "@theme/Layout";
-import styles from "./portfolioV2.module.css";
+import BargainHunter from "../portfolio/bargain-hunter";
+import MsgManage from "../portfolio/msg-manage";
+import ReadyVery from "../portfolio/ready-berry";
+import SecurityTicket from "../portfolio/security-ticket";
 
-const projectLinks: Record<string, string> = {
-  "사내 메시지 발송 관리 서비스 마이그레이션": "/portfolioV2/msg-manage",
-  "Bargain Hunter": "/portfolio/bargain-hunter",
-  "Security Ticket": "/portfolio/security-ticket",
-  ReadyVery: "/portfolio/ready-berry",
-};
+import styles from "./portfolioV2.module.css";
 
 const skills = [
   [
@@ -68,12 +64,35 @@ export default function PortfolioV2Index() {
           </p>
         </section>
 
-        <section className={styles.section} aria-labelledby="skills-heading">
+        <section className={styles.section} aria-labelledby="projects-heading">
           <div className={styles.sectionHeading}>
             <p className={styles.sectionIndex}>02</p>
             <div>
+              <h2 id="projects-heading">Projects &amp; Experience</h2>
+              <p>
+                담당 역할과 문제 해결 과정, 결과를 전체 내용으로 제공합니다.
+              </p>
+            </div>
+          </div>
+          <div className={styles.importedProject}>
+            <MsgManage embedded />
+          </div>
+          <div className={styles.importedProject}>
+            <BargainHunter embedded />
+          </div>
+          <div className={styles.importedProject}>
+            <SecurityTicket embedded />
+          </div>
+          <div className={styles.importedProject}>
+            <ReadyVery embedded />
+          </div>
+        </section>
+
+        <section className={styles.section} aria-labelledby="skills-heading">
+          <div className={styles.sectionHeading}>
+            <p className={styles.sectionIndex}>03</p>
+            <div>
               <h2 id="skills-heading">Stack &amp; Tools</h2>
-              <p>프로젝트에서 직접 사용한 기술을 역할별로 정리했습니다.</p>
             </div>
           </div>
           <dl className={styles.skillGrid}>
@@ -86,73 +105,6 @@ export default function PortfolioV2Index() {
           </dl>
         </section>
 
-        <section className={styles.section} aria-labelledby="projects-heading">
-          <div className={styles.sectionHeading}>
-            <p className={styles.sectionIndex}>03</p>
-            <div>
-              <h2 id="projects-heading">Projects &amp; Experience</h2>
-              <p>
-                담당 역할과 문제 해결 과정, 결과를 전체 내용으로 제공합니다.
-              </p>
-            </div>
-          </div>
-
-          <div className={styles.fullProjectList}>
-            {PROJECTS.map((project, index) => (
-              <article className={styles.fullProject} key={project.title}>
-                <header className={styles.fullProjectHeader}>
-                  <div className={styles.projectNumber}>
-                    {String(index + 1).padStart(2, "0")}
-                  </div>
-                  <div>
-                    <p className={styles.organization}>
-                      {project.organization}
-                    </p>
-                    <h3>{project.title}</h3>
-                    <p className={styles.service}>{project.service}</p>
-                  </div>
-                </header>
-
-                <dl className={styles.fullProjectFacts}>
-                  <div>
-                    <dt>기간 · 구성</dt>
-                    <dd>
-                      {project.period} · {project.members}
-                    </dd>
-                  </div>
-                  <div>
-                    <dt>담당 역할</dt>
-                    <dd>{project.role}</dd>
-                  </div>
-                  <div>
-                    <dt>기술 스택</dt>
-                    <dd>{project.stack.join(" · ")}</dd>
-                  </div>
-                </dl>
-
-                <div className={styles.fullHighlights}>
-                  <h4>핵심 문제 해결 및 성과</h4>
-                  <ol>
-                    {project.highlights.map((highlight) => (
-                      <li key={highlight.title}>
-                        <h5>{highlight.title}</h5>
-                        <p>{highlight.description}</p>
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-
-                <Link
-                  className={styles.detailLink}
-                  to={projectLinks[project.title]}
-                >
-                  상세 문제 해결 과정 보기 <span aria-hidden="true">→</span>
-                </Link>
-              </article>
-            ))}
-          </div>
-        </section>
-
         <section
           className={styles.section}
           aria-labelledby="background-heading"
@@ -161,32 +113,24 @@ export default function PortfolioV2Index() {
             <p className={styles.sectionIndex}>04</p>
             <div>
               <h2 id="background-heading">Education &amp; Credentials</h2>
-              <p>교육, 학력, 자격 및 관련 활동입니다.</p>
             </div>
           </div>
           <div className={styles.backgroundColumns}>
             <article>
               <h3>Education</h3>
               <dl className={styles.historyList}>
-                <div>
-                  <dt>SK플래닛 웹풀스택 개발자 과정</dt>
-                  <dd>
-                    2024.12 - 2025.05 · Java/Spring Boot, JS/React 과정 수료
-                  </dd>
-                </div>
-                <div>
-                  <dt>가톨릭대학교 컴퓨터정보공학부</dt>
-                  <dd>2019.03 - 2025.08 · 학점 4.0 / 4.5</dd>
-                </div>
+                <ul className={styles.simpleList}>
+                  <li>
+                    {" "}
+                    SK플래닛 웹풀스택 개발자 과정 · 2024.12 - 2025.05 ·
+                    Java/Spring Boot, JS/React 과정 수료
+                  </li>
+                  <li>
+                    가톨릭대학교 컴퓨터정보공학부 · 2019.03 - 2025.08 · 학점 4.0
+                    / 4.5
+                  </li>
+                </ul>
               </dl>
-            </article>
-            <article>
-              <h3>Certifications</h3>
-              <ul className={styles.simpleList}>
-                <li>정보처리기사 · 2024.12</li>
-                <li>SQLD · 2024.12</li>
-                <li>TOEIC SPEAKING IL · 2025.12</li>
-              </ul>
             </article>
             <article className={styles.activities}>
               <h3>Activities</h3>
@@ -197,6 +141,14 @@ export default function PortfolioV2Index() {
                   UMC IT 동아리 프론트엔드 스터디 및 팀 프로젝트 · 2023.03 -
                   2023.08
                 </li>
+              </ul>
+            </article>
+            <article>
+              <h3>Certifications</h3>
+              <ul className={styles.simpleList}>
+                <li>정보처리기사 · 2024.12</li>
+                <li>SQLD · 2024.12</li>
+                <li>TOEIC SPEAKING IL · 2025.12</li>
               </ul>
             </article>
           </div>

@@ -4,9 +4,12 @@ import PortfolioTroubleCard from "@site/src/components/portfolio/PortfolioTroubl
 import ProjectOverview from "@site/src/components/portfolio/ProjectOverview";
 import styles from "./portfolio.module.css";
 
-export default function Portfolio() {
+type PortfolioProps = { embedded?: boolean };
+
+export default function Portfolio({ embedded = false }: PortfolioProps) {
   return (
     <ProjectOverview
+      embedded={embedded}
       organization="교육 내 팀 프로젝트"
       projectName="Security Ticket"
       summary="Excel·이메일 중심의 수동 보안 점검 프로세스를 웹 기반으로 전환한 관리 시스템"

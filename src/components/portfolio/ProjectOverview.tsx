@@ -8,6 +8,7 @@ export type ProjectLink = {
 };
 
 type ProjectOverviewProps = PropsWithChildren<{
+  embedded?: boolean;
   organization?: string;
   pageTitle?: string;
   projectName: string;
@@ -21,6 +22,7 @@ type ProjectOverviewProps = PropsWithChildren<{
 }>;
 
 export default function ProjectOverview({
+  embedded = false,
   organization = "팀 프로젝트",
   pageTitle,
   projectName,
@@ -33,12 +35,15 @@ export default function ProjectOverview({
   achievements,
   children,
 }: ProjectOverviewProps) {
-  return (
-    <Layout title={pageTitle ?? `${projectName} | Project Portfolio`}>
-      <main className={styles.container}>
-        <header className={styles.overview}>
+  const content = (
+    <>
+      <header className={styles.overview}>
           <p className={styles.overviewEyebrow}>[{organization}]</p>
-          <h1 className={styles.overviewTitle}>{projectName}</h1>
+          {embedded ? (
+            <h2 className={styles.overviewTitle}>{projectName}</h2>
+          ) : (
+            <h1 className={styles.overviewTitle}>{projectName}</h1>
+          )}
           <p className={styles.overviewSummary}>{summary}</p>
 
           <dl className={styles.overviewMeta}>
@@ -83,9 +88,22 @@ export default function ProjectOverview({
               ))}
             </ul>
           </section>
-        </header>
-        {children}
-      </main>
+      </header>
+      {children}
+    </>
+  );
+
+  if (embedded) {
+    return (
+      <article className={`${styles.container} ${styles.embeddedProject}`}>
+        {content}
+      </article>
+    );
+  }
+
+  return (
+    <Layout title={pageTitle ?? `${projectName} | Project Portfolio`}>
+      <main className={styles.container}>{content}</main>
     </Layout>
   );
 }

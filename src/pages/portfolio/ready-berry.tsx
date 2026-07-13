@@ -3,9 +3,12 @@ import PortfolioTroubleCard from "@site/src/components/portfolio/PortfolioTroubl
 import ProjectOverview from "@site/src/components/portfolio/ProjectOverview";
 import styles from "./portfolio.module.css";
 
-export default function Portfolio() {
+type PortfolioProps = { embedded?: boolean };
+
+export default function Portfolio({ embedded = false }: PortfolioProps) {
   return (
     <ProjectOverview
+      embedded={embedded}
       projectName="ReadyVery"
       summary="로컬 카페의 사전 주문과 결제를 지원하고 실제 매장에서 운영한 패스트오더 서비스"
       period="2023.12 - 2024.05"

@@ -27,6 +27,17 @@
   border-bottom: 1px solid var(--color-border);
 }
 
+.embeddedProject {
+  max-width: none;
+  margin: 0;
+  padding: 40px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.embeddedProject:last-child {
+  border-bottom: 0;
+}
+
 .overviewEyebrow {
   margin: 0 0 0.45rem;
   color: var(--color-tertiary);
@@ -325,6 +336,11 @@
     max-width: 100%;
     padding: 0;
     transform-origin: top left;
+  }
+
+  .embeddedProject {
+    padding: 0;
+    border-bottom: 0;
   }
 
   /* 인쇄 시 색상 보정 */
