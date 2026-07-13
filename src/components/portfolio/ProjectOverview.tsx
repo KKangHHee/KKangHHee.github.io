@@ -48,7 +48,7 @@ export default function ProjectOverview({
               <dt>팀 구성</dt>
               <dd>{team}</dd>
             </div>
-            <div>
+            <div className={styles.overviewRole}>
               <dt>역할</dt>
               <dd>{role}</dd>
             </div>

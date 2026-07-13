@@ -80,6 +80,7 @@
   line-height: 1.5;
 }
 
+.overviewRole,
 .overviewStack {
   grid-column: 1 / -1;
 }
@@ -298,6 +299,7 @@
     grid-template-columns: 1fr;
   }
 
+  .overviewRole,
   .overviewStack {
     grid-column: auto;
   }
