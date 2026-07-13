@@ -24,22 +24,25 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
         "MyBatis",
         "MySQL",
         "Redis",
-        "nginX",
+        "Nginx",
         "Docker",
       ]}
       achievements={[
         "복합 검색 평균 응답시간 36.8% 단축 (24.45ms → 15.51ms)",
+        "Controller 기반 커스텀 세션 인증 흐름 구현",
         "공통 응답·예외 처리 및 통합 API 규약 표준화",
       ]}
     >
       <PortfolioSection title="1. 시스템 아키텍처">
         <ul className={styles.descList}>
           <li>
-            <strong>GitLab, nginX: </strong>폐쇄망 기반 온프레미스 + Nexus로
-            패키지 관리
+            <strong>개발 환경:</strong> 폐쇄망 기반 온프레미스 환경에서
+            GitLab으로 소스를 관리하고 Nexus를 통해 의존성 패키지를
+            제공했습니다.
           </li>
           <li>
-            <strong>구조:</strong> On-Premises 기반 개발/운영 존 분리 구조
+            <strong>배포 구조:</strong> 개발·스테이징 영역이 분리된 온프레미스
+            배포 환경에서 개발했습니다.
           </li>
         </ul>
 
@@ -147,31 +150,16 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
             <li>복합 검색 조건에서도 안정적인 응답 시간 유지</li>
           </ul>
 
-          <h4>4) 설계 회고 및 관련 기록</h4>
+          <h4>4) 설계 회고</h4>
           <ul className={styles.descList}>
             <li>
-              <a
-                href="/blog/jpa-mybatis-hybrid-strategy"
-                target="_blank"
-                rel="noreferrer"
-              >
-                상황에 따른 구조적 접근 경험 (MyBatis)
-              </a>
+              성능 개선의 핵심은 MyBatis 도입 자체가 아니라, 목록 조회와 COUNT
+              쿼리의 목적을 구분하고 불필요한 JOIN을 제거한 데 있었습니다.
             </li>
-            <li>
-              <a
-                href="/blog/spring-boot-custom-session-authentication"
-                target="_blank"
-                rel="noreferrer"
-              >
-                커스텀 세션 로그인 구조 설계 & 요구 사항 적용
-              </a>
-            </li>
-            <li>Spring Security 내부 동작 이해</li>
           </ul>
         </PortfolioTroubleCard>
 
-        <PortfolioTroubleCard title="Case 2. 비즈니스 규칙을 반영한 세션 인증 흐름 확장">
+        <PortfolioTroubleCard title="Case 2. Controller 기반 커스텀 세션 인증 흐름 구현">
           <h4>1) 문제 맥락</h4>
           <ul className={styles.descList}>
             <li>
@@ -182,46 +170,85 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
               인증 성공 여부뿐 아니라 실패 원인별 응답과 계정 상태 변경까지
               일관된 흐름으로 관리해야 했습니다.
             </li>
+            <li>
+              기본 Form Login 필터 내부에 모든 정책을 포함하면 인증 처리와 계정
+              비즈니스 규칙의 책임이 뒤섞일 수 있었습니다.
+            </li>
           </ul>
 
-          <h4>2) 선택 기준과 구현</h4>
+          <h4>2) 선택 기준</h4>
           <ul className={styles.descList}>
             <li>
-              JSON 요청을 읽는 인증 필터와 커스텀 AuthenticationProvider를
+              로그인 요청의 진입점을 기본 Form Login 필터가 아닌 Controller로
+              옮겼습니다.
+            </li>
+            <li>
+              사용자 조회, 계정 활성 여부, 실패 횟수, 계정 잠금, 최초 로그인
+              여부 등의 비즈니스 검증은 LoginService에서 처리했습니다.
+            </li>
+            <li>
+              인증과 세션 관리를 직접 재구현하지 않고 AuthenticationManager,
+              SessionAuthenticationStrategy, SecurityContextRepository 등 Spring
+              Security의 표준 컴포넌트를 재사용했습니다.
+            </li>
+          </ul>
+          <h4>3) 구현</h4>
+          <ul className={styles.descList}>
+            <li>
+              <code>AuthenticationManager</code>를 통해 Spring Security의 인증
+              절차를 실행했습니다.
+            </li>
+            <li>
+              <code>SessionAuthenticationStrategy</code>를 직접 호출해 중복
+              로그인 제한, 세션 ID 변경, 활성 세션 등록 정책을 적용했습니다.
+            </li>
+            <li>
+              생성한 인증 정보를 <code>SecurityContextRepository</code>에
+              명시적으로 저장해 이후 요청에서 세션 인증 상태를 사용할 수 있도록
               구성했습니다.
             </li>
             <li>
-              성공·실패 Handler에서 공통 응답 규격을 사용하고, 실패 횟수 누적과
-              임계치 도달 시 계정 잠금 규칙을 연결했습니다.
-            </li>
-            <li>
-              최초 로그인 사용자는 비밀번호 변경 흐름으로 이동하도록 상태를
-              응답에 포함했습니다.
+              <code>HttpSessionEventPublisher</code>와{" "}
+              <code>SessionRegistry</code>를 연계해 로그아웃과 세션 만료 시 활성
+              세션 정보가 정리되도록 했습니다.
             </li>
           </ul>
 
-          <h4>3) 검증 결과</h4>
+          <h4>4) 검증 결과</h4>
           <ul className={styles.descList}>
             <li>
-              프론트엔드가 실패 원인과 사용자 상태에 따라 일관되게 화면을 분기할
-              수 있게 했습니다.
+              로그인 실패 횟수를 누적하고 임계치 도달 시 계정을 잠그는 흐름을
+              구현했습니다.
             </li>
             <li>
-              인증 규칙을 Controller 밖의 Spring Security 흐름에 모아 변경
-              지점을 명확히 했습니다.
+              최초 로그인 사용자는 일반 로그인 성공과 구분된 상태를 반환해
+              비밀번호 변경 흐름으로 연결했습니다.
+            </li>
+            <li>
+              동일 계정으로 다시 로그인하면 기존 세션을 만료하고, 만료된
+              세션으로 요청할 경우 인증 실패 응답을 반환하도록 구성했습니다.
+            </li>
+            <li>
+              비즈니스 검증은 Service 계층에서 표현하면서도 세션 고정 공격
+              방지와 활성 세션 관리 등 Spring Security의 기본 정책을
+              유지했습니다.
             </li>
           </ul>
 
-          <h4>4) 설계 회고 및 관련 기록</h4>
+          <h4>5) 설계 회고</h4>
           <ul className={styles.descList}>
             <li>
-              <a
-                href="/blog/spring-boot-custom-session-authentication"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Spring Boot에서 Session 인증을 커스텀하는 이유와 실전 구현
-              </a>
+              비즈니스 요구사항을 명시적으로 표현할 수 있었지만, 기본 필터가
+              자동으로 수행하던 인증 성공 이후의 절차를 직접 연결해야 했습니다.
+            </li>
+            <li>
+              SessionAuthenticationStrategy의 호출 순서와 SecurityContext의
+              명시적 저장, 세션 이벤트 구성을 함께 검증해야 하는 복잡도가
+              추가됐습니다.
+            </li>
+            <li>
+              요구사항이 단순했다면 직접 인증 흐름을 구성하는 것보다 기본 Form
+              Login을 사용하는 편이 더 적합했을 것입니다.
             </li>
           </ul>
         </PortfolioTroubleCard>

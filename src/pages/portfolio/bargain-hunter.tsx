@@ -102,18 +102,8 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
             <li>회원가입의 이메일 인증 UX 개선</li>
           </ul>
 
-          <h4>4) 설계 회고 및 관련 기록</h4>
+          <h4>4) 설계 회고</h4>
           <ul className={styles.descList}>
-            <li>
-              관련 포스팅:
-              <a
-                href="/blog/spring-event-async-email-optimization"
-                target="_blank"
-                rel="noreferrer"
-              >
-                &nbsp;이메일 발송 API 응답 속도 개선: Spring Event와 비동기 처리
-              </a>
-            </li>
             <li>비동기로 분리된 서버 간 장애 격리 구조 이해</li>
             <li>
               <code>TransactionPhase.AFTER_COMMIT</code> 기반 데이터 정합성 처리

@@ -97,9 +97,9 @@ export const PROJECTS: ProjectProps[] = [
           "기간·키워드·정렬 조건이 결합된 복합 조회에 MyBatis 동적 SQL을 적용하고 조건 구조를 단순화했습니다. COUNT 쿼리의 연관 테이블 JOIN을 EXISTS로 변경해 평균 응답 시간을 24.45ms에서 15.51ms로 단축했습니다.",
       },
       {
-        title: "세션 기반 커스텀 인증 흐름 구현",
+        title: "Controller 기반 커스텀 세션 인증 구현",
         description:
-          "JSON 로그인, 로그인 실패 횟수, 계정 잠금, 최초 로그인 여부 등 비즈니스 요구사항을 반영하기 위해 Spring Security의 인증 흐름을 확장했습니다.",
+          "기본 Form Login 대신 Controller·LoginService에서 JSON 로그인과 실패 횟수·계정 잠금·최초 로그인 정책을 처리했습니다.",
       },
     ],
   },

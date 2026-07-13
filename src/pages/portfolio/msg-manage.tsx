@@ -95,20 +95,6 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
             </li>
             <li>분리된 두 DB에서도 회사·사용자 기준 발송 이력 조회 구현</li>
           </ul>
-
-          <h4>4) 설계 회고 및 관련 기록</h4>
-          <ul className={styles.descList}>
-            <li>
-              <a
-                href="/blog/multi-datasource-in-memory-join"
-                target="_blank"
-                rel="noreferrer"
-              >
-                서로 다른 두 DB를 조인할 수 없을 때: 인메모리 조인과
-                트레이드오프
-              </a>
-            </li>
-          </ul>
         </PortfolioTroubleCard>
 
         <PortfolioTroubleCard title="Case 3. 변화하는 데이터셋의 조회 시점 고정">
@@ -141,20 +127,6 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
             </li>
             <li>
               실시간 신규 데이터의 존재를 알리면서도 사용자의 현재 위치를 보존
-            </li>
-          </ul>
-
-          <h4>4) 설계 회고 및 관련 기록</h4>
-          <ul className={styles.descList}>
-            <li>
-              <a
-                href="/blog/anchor-based-live-history-pagination"
-                target="_blank"
-                rel="noreferrer"
-              >
-                계속 추가되는 데이터에서 페이지 기준을 유지하는 방법: 앵커 기반
-                조회
-              </a>
             </li>
           </ul>
         </PortfolioTroubleCard>
