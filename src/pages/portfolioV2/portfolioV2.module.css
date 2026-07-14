@@ -365,11 +365,17 @@
     font-size: 14pt;
   }
 
+
   .importedProject,
   .importedProject+.importedProject {
     margin-top: 14px;
     break-before: auto;
     break-inside: auto;
+  }
+
+  .importedProject+.importedProject {
+    break-before: page;
+    page-break-before: always;
   }
 
   .skillGrid>div,
