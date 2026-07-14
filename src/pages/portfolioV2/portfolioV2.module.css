@@ -177,6 +177,8 @@
   grid-template-columns: 38px minmax(0, 1fr);
   gap: 14px;
   margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--portfolio-line);
 }
 
 .sectionIndex {
@@ -212,11 +214,12 @@
 
 /* Imported project pages */
 .importedProject {
-  border-top: 1px solid var(--portfolio-ink);
+  border-top: 0;
 }
 
 .importedProject+.importedProject {
   margin-top: 28px;
+  border-top: 1px solid var(--portfolio-line);
 }
 
 /* Stack and background */
@@ -365,6 +368,7 @@
 
   .sectionHeading {
     margin-bottom: 10px;
+    padding-bottom: 7px;
     break-after: avoid-page;
     break-inside: avoid-page;
   }

@@ -140,8 +140,7 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
                 24.45ms → 15.51ms (36.8% 개선)
               </mark>
               {"으로 단축했습니다."}
-            </li>
-            <li>복합 검색 조건에서도 안정적인 응답 시간을 유지했습니다.</li>
+            </li>{" "}
           </ul>
 
           <h4>4) 설계 회고</h4>

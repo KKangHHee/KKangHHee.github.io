@@ -91,12 +91,11 @@ Auth Service
 
           <h4>2) 선택 기준과 구현</h4>
           <ul className={styles.descList}>
-            <li>
-              Spring Event와 <code>@Async</code> 기반 비동기 구조를
-              도입했습니다.
-            </li>
             <li>회원가입 로직과 메일 발송 로직을 분리했습니다.</li>
-            <li>@Async를 통해 별도 스레드에서 SMTP 통신을 처리했습니다.</li>
+            <li>
+              Spring Event와 <code>@Async</code> 기반 비동기 구조를 도입 후,
+              @Async를 통해 별도 스레드에서 SMTP 통신을 처리했습니다.
+            </li>
           </ul>
 
           <h4>3) 검증 결과</h4>
