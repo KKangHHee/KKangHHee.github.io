@@ -94,7 +94,6 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           <h4>3) 검증 결과</h4>
           <div className={styles.archGrid}>
             <div>
-              <strong>그래프</strong>
               <img
                 src="/img/portfolio/security-ticket/mybatis_성능.png"
                 className={styles.archImage}
@@ -102,7 +101,6 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
               />
             </div>
             <div>
-              <strong>표</strong>
               <table className={styles.perfTable}>
                 <thead>
                   <tr>
@@ -182,13 +180,8 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
               사용자 조회, 계정 활성 여부, 실패 횟수, 계정 잠금, 최초 로그인
               여부 등의 비즈니스 검증은 LoginService에서 처리했습니다.
             </li>
-            <li>
-              인증과 세션 관리를 직접 재구현하지 않고 AuthenticationManager,
-              SessionAuthenticationStrategy, SecurityContextRepository 등 Spring
-              Security의 표준 컴포넌트를 재사용했습니다.
-            </li>
           </ul>
-          <h4>3) 구현</h4>
+          <h4>3) 구현 과정</h4>
           <ul className={styles.descList}>
             <li>
               <code>AuthenticationManager</code>를 통해 Spring Security의 인증
@@ -210,19 +203,11 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
             </li>
           </ul>
 
-          <h4>4) 검증 결과</h4>
+          <h4>4) 구현 결과</h4>
           <ul className={styles.descList}>
             <li>
-              로그인 실패 횟수를 누적하고 임계치 도달 시 계정을 잠그는 흐름을
-              구현했습니다.
-            </li>
-            <li>
-              최초 로그인 사용자는 일반 로그인 성공과 구분된 상태를 반환해
-              비밀번호 변경 흐름으로 연결했습니다.
-            </li>
-            <li>
-              동일 계정으로 다시 로그인하면 기존 세션을 만료하고, 만료된
-              세션으로 요청할 경우 인증 실패 응답을 반환하도록 구성했습니다.
+              로그인 5회 실패 시 계정 잠금, 최초 로그인 등 요구 조건을 만족하는
+              로직을 구현했습니다.
             </li>
             <li>
               비즈니스 검증은 Service 계층에서 표현하면서도 세션 고정 공격
@@ -241,10 +226,6 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
               SessionAuthenticationStrategy의 호출 순서와 SecurityContext의
               명시적 저장, 세션 이벤트 구성을 함께 검증해야 하는 복잡도가
               추가됐습니다.
-            </li>
-            <li>
-              요구사항이 단순했다면 직접 인증 흐름을 구성하는 것보다 기본 Form
-              Login을 사용하는 편이 더 적합했을 것입니다.
             </li>
           </ul>
         </PortfolioTroubleCard>

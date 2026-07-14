@@ -355,6 +355,14 @@
     padding-top: 20px;
   }
 
+  .printPageBreak {
+    padding-top: 0;
+    break-before: page;
+    break-inside: avoid-page;
+    page-break-before: always;
+    page-break-inside: avoid;
+  }
+
   .sectionHeading {
     margin-bottom: 10px;
     break-after: avoid-page;
@@ -368,7 +376,8 @@
 
   .importedProject,
   .importedProject+.importedProject {
-    margin-top: 14px;
+    margin-top: 0;
+    border-top: none;
     break-before: auto;
     break-inside: auto;
   }

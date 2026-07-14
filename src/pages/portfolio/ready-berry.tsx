@@ -45,15 +45,13 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           <h4>1) 문제 맥락</h4>
           <ul className={styles.descList}>
             <li>
-              Toss Payments Widget 초기화에 <strong>3초</strong>가 소요됐습니다.
+              결제 위젯이 화면 상태가 바뀔 때마다 다시 초기화되면서 평균 3초의
+              로딩 지연과 화면 깜빡임이 발생했습니다.
             </li>
             <li>
-              쿠폰과 포인트를 적용할 때 <strong>화면 깜빡임</strong>이
-              발생했습니다.
-            </li>
-            <li>
-              <code>useEffect</code>가 중복 실행되어 SDK가 여러 번
-              초기화됐습니다.
+              쿠폰·포인트 적용 시 클라이언트가 계산한 금액을 그대로 결제 요청에
+              실어 보내는 구조라, 클라이언트 값과 실제 청구 금액이 어긋날 여지가
+              있었습니다.
             </li>
           </ul>
 
@@ -61,61 +59,49 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           <ul className={styles.descList}>
             <li>
               <code>useEffect([])</code>로 SDK 초기화를{" "}
-              <strong>마운트 시 한 번만 실행</strong>하도록 구성했습니다.
+              <strong>마운트 시 한 번만 실행</strong>하도록 구성 위젯의 하고 SDK
+              인스턴스를 <code>useRef</code>로 관리해 리렌더링과 분리해, 상태가
+              바뀌어도 위젯이 다시 초기화되지 않는 구조로 설계했습니다.
             </li>
             <li>
-              SDK 인스턴스를 <code>useRef</code>로 관리해 리렌더링과
-              분리했습니다.
-            </li>
-            <li>
-              결제 버튼을 클릭하면 서버가 계산한 금액을 기준으로
-              <code> updateAmount()</code>를 호출했습니다.
+              결제 요청 시점에는 클라이언트 계산값이 아니라{" "}
+              <strong>서버가 재계산한 금액</strong>을 기준으로 결제 API를
+              호출하도록 요청·응답 규격을 백엔드와 함께 조정했습니다.
             </li>
           </ul>
 
           <h4>3) 검증 결과</h4>
           <ul className={styles.descList}>
             <li>
-              결제 페이지 로딩 시간
+              결제 페이지 로딩 시간{" "}
               <mark className={styles.keyHighlight}>
-                3초 → 1초 (약 70% 개선)
+                3초 → 1초 (약 70% 개선)으로 개선했습니다.
               </mark>
-              {"으로 단축했습니다."}
             </li>
             <li>
-              <code>useEffect</code> 실행 횟수
-              <mark className={styles.keyHighlight}>8~12회 → 1회</mark>로
-              줄였습니다.
+              화면 깜빡임 현상 해소, 반복 초기화로 인한 불필요한 API 재요청 제거
             </li>
             <li>
-              화면 깜빡임 현상을{" "}
-              <mark className={styles.keyHighlight}>개선했습니다.</mark>
+              클라이언트 표시 금액과 서버 청구 금액을 항상 일치시켜 결제 정합성
+              이슈를 사전에 차단
             </li>
           </ul>
 
           <h4>4) 설계 회고</h4>
           <ul className={styles.descList}>
-            <li>SDK 초기화 로직과 결제 요청 로직을 명확히 분리했습니다.</li>
             <li>
-              서버 금액 계산 → 클라이언트 반영 구조로 보안과 정합성을
-              보완했습니다.
+              화면 로직 하나를 고치는 문제가 아니라,{" "}
+              <strong>
+                어디까지를 클라이언트가 책임지고 어디부터를 서버가 검증해야
+                하는가
+              </strong>
+              를 정하는 문제였다는 것을 체감했습니다.
             </li>
           </ul>
         </PortfolioTroubleCard>
       </PortfolioSection>
 
-      <PortfolioSection title="2. 성과 및 배운 점 – ReadyVery에서 얻은 것">
-        <h3>프로젝트 성과</h3>
-        <ul className={styles.descList}>
-          <li>
-            <strong>교내 축제에서 테이블 오더 서비스 운영</strong>
-          </li>
-          <li>
-            <strong>학교 인근 카페 2곳 실사용 배포 및 실제 운영</strong>
-          </li>
-        </ul>
-
-        <h3>배운 점 & 성장 포인트</h3>
+      <PortfolioSection title="2. 배운 점">
         <ul className={styles.descList}>
           <li>
             기획–디자인–백엔드–마케팅과의 협업 과정을 통해, 서비스 전반을
@@ -126,12 +112,9 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
             우선순위화하는 경험
           </li>
           <li>
-            프론트엔드에서 시작해 백엔드 설계까지 연결되는
-            <strong> “전체 흐름을 보는 개발”</strong>의 중요성 인식
-          </li>
-          <li>
             “동작하는 코드”가 아니라
-            <strong> “운영 가능한 코드”</strong>를 만드는 개발자를 목표로
+            <strong> “운영 가능한 코드”</strong>를 만드는 개발자를 목표하는
+            계기가 되었습니다.{" "}
           </li>
         </ul>
       </PortfolioSection>

@@ -151,50 +151,6 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
             </li>
           </ul>
         </PortfolioTroubleCard>
-
-        <PortfolioTroubleCard title="Case 4. 화면 골격과 JSON API의 책임 분리">
-          <h4>1) 문제 맥락</h4>
-          <ul className={styles.descList}>
-            <li>
-              Thymeleaf 화면에서 DOM 조회와 이벤트 처리 코드를 Vanilla
-              JavaScript로 반복 작성해 화면 로직이 장황해졌습니다.
-            </li>
-            <li>
-              Fragment에 서버 데이터를 직접 전달하는 구조는 화면과 서버의 결합을
-              높여 이후 클라이언트 렌더링 방식으로 전환하기 어려웠습니다.
-            </li>
-          </ul>
-
-          <h4>2) 선택 기준과 구현</h4>
-          <ul className={styles.descList}>
-            <li>
-              Thymeleaf는 레이아웃과 초기 화면 골격을 담당하도록 역할을
-              한정했습니다.
-            </li>
-            <li>
-              목록·상세 데이터는 Fragment 대신
-              <mark className={styles.keyHighlight}>
-                JSON API로 제공했습니다.
-              </mark>
-            </li>
-            <li>
-              Alpine.js로 UI 상태와 이벤트를 선언적으로 처리해 직접적인 DOM
-              조작을 줄였습니다.
-            </li>
-          </ul>
-
-          <h4>3) 결과</h4>
-          <ul className={styles.descList}>
-            <li>
-              반복적인 JavaScript 코드를 줄여 화면 로직의 가독성과 유지보수성을
-              개선했습니다.
-            </li>
-            <li>
-              화면 렌더링과 데이터 전달 책임을 분리해, 향후 다른
-              클라이언트에서도 JSON API를 재사용할 수 있는 구조를 마련했습니다.
-            </li>
-          </ul>
-        </PortfolioTroubleCard>
       </PortfolioSection>
 
       <PortfolioSection title="2. 테스트 전략">

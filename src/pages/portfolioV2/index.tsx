@@ -80,7 +80,10 @@ export default function PortfolioV2Index() {
           </div>
         </section>
 
-        <section className={styles.section} aria-labelledby="skills-heading">
+        <section
+          className={`${styles.section} ${styles.printPageBreak}`}
+          aria-labelledby="skills-heading"
+        >
           <div className={styles.sectionHeading}>
             <p className={styles.sectionIndex}>02</p>
             <div>
