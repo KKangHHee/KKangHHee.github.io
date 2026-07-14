@@ -1,0 +1,405 @@
+.page {
+  --portfolio-ink: #171717;
+  --portfolio-body: #414141;
+  --portfolio-muted: #6b7077;
+  --portfolio-line: #dfe2e6;
+  --portfolio-surface: #f7f8fa;
+  --portfolio-accent: #254a73;
+
+  width: min(960px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 36px 0 64px;
+  color: var(--portfolio-body);
+  font-family: var(--portfolio-font-family);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  letter-spacing: -0.015em;
+}
+
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  /* padding-bottom: 1.5rem; */
+}
+
+.profileWrapper {
+  flex-shrink: 0;
+}
+
+.profileImg {
+  display: block;
+  width: 110px;
+  aspect-ratio: 3 / 4;
+  border: 1px solid var(--resume-color-border);
+  border-radius: 4px;
+  object-fit: cover;
+  background-color: #f5f5f5;
+}
+
+/* 📝 소개 영역 */
+.intro {
+  flex: 1;
+  min-width: 0;
+  padding-top: 0.15rem;
+}
+
+/* 이름 + 직무 */
+.nameLine {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.name {
+  margin: 0;
+  color: var(--resume-color-primary);
+  font-size: var(--resume-font-h1);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+}
+
+.role {
+  color: #3f4f65;
+  font-size: var(--resume-font-base);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* 📧 연락처 박스 */
+.contactBox {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+  color: var(--resume-color-secondary);
+  font-size: var(--resume-font-small);
+  line-height: 1.5;
+}
+
+.contactBox p {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  margin: 0;
+}
+
+.contactBox p+p {
+  margin-left: 0.75rem;
+  padding-left: 0.75rem;
+  border-left: 1px solid var(--resume-color-border);
+}
+
+.contactBox strong {
+  color: var(--resume-color-tertiary);
+  font-weight: 600;
+}
+
+.contactBox a {
+  color: var(--resume-color-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contactBox a:hover {
+  color: var(--resume-color-primary);
+  text-decoration: underline;
+}
+
+/* Profile */
+.profileHero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 116px;
+  gap: 32px;
+  align-items: center;
+  padding: 28px 0 34px;
+  border-bottom: 1px solid var(--portfolio-line);
+}
+
+.profileHero h1 {
+  margin: 0;
+  color: var(--portfolio-ink);
+  font-size: clamp(2.35rem, 5vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.05em;
+}
+
+.profileRole {
+  margin: 8px 0 0;
+  color: var(--portfolio-accent);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.lead {
+  max-width: 680px;
+  margin: 18px 0 0;
+  color: var(--portfolio-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  word-break: keep-all;
+}
+
+.profileImage {
+  width: 116px;
+  height: 148px;
+  border: 1px solid var(--portfolio-line);
+  object-fit: cover;
+}
+
+.contactList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin-top: 18px;
+  font-size: 0.86rem;
+  font-style: normal;
+}
+
+.contactList a {
+  color: var(--portfolio-accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Document sections */
+.section {
+  padding-top: 42px;
+}
+
+.sectionHeading {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 14px;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--portfolio-line);
+}
+
+.sectionIndex {
+  margin: 4px 0 0;
+  color: var(--portfolio-accent);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.sectionHeading h2 {
+  margin: 0;
+  color: var(--portfolio-ink);
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.025em;
+}
+
+.sectionHeading p {
+  margin: 5px 0 0;
+  color: var(--portfolio-muted);
+  font-size: 0.84rem;
+}
+
+.aboutText {
+  max-width: 820px;
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.72;
+  word-break: keep-all;
+}
+
+/* Imported project pages */
+.importedProject {
+  border-top: 0;
+}
+
+.importedProject+.importedProject {
+  margin-top: 28px;
+  border-top: 1px solid var(--portfolio-line);
+}
+
+/* Stack and background */
+.skillGrid {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.skillGrid>div {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 14px;
+}
+
+.skillGrid dt {
+  color: var(--portfolio-accent);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.skillGrid dd {
+  margin: 0;
+  font-size: 0.88rem;
+}
+
+.backgroundColumns {
+  display: grid;
+  gap: 14px;
+}
+
+.backgroundColumns>article {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 14px;
+}
+
+.backgroundColumns h3 {
+  margin: 0;
+  color: var(--portfolio-ink);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.simpleList {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+
+.simpleList li+li {
+  margin-top: 4px;
+}
+
+@media (max-width: 640px) {
+  .page {
+    width: min(100% - 32px, 960px);
+    padding-top: 24px;
+  }
+
+  .profileHero {
+    grid-template-columns: 1fr;
+  }
+
+  .profileImage {
+    grid-row: 1;
+    width: 92px;
+    height: 118px;
+  }
+
+  .sectionHeading {
+    grid-template-columns: 30px minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .skillGrid>div,
+  .backgroundColumns>article {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 11mm 10mm;
+  }
+
+  :global(.navbar),
+  :global(.footer) {
+    display: none !important;
+  }
+
+  :global(html),
+  :global(body) {
+    background: #fff !important;
+  }
+
+  .fullPortfolio {
+    width: 100%;
+    padding: 0;
+    color: #222;
+    font-size: 9pt;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .profileHero {
+    grid-template-columns: minmax(0, 1fr) 82px;
+    gap: 20px;
+    padding: 0 0 18px;
+  }
+
+  .profileHero h1 {
+    font-size: 25pt;
+  }
+
+  .profileImage {
+    width: 82px;
+    height: 104px;
+  }
+
+  .lead {
+    margin-top: 12px;
+    font-size: 9.5pt;
+    line-height: 1.5;
+  }
+
+  .contactList {
+    margin-top: 10px;
+  }
+
+  .section {
+    padding-top: 20px;
+  }
+
+  .printPageBreak {
+    padding-top: 0;
+    break-before: page;
+    break-inside: avoid-page;
+    page-break-before: always;
+    page-break-inside: avoid;
+  }
+
+  .sectionHeading {
+    margin-bottom: 10px;
+    padding-bottom: 7px;
+    break-after: avoid-page;
+    break-inside: avoid-page;
+  }
+
+  .sectionHeading h2 {
+    font-size: 14pt;
+  }
+
+
+  .importedProject,
+  .importedProject+.importedProject {
+    margin-top: 0;
+    border-top: none;
+    break-before: auto;
+    break-inside: auto;
+  }
+
+  .importedProject+.importedProject {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  .skillGrid>div,
+  .backgroundColumns>article,
+  .simpleList li {
+    break-inside: avoid-page;
+  }
+
+  .aboutText,
+  .simpleList {
+    orphans: 3;
+    widows: 3;
+  }
+}
