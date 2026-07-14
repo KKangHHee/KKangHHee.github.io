@@ -10,10 +10,10 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
   return (
     <ProjectOverview
       embedded={embedded}
-      organization="인턴 내 프로젝트"
+      organization="인턴 프로젝트"
       projectName="사내 메시지 발송 관리 서비스 마이그레이션"
       summary="레거시를 그대로 옮기지 않고 기존 운영에서 발생한 문제를 분석해 데이터 관리와 조회 구조를 다시 설계한 프로젝트"
-      period="2026.03.03 - 2026.06.02"
+      period="2026.03 - 2026.06"
       team="3인"
       role="기존 서비스 분석, Java 백엔드 개발 및 관리자 화면 구현"
       stack={[
@@ -36,34 +36,42 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           <h4>1) 문제 맥락</h4>
           <ul className={styles.descList}>
             <li>
-              회사·부서·사용자·채널 정보를 운영자가 DB에서 직접 SQL로 관리해
-              변경 과정의 휴먼 에러와 이력 추적의 어려움이 존재
+              회사·부서·사용자·채널 정보를 운영자가 SQL로 직접 관리하고 있어,
+              변경 누락과 잘못된 상태 입력이 발생할 수 있었고 변경 이력을
+              추적하기도 어려웠습니다.
             </li>
             <li>
               상위 조직은 비활성화됐지만 하위 조직은 활성 상태로 남는 등 상·하위
-              데이터의 상태 불일치가 누적
+              데이터의 상태 불일치가 누적됐습니다.
             </li>
           </ul>
 
           <h4>2) 선택 기준과 구현</h4>
           <ul className={styles.descList}>
-            <li>회사·부서·사용자·채널 정보를 관리하는 웹 기반 CRUD 구축</li>
             <li>
-              상위 데이터 비활성화 시 하위 데이터도 함께 비활성화하는
-              <mark className={styles.keyHighlight}>
-                계단식 soft-delete
-              </mark>{" "}
-              적용
+              회사·부서·사용자·채널 정보를 관리하는 웹 기반 CRUD를 구축했습니다.
             </li>
             <li>
-              생성자·수정자·변경 일시를 기록해 변경 이력을 추적하도록 구성
+              상위 데이터 비활성화 시 하위 데이터도 함께 비활성화하는
+              <mark className={styles.keyHighlight}>계단식 soft-delete</mark> 를
+              적용했습니다.
+            </li>
+            <li>
+              생성자·수정자·변경 일시를 기록해 변경 이력을 추적하도록
+              구성했습니다.
             </li>
           </ul>
 
-          <h4>3) 검증 결과</h4>
+          <h4>3) 결과</h4>
           <ul className={styles.descList}>
-            <li>SQL에 의존하던 운영 절차를 시스템화해 관리 접근성을 개선</li>
-            <li>상·하위 상태 불일치와 잘못된 참조 데이터를 정비</li>
+            <li>
+              SQL을 직접 실행하지 않고 관리 화면에서 메타데이터를 등록·수정할 수
+              있도록 운영 절차를 시스템화했습니다.
+            </li>
+            <li>
+              245건 중 확인된 상·하위 상태 불일치 87건과 잘못된 참조 데이터를
+              정비했습니다.
+            </li>
           </ul>
         </PortfolioTroubleCard>
 
@@ -72,31 +80,34 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           <ul className={styles.descList}>
             <li>
               회사·사용자 메타데이터가 Oracle과 MariaDB에 중복 저장되어 변경 시
-              두 DB의 정합성을 함께 관리해야 하는 부담이 존재
+              두 DB의 정합성을 함께 관리해야 하는 부담이 있었습니다.
             </li>
           </ul>
 
           <h4>2) 선택 기준과 구현</h4>
           <ul className={styles.descList}>
-            <li>중복 관리하던 메타데이터를 MariaDB로 일원화</li>
+            <li>중복 관리하던 메타데이터를 MariaDB로 일원화했습니다.</li>
             <li>
               <mark className={styles.keyHighlight}>
                 MariaDB 후보 ID 조회 → Oracle 발송 이력 조회 → 서비스 계층 매핑
               </mark>
-              순서로 조회 구조 구현
+              순서로 조회 구조를 구현했습니다.
             </li>
             <li>
               실제 사용자와 조회 데이터 규모를 기준으로 IN절과 애플리케이션
-              매핑의 적용 가능 범위를 검토
+              매핑의 적용 가능 범위를 검토했습니다.
             </li>
           </ul>
 
-          <h4>3) 검증 결과</h4>
+          <h4>3) 결과</h4>
           <ul className={styles.descList}>
             <li>
-              이중 저장에 따른 정합성 관리 부담과 저장 트랜잭션 복잡도 감소
+              메타데이터의 저장 경로를 MariaDB로 일원화해 두 DB를 함께 갱신할 때
+              발생할 수 있는 부분 실패와 정합성 관리 부담을 줄였습니다.
             </li>
-            <li>분리된 두 DB에서도 회사·사용자 기준 발송 이력 조회 구현</li>
+            <li>
+              분리된 두 DB에서도 회사·사용자 기준 발송 이력 조회를 구현했습니다.
+            </li>
           </ul>
         </PortfolioTroubleCard>
 
@@ -104,38 +115,39 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           <h4>1) 문제 맥락</h4>
           <ul className={styles.descList}>
             <li>
-              발송 이력이 계속 추가되어 페이지를 이동하는 사이 정렬 순서가
-              바뀌고, 이미 본 데이터가 다시 나오거나 일부 데이터를 건너뛸 수
-              있음
+              신규 데이터가 추가되면 기존 데이터의 위치가 밀려, 페이지 이동
+              과정에서 중복 조회나 누락이 발생할 수 있었습니다.
             </li>
             <li>
-              조회 중 새로 들어온 데이터와 기존 조회 범위를 구분하기 어려움
+              조회 중 새로 들어온 데이터와 기존 조회 범위를 구분하기
+              어려웠습니다.
             </li>
           </ul>
 
           <h4>2) 선택 기준과 구현</h4>
           <ul className={styles.descList}>
             <li>
-              최초 조회 시점의 정렬 기준을
-              <mark className={styles.keyHighlight}>
-                앵커로 저장해 조회 범위를 고정
-              </mark>
+              최초 조회 결과의 정렬 기준값을 앵커로 반환하고, 이후 페이지
+              요청에서도 같은 앵커를 조회 조건으로 사용했습니다.
             </li>
             <li>
               앵커 이후 유입된 데이터는 목록에 즉시 섞지 않고 신규 건수로 별도
-              표시
+              표시했습니다.
             </li>
-            <li>사용자가 갱신할 때 새 앵커를 적용해 최신 조회 범위로 전환</li>
+            <li>
+              사용자가 갱신할 때 새 앵커를 적용해 최신 조회 범위로 전환했습니다.
+            </li>
           </ul>
 
-          <h4>3) 검증 결과</h4>
+          <h4>3) 결과</h4>
           <ul className={styles.descList}>
             <li>
-              페이지 이동 중 중복·누락 가능성을 줄이고 조회 흐름을 일관되게 유지
+              페이지 이동 중 중복·누락 가능성을 줄이고 조회 흐름을 일관되게
+              유지했습니다.
             </li>
             <li>
               조회 이후 유입된 신규 데이터의 존재를 별도로 알리면서, 사용자의
-              현재 페이지와 조회 기준을 유지
+              현재 페이지와 조회 기준을 유지했습니다.
             </li>
           </ul>
         </PortfolioTroubleCard>
@@ -145,37 +157,41 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           <ul className={styles.descList}>
             <li>
               Thymeleaf 화면에서 DOM 조회와 이벤트 처리 코드를 Vanilla
-              JavaScript로 반복 작성해 화면 로직이 장황해짐
+              JavaScript로 반복 작성해 화면 로직이 장황해졌습니다.
             </li>
             <li>
               Fragment에 서버 데이터를 직접 전달하는 구조는 화면과 서버의 결합을
-              높여 이후 클라이언트 렌더링 방식으로 전환하기 어려움
+              높여 이후 클라이언트 렌더링 방식으로 전환하기 어려웠습니다.
             </li>
           </ul>
 
           <h4>2) 선택 기준과 구현</h4>
           <ul className={styles.descList}>
             <li>
-              Thymeleaf는 레이아웃과 초기 화면 골격을 담당하도록 역할을 한정
+              Thymeleaf는 레이아웃과 초기 화면 골격을 담당하도록 역할을
+              한정했습니다.
             </li>
             <li>
               목록·상세 데이터는 Fragment 대신
-              <mark className={styles.keyHighlight}>JSON API로 제공</mark>
+              <mark className={styles.keyHighlight}>
+                JSON API로 제공했습니다.
+              </mark>
             </li>
             <li>
               Alpine.js로 UI 상태와 이벤트를 선언적으로 처리해 직접적인 DOM
-              조작을 축소
+              조작을 줄였습니다.
             </li>
           </ul>
 
-          <h4>3) 검증 결과</h4>
+          <h4>3) 결과</h4>
           <ul className={styles.descList}>
             <li>
-              반복적인 JavaScript 코드를 줄여 화면 로직의 가독성과 유지보수성
-              개선
+              반복적인 JavaScript 코드를 줄여 화면 로직의 가독성과 유지보수성을
+              개선했습니다.
             </li>
             <li>
-              화면과 데이터 전달 구조의 결합을 낮춰 JSON API 재사용 기반 확보
+              화면 렌더링과 데이터 전달 책임을 분리해, 향후 다른
+              클라이언트에서도 JSON API를 재사용할 수 있는 구조를 마련했습니다.
             </li>
           </ul>
         </PortfolioTroubleCard>

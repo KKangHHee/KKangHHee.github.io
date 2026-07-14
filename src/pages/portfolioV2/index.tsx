@@ -111,13 +111,10 @@ export default function PortfolioV2Index() {
             <article>
               <h3>Education</h3>
               <ul className={styles.simpleList}>
+                <li>SK플래닛 웹풀스택 개발자 과정 · 2024.12 - 2025.05</li>
                 <li>
-                  SK플래닛 웹풀스택 개발자 과정 · 2024.12 - 2025.05 ·
-                  Java/Spring Boot, JS/React 과정 수료
-                </li>
-                <li>
-                  가톨릭대학교 컴퓨터정보공학부 · 2019.03 - 2025.08 · 학점 4.0 /
-                  4.5
+                  가톨릭대학교 컴퓨터정보공학부 · 학점 4.0 / 4.5 · 2019.03 -
+                  2025.08
                 </li>
               </ul>
             </article>
@@ -125,9 +122,9 @@ export default function PortfolioV2Index() {
               <h3>Activities</h3>
               <ul className={styles.simpleList}>
                 <li>데이터베이스 설계 튜터 · 2024.09 - 2024.11</li>
-                <li>하나소셜벤처 서비스 기획 및 피칭 · 2024.07</li>
+                <li>하나소셜벤처유니버시티 · 서비스 기획 및 피칭 · 2024.07</li>
                 <li>
-                  UMC IT 동아리 프론트엔드 스터디 및 팀 프로젝트 · 2023.03 -
+                  UMC IT 동아리 · 프론트엔드 스터디 및 팀 프로젝트 · 2023.03 -
                   2023.08
                 </li>
               </ul>

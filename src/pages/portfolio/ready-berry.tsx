@@ -45,13 +45,13 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           <h4>1) 문제 맥락</h4>
           <ul className={styles.descList}>
             <li>
-              Toss Payments Widget 초기화 시 <strong>3초</strong> 소요
+              Toss Payments Widget 초기화에 <strong>3초</strong>가 소요됐습니다.
             </li>
             <li>
-              쿠폰/포인트 적용 시 <strong>화면 깜빡임</strong> 발생
+              쿠폰과 포인트를 적용할 때 <strong>화면 깜빡임</strong>이 발생했습니다.
             </li>
             <li>
-              <code>useEffect</code> 중복 실행으로 SDK가 여러 번 초기화됨
+              <code>useEffect</code>가 중복 실행되어 SDK가 여러 번 초기화됐습니다.
             </li>
           </ul>
 
@@ -59,14 +59,14 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           <ul className={styles.descList}>
             <li>
               <code>useEffect([])</code>로 SDK 초기화를{" "}
-              <strong>마운트 시 1회만 실행</strong>
+              <strong>마운트 시 한 번만 실행</strong>하도록 구성했습니다.
             </li>
             <li>
-              SDK 인스턴스를 <code>useRef</code>로 관리하여 리렌더링과 분리
+              SDK 인스턴스를 <code>useRef</code>로 관리해 리렌더링과 분리했습니다.
             </li>
             <li>
-              결제 버튼 클릭 시 서버 계산 금액 기준으로
-              <code> updateAmount()</code> 호출
+              결제 버튼을 클릭하면 서버가 계산한 금액을 기준으로
+              <code> updateAmount()</code>를 호출했습니다.
             </li>
           </ul>
 
@@ -76,21 +76,21 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
               결제 페이지 로딩 시간
               <mark className={styles.keyHighlight}>
                 3초 → 1초 (약 70% 개선)
-              </mark>
+              </mark>{"으로 단축했습니다."}
             </li>
             <li>
               <code>useEffect</code> 실행 횟수
-              <mark className={styles.keyHighlight}>8~12회 → 1회</mark>
+              <mark className={styles.keyHighlight}>8~12회 → 1회</mark>로 줄였습니다.
             </li>
             <li>
-              화면 깜빡임 현상 <mark className={styles.keyHighlight}>개선</mark>
+              화면 깜빡임 현상을 <mark className={styles.keyHighlight}>개선했습니다.</mark>
             </li>
           </ul>
 
           <h4>4) 설계 회고</h4>
           <ul className={styles.descList}>
-            <li>SDK 초기화 로직과 결제 요청 로직을 명확히 분리</li>
-            <li>서버 금액 계산 → 클라이언트 반영 구조로 보안/정합성 보완</li>
+            <li>SDK 초기화 로직과 결제 요청 로직을 명확히 분리했습니다.</li>
+            <li>서버 금액 계산 → 클라이언트 반영 구조로 보안과 정합성을 보완했습니다.</li>
           </ul>
         </PortfolioTroubleCard>
 

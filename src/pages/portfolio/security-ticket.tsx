@@ -62,40 +62,31 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
             />
           </div>
         </div>
-        <strong>Flow chart</strong>
-        <div>
-          <img
-            src="/img/portfolio/security-ticket/flow-chart.svg"
-            className={styles.archImage2}
-            alt="시스템 다이어그램"
-          />
-        </div>
       </PortfolioSection>
 
       <PortfolioSection title="2. 핵심 문제 해결 및 성과">
         <PortfolioTroubleCard title="Case 1. 조회 특성에 맞춘 JPA·MyBatis 하이브리드 전략">
           <h4>1) 문제 맥락</h4>
           <ul className={styles.descList}>
-            <li>복합 조건 검색 시, JPA Specification 사용 시,</li>
             <li>
-              가독성 저하, 복잡한 쿼리 작성의 어려움, 쿼리 튜닝의 어려움 등 한계
-              발생
+              복합 조건 검색에 JPA Specification을 사용하면서 가독성이 낮아지고,
+              복잡한 쿼리를 작성하거나 튜닝하기 어려워졌습니다.
             </li>
           </ul>
 
           <h4>2) 선택 기준과 구현</h4>
           <ul className={styles.descList}>
             <li>
-              <code>MyBatis</code>의 부분적 도입을 통한 성능 향상
+              복합 조회에만 <code>MyBatis</code>를 부분적으로 도입했습니다.
             </li>
             <li>
               추가 1) choose 중첩 →{" "}
-              <strong>OR 조건 통합을 통한 쿼리 재사용성 향상</strong>
+              <strong>OR 조건을 통합해 쿼리 재사용성을 높였습니다.</strong>
             </li>
             <li>
               추가 2) JOIN →{" "}
               <mark className={styles.keyHighlight}>
-                EXISTS 서브쿼리 기반 카운팅을 통한 쿼리 최적화
+                EXISTS 서브쿼리 기반 카운팅을 통해 쿼리를 최적화했습니다.
               </mark>
             </li>
           </ul>
@@ -150,8 +141,9 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
               <mark className={styles.keyHighlight}>
                 24.45ms → 15.51ms (36.8% 개선)
               </mark>
+              {"으로 단축했습니다."}
             </li>
-            <li>복합 검색 조건에서도 안정적인 응답 시간 유지</li>
+            <li>복합 검색 조건에서도 안정적인 응답 시간을 유지했습니다.</li>
           </ul>
 
           <h4>4) 설계 회고</h4>

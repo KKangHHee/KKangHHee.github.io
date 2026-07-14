@@ -81,21 +81,22 @@ Auth Service
           <h4>1) 문제 맥락</h4>
           <ul className={styles.descList}>
             <li>
-              이메일 인증 API 응답 시간이 평균 <strong>2.5초</strong>
+              이메일 인증 API의 평균 응답 시간이 <strong>2.5초</strong>였습니다.
             </li>
             <li>
               SMTP 서버 통신이 <strong>동기 블로킹</strong> 방식으로 처리되어
-              병목 발생
+              병목이 발생했습니다.
             </li>
           </ul>
 
           <h4>2) 선택 기준과 구현</h4>
           <ul className={styles.descList}>
             <li>
-              Spring Event + <code>@Async</code> 기반 비동기 구조 도입
+              Spring Event와 <code>@Async</code> 기반 비동기 구조를
+              도입했습니다.
             </li>
-            <li>회원가입 로직과 메일 발송 로직 분리</li>
-            <li>@Async를 통해 별도 스레드에서 SMTP 통신 처리</li>
+            <li>회원가입 로직과 메일 발송 로직을 분리했습니다.</li>
+            <li>@Async를 통해 별도 스레드에서 SMTP 통신을 처리했습니다.</li>
           </ul>
 
           <h4>3) 검증 결과</h4>
@@ -105,9 +106,10 @@ Auth Service
               <mark className={styles.keyHighlight}>
                 2.5s → 0.2s (92% 개선)
               </mark>
+              {"으로 단축했습니다."}
             </li>
-            <li>처리량 약 10배 향상(10 req/s → 100+ req/s)</li>
-            <li>회원가입의 이메일 인증 UX 개선</li>
+            <li>처리량을 약 10배 향상했습니다(10 req/s → 100+ req/s).</li>
+            <li>회원가입 과정의 이메일 인증 UX를 개선했습니다.</li>
           </ul>
 
           <h4>4) 설계 회고</h4>
@@ -132,7 +134,7 @@ Auth Service
             </li>
             <li>
               반대로 Gateway가 로그인과 토큰 발급까지 담당하면 사용자 도메인과
-              라우팅 계층의 책임이 섞이는 문제가 있었습니다.
+              라우팅 계층의 책임이 섞이는 문제가 발생할 수 있습니다.
             </li>
           </ul>
 
@@ -146,8 +148,8 @@ Auth Service
             </li>
             <li>
               로그인, 토큰 발급·재발급과 사용자 상태 확인은
-              <mark className={styles.keyHighlight}>Auth Service의 책임</mark>
-              으로 남겼습니다.
+              <mark className={styles.keyHighlight}>Auth Service가</mark>
+              책임지도록 했습니다.
             </li>
             <li>
               인증이 필요 없는 경로를 명시적으로 관리하고, 내부 서비스에는
@@ -159,11 +161,11 @@ Auth Service
           <ul className={styles.descList}>
             <li>
               서비스별 중복 JWT 검증 로직을 제거하고 인증 정책의 변경 지점을
-              축소했습니다.
+              축소
             </li>
             <li>
               라우팅 계층과 사용자 도메인의 경계를 유지해 신규 서비스 추가 시
-              인증 적용을 단순화했습니다.
+              인증 적용을 단순화
             </li>
           </ul>
 
