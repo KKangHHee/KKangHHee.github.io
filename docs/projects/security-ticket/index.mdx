@@ -241,35 +241,10 @@ public class LoginService {
             <strong>36.8% ↓</strong>
           </td>
         </tr>
-        <tr>
-          <td>
-            <strong>최대 응답시간</strong>
-          </td>
-          <td>83.67ms</td>
-          <td>54ms</td>
-          <td>
-            <strong>35% ↓</strong>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <strong>처리량 (TPS)</strong>
-          </td>
-          <td>221.77</td>
-          <td>273.34</td>
-          <td>
-            <strong>23% ↑</strong>
-          </td>
-        </tr>
       </tbody>
     </table>
   </div>
 </div>
-
-**MyBatis 개선 전 대비**
-
-- 최대 응답시간 **88.5% 감소** (473ms → 54ms)
-- 처리량 **3.9배 증가** (66.7 → 273 TPS)
 
 [상세 분석 보기 →](./troubleshooting/mybatis-optimization)
 
@@ -318,8 +293,6 @@ Response
 ### 성능 개선
 
 - ✅ 복합 검색 **평균 응답시간 36% 개선** (24.45ms → 15.51ms)
-- ✅ EXISTS 서브쿼리로 **최대 응답시간 88.5% 감소** (473ms → 54ms)
-- ✅ 쿼리 구조 단순화로 **처리량 3.9배 증가** (66.7 → 273 TPS)
 
 ### 보안 강화
 

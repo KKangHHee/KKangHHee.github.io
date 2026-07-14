@@ -152,7 +152,7 @@ src/
 
 ### 1. Toss Payments SDK 통합 및 결제 시스템 구축
 
-**문제**: Toss Payments Widget 초기화 시 3~5초 소요, 쿠폰/포인트 적용 시 화면 깜빡임
+**문제**: Toss Payments Widget 초기화 시 3초 소요, 쿠폰/포인트 적용 시 화면 깜빡임
 
 **해결**: useEffect 최적화 + useRef 활용
 
@@ -197,7 +197,7 @@ const useRequestPayment = () => {
     couponId,
     paymentWidget,
     paymentMethodsWidget,
-    point
+    point,
   ) => {
     try {
       // 1. 서버에 결제 정보 전송
@@ -266,13 +266,13 @@ const useMenu = (storeId) => {
 
 ### 결제 페이지 로딩 시간 70% 단축
 
-**문제**: Toss SDK 초기화에 3~5초 소요, useEffect 중복 실행
+**문제**: Toss SDK 초기화에 3초 소요, useEffect 중복 실행
 
 **해결**: useEffect 의존성 최적화 + useRef 활용
 
 | 항목                    | Before  | After   | 개선율        |
 | ----------------------- | ------- | ------- | ------------- |
-| **결제 페이지 로딩**    | 3~5초   | 1초     | **약 70% ↓**  |
+| **결제 페이지 로딩**    | 3초   | 1초     | **약 70% ↓**  |
 | **useEffect 실행 횟수** | 8~12회  | 1회     | **약 90% ↓**  |
 | **화면 깜빡임**         | ✅ 발생 | ❌ 제거 | **100% 개선** |
 

@@ -10,7 +10,7 @@ tags: []
 
 > "왜 Spring Security의 기본 Form Login을 쓰지 않고 직접 구현할까?"
 
-이 글에서는 **Admin/Customer 통합 환경**에서 **JSON 기반 로그인 + 중복 로그인 제어**를 구현하며 겪었던 **표준 방식으로는 안 되는 이유**와 **어떻게 우회했는지**를 기록합니다.
+Admin과 Customer가 함께 사용하는 환경에서 JSON 로그인, 계정 잠금, 첫 로그인 처리, 중복 로그인 제어가 필요했습니다. 이 글에서는 기본 Form Login만으로 요구사항을 표현하기 어려웠던 이유와 Spring Security의 표준 세션 정책을 유지하면서 인증 진입점을 Controller로 옮긴 과정을 정리합니다.
 
 <!-- truncate -->
 
@@ -50,10 +50,7 @@ UsernamePasswordAuthenticationFilter
 
 ### 해결 방안: Controller + SessionAuthenticationStrategy 조합
 
-> 필터를 우회하여 Controller에서 비즈니스 로직을 선행 처리하되,
-> 인증 결과는 Security의 표준 컴포넌트를 이용해 세션 시스템에 등록
-> 수동으로 Authentication 객체를 생성하고,
-> SecurityContextRepository를 통해 세션에 영속화하는 일련의 과정을 코드로 구현
+> Controller에서 비즈니스 검증을 먼저 수행하고, 인증 결과는 Spring Security의 표준 컴포넌트로 세션에 등록합니다. `Authentication`을 생성한 뒤 `SessionAuthenticationStrategy`를 적용하고 `SecurityContextRepository`를 통해 인증 상태를 저장합니다.
 
 **[기존] Filter Chain 방식**
 
@@ -71,7 +68,7 @@ Request → Controller → Service (비즈니스 로직)
     → SecurityContext 저장 → Response
 ```
 
-> **Spring Security의 세션 정책을 그대로 활용하는 방안**
+> 로그인 진입점은 변경하되 Spring Security의 세션 정책은 그대로 활용하는 방식입니다.
 
 ---
 
@@ -318,8 +315,7 @@ public class User implements UserDetails {
 
 **2) 서블릿 리스너에 등록 (정상 동작 보장)**
 
-> **(1)HttpSessionEventPublisher**을 ServletListener에 등록해야 로그아웃 시 SessionRegistry에서 세션이 제거됨
-> 하지 않을 경우, 세션이 누적
+> `HttpSessionEventPublisher`를 Servlet Listener로 등록해야 로그아웃이나 세션 만료 시 `SessionRegistry`에서도 세션 정보가 제거됩니다. 등록하지 않으면 만료된 세션 정보가 누적될 수 있습니다.
 
 ```java
     public ServletListenerRegistrationBean
@@ -392,8 +388,7 @@ public class User implements UserDetails {
 
 ### 4) SecurityFilterChain 설정
 
-> 컨트롤러는 "로그인 시 딱 한 번 실행"되어 "세션 생성 및 전략 수동 호출"함
-> 필터는 "로그인 이후 API"에 "세션 유효성 검증 및 정책 담당"
+> Controller는 로그인 요청에서 인증과 세션 전략을 실행하고, 필터 체인은 로그인 이후 요청의 세션 유효성과 접근 정책을 담당합니다.
 
 ```java
 @Bean
@@ -514,21 +509,22 @@ POST /api/login
 
 ### 핵심 요약
 
-> JSON 기반 로그인 + 계정 잠금 + 첫 로그인 체크 + ROLE별 응답  
-> 이 4가지를 FormLogin 필터에서 처리하기는 너무 복잡해습니다.
+> JSON 기반 로그인, 계정 잠금, 첫 로그인 확인, 역할별 응답을 기본 Form Login 필터 안에서 모두 처리하면 인증과 비즈니스 규칙의 경계가 불분명해집니다.
 
 **Controller 방식으로 전환한 후:**
 
-- 비즈니스 로직이 Service 레이어에 명확히 분리됨
-- Spring Security의 세션 정책은 그대로 활용
+- 비즈니스 검증을 Service 계층에 명확하게 분리했습니다.
+- 중복 세션 제어와 세션 고정 공격 방지 등 Spring Security의 세션 정책은 그대로 활용했습니다.
 
 ### 트레이드오프
 
 - **장점:**
-  - 비즈니스 로직 자유도 높음
-  - 코드 가독성 좋음
+  - 비즈니스 요구사항을 Service 계층에서 명시적으로 표현할 수 있음
+  - 인증 단계와 세션 정책의 책임을 구분할 수 있음
 
 - **단점:**
-  - Spring Security의 "자동화"를 포기
-  - `SessionAuthenticationStrategy` 수동 호출 필요
-  - `SecurityContext` 수동 저장 필요
+  - 기본 필터가 자동으로 처리하던 인증 절차를 직접 연결해야 함
+  - `SessionAuthenticationStrategy`를 올바른 순서로 호출해야 함
+  - `SecurityContext` 저장과 세션 이벤트 구성을 직접 검증해야 함
+
+커스텀 인증은 기본 기능을 대체하는 목적이 아니라, 프로젝트의 비즈니스 검증과 Spring Security의 세션 관리 책임을 분리하기 위한 선택이었습니다. 요구사항이 단순하다면 기본 Form Login이 더 적합하며, 확장이 필요한 경우에도 표준 컴포넌트를 최대한 재사용하는 편이 안전합니다.

@@ -2,30 +2,14 @@
    ProjectItem - 일관된 타이포그래피 시스템
    ======================================== */
 
-/* 📐 타이포그래피 변수 (resume.module.css와 통일) */
-:root {
-  --font-size-h3: 1.25rem; /* 20px - 프로젝트 제목 */
-  --font-size-h4: 1.1rem; /* 17.6px - 하위 섹션 */
-  --font-size-base: 1rem; /* 16px - 본문 */
-  --font-size-small: 0.9rem; /* 14.4px - 보조 */
-  --font-size-xs: 0.85rem; /* 13.6px - 메타 */
-
-  --color-primary: #111; /* 최상위 제목 */
-  --color-secondary: #333; /* 본문 */
-  --color-tertiary: #555; /* 보조 */
-  --color-muted: #777; /* 메타 정보 */
-  --color-border: #e0e0e0; /* 구분선 */
-  --color-highlight: #f8f9fa; /* 배경 강조 */
+.project {
+  margin: 0;
+  padding: 1.05rem 0 1.15rem;
+  border-bottom: 1px solid #e2e2e2;
 }
 
-/* 🎯 프로젝트 카드 */
-.project {
-  margin-bottom: 3rem;
-  color: var(--color-secondary); /* #333 통일 */
-  /* padding-bottom: 2rem;
-  border-bottom: 1px solid var(--color-border); */
-  padding-bottom: 0;
-  border-bottom: none;
+.project:first-child {
+  padding-top: 0;
 }
 
 .project:last-child {
@@ -35,254 +19,191 @@
 /* ========================================
    📌 프로젝트 헤더
    ======================================== */
-.title {
-  font-size: var(--font-size-h3); /* 1.25rem 유지 */
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: var(--color-primary); /* #111 */
-  letter-spacing: -0.3px;
-  line-height: 1.4;
+
+.header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.projectIdentity {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  min-width: 0;
 }
 
 .organization {
-  color: var(--color-tertiary); /* #555 */
-  font-weight: 600;
-  font-size: var(--font-size-base); /* 1rem */
+  flex-shrink: 0;
+  color: var(--resume-color-tertiary);
+  font-size: var(--resume-font-small);
+  font-weight: 500;
 }
 
-.content {
-  padding-left: 1.5rem; /* 제목보다 안쪽으로 들여쓰기 */
-  border-left: 1px solid var(--color-border); /* 내용 왼쪽에 얇은 선을 주어 가이드 역할 */
-  margin-left: 0.5rem; /* 선과 제목 사이의 미세 간격 */
+.title {
+  margin: 0;
+  color: var(--resume-color-primary);
+  font-size: var(--resume-font-h3);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+
+.projectMeta {
+  margin: 0;
+  color: var(--resume-color-tertiary);
+  font-size: var(--resume-font-small);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.projectContent {
+  margin-top: 0.75rem;
 }
 
 /* ========================================
    📋 메타 정보 (DL 스타일)
    ======================================== */
-.meta {
-  /* padding: 0 0 0 1.2rem; */
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
-  /* margin-bottom: 1rem; */
-  /* background-color: var(--color-highlight); */
-  /* padding: 1rem; */
-  /* border-radius: 6px; */
-  /* border-left: 3px solid var(--color-primary); */
+.metaList {
+  margin: 0;
 }
 
 .metaItem {
   display: flex;
-  font-size: var(--font-size-small); /* 0.9rem → 통일 */
-  line-height: 1.5;
+  align-items: baseline;
+  margin-bottom: 0.2rem;
+  font-size: var(--resume-font-small);
+  line-height: 1.55;
+  color: var(--resume-color-secondary);
 }
 
-.metaItem dt {
-  font-weight: 600;
-  color: var(--color-primary); /* #111 */
-  min-width: 90px;
-  margin-right: 12px;
+.metaLabel {
+  display: inline-block;
   flex-shrink: 0;
+  font-weight: 500;
+  min-width: 80px;
+  word-break: keep-all;
 }
 
-.metaItem dt::after {
-  content: ":";
-  margin-left: 2px;
+.metaLabel::after {
+  content: ": ";
+  color: var(--resume-color-tertiary);
 }
 
-.metaItem dd {
-  margin: 0;
+.metaValue {
   flex: 1;
-  color: var(--color-secondary); /* #333 */
-}
-
-/* 🏷 기술 스택 컨테이너 */
-.stackContainer {
   margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  align-items: center;
+  color: var(--resume-color-secondary);
 }
 
-/* 🎨 기술 스택 배지 */
-.stackBadge {
-  display: inline-flex;
-  align-items: center;
-  padding: 2px 4px; /* 패딩 증가 */
-  background-color: #f0f0f0;
-  color: var(--color-secondary); /* #333 */
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  font-size: var(--font-size-small); /* 0.85rem → 0.9rem 증가 */
-  font-weight: 600;
-  line-height: 1.4;
-  transition: all 0.2s ease;
-}
-
-.stackBadge:hover {
-  background-color: #e8e8e8;
-  border-color: #ccc;
-  transform: translateY(-1px);
-}
+/* .stackText {
+  color: var(--resume-color-secondary);
+  font-size: var(--resume-font-small);
+  font-weight: 500;
+  line-height: 1.6;
+  word-break: keep-all;
+} */
 
 /* ========================================
    💡 핵심 문제 해결 섹션
    ======================================== */
-.flowSection {
-  margin-top: 1.5rem;
+.highlightsSection {
+  margin-top: 0.5rem;
 }
 
-.solutionEx {
-  font-size: var(--font-size-h4); /* 1.1rem */
-  font-weight: 700;
-  color: var(--color-primary); /* #111 */
-  margin: 1.5rem 0 1rem 0;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--color-border);
-}
-
-.flowList {
+.highlightList {
   margin-top: 1rem;
-  padding-left: 0;
-  list-style: none;
+  margin-bottom: 0;
+  padding-left: 1.2rem;
+  list-style: disc;
+  list-style-position: outside;
 }
 
-.flowItem {
-  margin-bottom: 1.5rem;
-  line-height: 1.7;
-  padding-left: 1rem;
-  border-left: 3px solid var(--color-border);
+.highlightItem {
+  margin-bottom: 1rem;
+  padding-left: 0.1rem;
+  color: var(--resume-color-secondary);
+  font-size: var(--resume-font-small);
+  line-height: 1.55;
+  word-break: keep-all;
 }
 
-.flowItem:last-child {
+.highlightItem:last-child {
   margin-bottom: 0;
 }
 
-/* 🔖 문제 해결 제목 */
-.flowTitle {
-  display: block;
-  font-size: var(--font-size-base); /* 1rem */
-  font-weight: 700;
-  color: var(--color-primary); /* #111 */
-  margin-bottom: 0.6rem;
-  line-height: 1.5;
-}
-
-/* 📍 도메인 및 문제 설명 */
-.problemContainer,
-.solutionContainer {
-  padding-left: 12px;
-  margin-bottom: 0.4rem;
-  font-size: var(--font-size-small); /* 0.9rem */
-  line-height: 1.6;
-}
-
-.domain {
-  color: var(--color-tertiary); /* #555 */
+/* 🔖 주요 경험 제목 */
+.highlightTitle {
+  padding: 0 0.08em;
+  font-size: var(--resume-font-base);
   font-weight: 600;
-  font-size: var(--font-size-small); /* 0.9rem */
+  color: #25364d;
+  line-height: 1.5;
+  background-image: linear-gradient(to top,
+      rgba(250, 204, 21, 0.28) 0,
+      rgba(250, 204, 21, 0.28) 0.38em,
+      transparent 0.38em);
+  background-repeat: no-repeat;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
-.problem {
-  color: var(--color-secondary); /* #333 */
-  font-weight: 500;
+.highlightDescription::before {
+  content: " — ";
+  color: var(--resume-color-tertiary);
 }
 
-.solution {
-  color: var(--color-secondary); /* #333 */
-  font-weight: 500;
-}
-
-/* ✨ 결과 강조 */
-.result {
-  background-color: transparent;
-  color: var(--color-primary); /* #111 */
-  font-weight: 700;
-  text-decoration: underline;
-  text-decoration-color: #fbbf24; /* 강조 색상 */
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
-}
-
-/* 🎯 화살표 아이콘 */
-.arrow {
-  margin-right: 6px;
-  color: var(--color-primary); /* #111 */
-  font-weight: bold;
-}
-
-/* ========================================
-   📌 추가 기여 섹션
-   ======================================== */
-.extraFooter {
-  margin-top: 1.5rem;
-}
-
-.extraList {
-  margin-top: 0.8rem;
-  padding-left: 1.5rem;
-  list-style: disc;
-}
-
-.extraList li {
-  margin-bottom: 0.6rem;
-  font-size: var(--font-size-small); /* 0.9rem */
+/* 📍 주요 경험 설명 */
+.highlightDescription {
+  font-size: var(--resume-font-small);
   line-height: 1.6;
-  color: var(--color-secondary); /* #333 */
-}
-
-/* ========================================
-   🖨 PDF 출력 최적화
-   ======================================== */
-@media print {
-  .project {
-    page-break-inside: avoid;
-    break-inside: avoid;
-  }
-
-  .stackBadge {
-    background-color: #f0f0f0 !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-    border: 1px solid #d1d5db !important;
-  }
-
-  .result {
-    color: #000 !important;
-    text-decoration-color: #000 !important;
-  }
-
-  .meta {
-    background-color: #f8f9fa !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
+  color: #454545;
 }
 
 /* ========================================
    📱 반응형 디자인
    ======================================== */
 @media screen and (max-width: 768px) {
-  .meta {
+  .metaList {
     padding: 0.8rem;
   }
 
-  .metaItem {
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .metaItem dt {
+  .metaLabel {
     min-width: auto;
-    margin-bottom: 2px;
+    margin-right: 0.3rem;
   }
 
   .title {
     font-size: 1.1rem;
   }
 
-  .solutionEx {
-    font-size: 1rem;
+  .header {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+
+  .projectMeta {
+    white-space: normal;
+  }
+}
+
+@media print {
+  .project {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .metaList {
+    background-color: #f8f9fa !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .highlightTitle {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 }

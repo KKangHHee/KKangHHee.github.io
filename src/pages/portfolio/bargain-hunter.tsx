@@ -1,72 +1,46 @@
 import PortfolioBlogLinks from "@site/src/components/portfolio/PortfolioBlogLinks";
-import PortfolioPageLayout from "@site/src/components/portfolio/PortfolioPageLayout";
 import PortfolioSection from "@site/src/components/portfolio/PortfolioSection";
 import PortfolioTroubleCard from "@site/src/components/portfolio/PortfolioTroubleCard";
+import ProjectOverview from "@site/src/components/portfolio/ProjectOverview";
 import styles from "./portfolio.module.css";
 
-export default function Portfolio() {
-  return (
-    <PortfolioPageLayout
-      title="Bargain Hunter"
-      subtitle="전국의 관광지, 문화명소를 지도로 탐색하고, 리뷰를 남기며, LLM 기반 가격 비교까지 가능한 서비스"
-    >
-      <PortfolioSection title="1. 프로젝트 요약">
-        <ul className={styles.descList}>
-          <li>
-            <strong>한 줄 정의:</strong> 지도를 활용한 국내 관광지 정보 제공 및
-            LLM 기반 가격 비교 서비스
-          </li>
-          <li>
-            <strong>
-              <a
-                href="https://github.com/JocketDan/jocketdanBackend"
-                target="_blank"
-                rel="noreferrer"
-              >
-                GitHub 주소
-              </a>
-            </strong>
-          </li>
-          <li>
-            <strong>팀 구성:</strong> 4인(BE 3, FE 1)
-          </li>
-          <li>
-            <strong>기간:</strong> 2025.07 ~ 2025.10 (4개월)
-          </li>
-          <li>
-            <strong>나의 역할:</strong> 인증/인가 MSA 설계 및 유저 도메인 개발
-            <ol>
-              <li>
-                Spring Cloud Gateway를 통한 중앙 집중형 JWT 검증 및 서비스
-                오버헤드 최소화
-              </li>
-              <li>Auth Service 담당자로서 전체 인증/인가 아키텍처 설계 주도</li>
-              <li>
-                OAuth2 PKCE 플로우 적용으로 Authorization Code Interception 방지
-                - 추후 모바일 앱으로 확장 고려
-              </li>
-              <li>Redis HINCRBY를 활용한 동시성 제어</li>
-            </ol>
-          </li>
-          <li>
-            <strong>핵심 성과:</strong> 이메일 인증 응답 속도 92% 개선, 인증
-            보안 무결성 강화
-          </li>
-        </ul>
-      </PortfolioSection>
+type PortfolioProps = { embedded?: boolean };
 
-      <PortfolioSection title="2. 기술 스택 및 시스템 아키텍처">
+export default function Portfolio({ embedded = false }: PortfolioProps) {
+  return (
+    <ProjectOverview
+      embedded={embedded}
+      projectName="Bargain Hunter"
+      summary="지도를 활용해 국내 관광지를 탐색하고 LLM 기반 가격 비교 기능을 제공하는 서비스"
+      period="2025.07 - 2025.10"
+      team="4인 (BE 3인 / FE 1인)"
+      role="인증·인가 아키텍처 및 사용자 도메인 담당"
+      stack={[
+        "Java 17",
+        "Spring Boot 3",
+        "Spring Cloud Gateway",
+        "PostgreSQL",
+        "Redis",
+        "Docker",
+        "Kubernetes",
+      ]}
+      links={[
+        {
+          label: "GitHub",
+          href: "https://github.com/JocketDan/jocketdanBackend",
+        },
+      ]}
+      achievements={[
+        "이메일 인증 API 응답시간 92% 단축 (2.5초 → 0.2초)",
+        "Gateway 공통 JWT 검증과 Auth Service 책임 분리",
+      ]}
+    >
+      <PortfolioSection title="1. 시스템 아키텍처">
         <ul className={styles.descList}>
           <li>
-            <strong>기술 스택:</strong> Java 17, Spring Boot 3, PostgreSQL,
-            Redis, Docker, Kubernetes
+            <strong>redis</strong> TTL 기능을 활용하여 일회성 인증 코드의 만료를
+            자동화하고, 유효 시간이 지난 코드를 별도 삭제 작업 없이 정리
           </li>
-          <ul>
-            <li>
-              <strong>redis</strong> TTL 기능을 활용하여 일회성 인증 코드의 자동
-              소멸 및 메모리 관리 최적화.
-            </li>
-          </ul>
           <li>
             <strong>구조:</strong> API Gateway + Microservices + DB + Redis
             Cache 구조
@@ -83,73 +57,129 @@ export default function Portfolio() {
           </div>
 
           <div>
-            <strong>디렉토리 구조</strong>
+            <strong>구조</strong>
             <pre className={styles.codeBlock}>
               <code>
-                {`├─ gateway/   # API Gateway
-├─ auth/      # 인증 및 사용자 관리 서비스
-├─ review/    # 리뷰 서비스
-├─ tour/      # 관광지 정보 서비스
-└─ util/      # LLM 서비스`}
+                {`Gateway
+- JWT 검증
+- 사용자 식별자 전달
+- 라우팅
+
+Auth Service
+- 로그인
+- 토큰 발급·재발급
+- 이메일 인증
+- 사용자 상태 확인`}
               </code>
             </pre>
           </div>
         </div>
       </PortfolioSection>
 
-      <PortfolioSection title="3. 핵심 문제 해결 및 성과">
-        <PortfolioTroubleCard title="Trouble 1. 비동기 처리를 통한 성능 최적화">
-          <h4>1) Problem</h4>
+      <PortfolioSection title="2. 핵심 문제 해결 및 성과">
+        <PortfolioTroubleCard title="Case 1. SMTP 대기 시간을 사용자 응답 경로에서 분리">
+          <h4>1) 문제 맥락</h4>
           <ul className={styles.descList}>
             <li>
-              이메일 인증 API 응답 시간이 평균 <strong>2.5초</strong>
+              이메일 인증 API의 평균 응답 시간이 <strong>2.5초</strong>였습니다.
             </li>
             <li>
               SMTP 서버 통신이 <strong>동기 블로킹</strong> 방식으로 처리되어
-              병목 발생
+              병목이 발생했습니다.
             </li>
           </ul>
 
-          <h4>2) Action</h4>
+          <h4>2) 선택 기준과 구현</h4>
           <ul className={styles.descList}>
+            <li>회원가입 로직과 메일 발송 로직을 분리했습니다.</li>
             <li>
-              Spring Event + <code>@Async</code> 기반 비동기 구조 도입
+              Spring Event와 <code>@Async</code> 기반 비동기 구조를 도입 후,
+              @Async를 통해 별도 스레드에서 SMTP 통신을 처리했습니다.
             </li>
-            <li>회원가입 로직과 메일 발송 로직 분리</li>
-            <li>별도 ThreadPool에서 이벤트 처리</li>
           </ul>
 
-          <h4>3) Result</h4>
+          <h4>3) 검증 결과</h4>
           <ul className={styles.descList}>
             <li>
-              평균 응답시간 <strong>2.5s → 0.2s (92% 개선)</strong>
+              평균 응답시간
+              <mark className={styles.keyHighlight}>
+                2.5s → 0.2s (92% 개선)
+              </mark>
+              {"으로 단축했습니다."}
             </li>
-            <li>처리량 약 10배 향상(10 req/s → 100+ req/s)</li>
-            <li>회원가입의 이메일 인증 UX 개선</li>
+            <li>처리량을 약 10배 향상했습니다(10 req/s → 100+ req/s).</li>
+            <li>회원가입 과정의 이메일 인증 UX를 개선했습니다.</li>
           </ul>
 
-          <h4>4) Deep Dive</h4>
+          <h4>4) 설계 회고</h4>
           <ul className={styles.descList}>
             <li>
-              관련 포스팅:
-              <a
-                href="/blog/spring-event-async-email-optimization"
-                target="_blank"
-                rel="noreferrer"
-              >
-                &nbsp;이메일 발송 API 응답 속도 개선: Spring Event와 비동기 처리
-              </a>
+              회원가입 요청 흐름과 SMTP 메일 발송 책임을 분리해, 외부 I/O 지연과
+              사용자 응답을 분리
             </li>
-            <li>비동기로 분리된 서버 간 장애 격리 구조 이해</li>
             <li>
               <code>TransactionPhase.AFTER_COMMIT</code> 기반 데이터 정합성 처리
               학습
             </li>
           </ul>
         </PortfolioTroubleCard>
+
+        <PortfolioTroubleCard title="Case 2. Gateway와 Auth Service의 인증 책임 분리">
+          <h4>1) 문제 맥락</h4>
+          <ul className={styles.descList}>
+            <li>
+              마이크로서비스마다 JWT 검증을 구현하면 인증 코드와 보안 정책이
+              중복되고, 정책 변경 시 여러 서비스를 함께 수정해야 했습니다.
+            </li>
+            <li>
+              반대로 Gateway가 로그인과 토큰 발급까지 담당하면 사용자 도메인과
+              라우팅 계층의 책임이 섞이는 문제가 발생할 수 있습니다.
+            </li>
+          </ul>
+
+          <h4>2) 선택 기준과 구현</h4>
+          <ul className={styles.descList}>
+            <li>
+              <mark className={styles.keyHighlight}>
+                Gateway는 JWT 검증과 사용자 식별자 전달만 담당
+              </mark>
+              하도록 공통 필터를 구성했습니다.
+            </li>
+            <li>
+              로그인, 토큰 발급·재발급과 사용자 상태 확인은
+              <mark className={styles.keyHighlight}>Auth Service가</mark>
+              책임지도록 했습니다.
+            </li>
+            <li>
+              인증이 필요 없는 경로를 명시적으로 관리하고, 내부 서비스에는
+              검증된 사용자 정보를 헤더로 전달했습니다.
+            </li>
+          </ul>
+
+          <h4>3) 검증 결과</h4>
+          <ul className={styles.descList}>
+            <li>
+              서비스별 중복 JWT 검증 로직을 제거하고 인증 정책의 변경 지점을
+              축소
+            </li>
+            <li>
+              라우팅 계층과 사용자 도메인의 경계를 유지해 신규 서비스 추가 시
+              인증 적용을 단순화
+            </li>
+          </ul>
+
+          <h4>4) 설계 회고</h4>
+          <ul className={styles.descList}>
+            <li>
+              Gateway가 전달하는 헤더를 외부 요청이 위조하지 못하도록 내부
+              네트워크 경계와 헤더 제거 정책이 함께 필요하다는 점을 설계
+              조건으로 정리했습니다.
+            </li>
+          </ul>
+        </PortfolioTroubleCard>
       </PortfolioSection>
 
-      <PortfolioSection title="4. 관련 블로그 포스팅">
+      <PortfolioSection title="3. 관련 블로그 포스팅">
         <PortfolioBlogLinks
           items={[
             {
@@ -171,6 +201,6 @@ export default function Portfolio() {
           ]}
         />
       </PortfolioSection>
-    </PortfolioPageLayout>
+    </ProjectOverview>
   );
 }
