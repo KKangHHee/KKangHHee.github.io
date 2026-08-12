@@ -102,12 +102,8 @@ Auth Service
           <h4>3) 검증 결과</h4>
           <ul className={styles.descList}>
             <li>
-              인증 요청 API가 SMTP 처리 완료를 기다리지 않고 응답하도록
-              구성했으며, 측정 환경에서 평균 응답 시간은
-              <mark className={styles.keyHighlight}>
-                2.5s → 0.2s (92% 개선)
-              </mark>
-              {"으로 감소했습니다."}
+              로컬 테스트 환경에서 요청 접수까지의 평균 API 응답 시간은 약
+              2.5초에서 0.2초로 감소했습니다.
             </li>
             <li>회원가입 과정의 이메일 인증 UX를 개선했습니다.</li>
           </ul>
@@ -185,8 +181,7 @@ Auth Service
           items={[
             {
               href: "/blog/spring-event-async-email-optimization",
-              label:
-                "동기·비동기와 블로킹·논블로킹 구분하기",
+              label: "동기·비동기와 블로킹·논블로킹 구분하기",
               description: "개념 비교와 SMTP 작업 분리 사례",
             },
             {
