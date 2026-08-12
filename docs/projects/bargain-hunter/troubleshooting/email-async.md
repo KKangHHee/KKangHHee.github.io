@@ -37,10 +37,10 @@ public class VerificationService {
 
     public void createAndSendCode(String email, VerificationType type) {
         String code = generateRandomCode();
-        redisService.saveCode(email, code, type);  // 0.1초
+        redisService.saveCode(email, code, type);
 
         // 동기 블로킹 - SMTP 서버 응답 대기
-        emailService.sendVerificationCode(email, code, type);  // 2.4초
+        emailService.sendVerificationCode(email, code, type);
 
         // 총 응답 시간: 2.5초
     }
@@ -180,8 +180,8 @@ public class AsyncConfig {
 [Controller] ← 0.2초 후 즉시 응답
      ↓
 [VerificationService]
-  ├─ Redis 저장 (0.1초)
-  └─ Event 발행 (0.1초) ← 여기서 반환
+  ├─ Redis 저장
+  └─ Event 발행 ← 여기서 반환
            ↓
 [ApplicationEventPublisher]
            ↓
@@ -190,7 +190,7 @@ public class AsyncConfig {
 [VerificationCodeEventListener]
   @Async("emailTaskExecutor")
            ↓
-[EmailService.sendMail()] ← 2.4초 (사용자는 대기 안 함)
+[EmailService.sendMail()] ← 사용자는 완료까지 대기하지 않음
 ```
 
 ---

@@ -36,7 +36,7 @@ description: MSA 기반 국내 관광 지원 서비스
 ### 주요 기능
 
 - 🗺️ **지도 탐색**: TourAPI 연동 관광지 정보 제공
-- 📝 **리뷰 시스템**: Kafka 기반 이벤트 메시징
+- 📝 **리뷰 시스템**: 관광지 리뷰 등록 및 조회
 - 💬 **가격 질의**: Gemini API 챗봇
 
 ---
@@ -78,7 +78,7 @@ description: MSA 기반 국내 관광 지원 서비스
     │                │          │         │
 ┌───▼───┐    ┌──────▼─────┐  ┌─▼────┐  ┌─▼───┐
 │ Auth  │    │  Review    │  │ Tour │  │ Util│
-│ (JWT) │    │  (Kafka)   │  │ (API)│  │(LLM)│
+│ (JWT) │    │   Review   │  │ (API)│  │(LLM)│
 └───────┘    └────────────┘  └──────┘  └─────┘
      │              │
 ┌────▼────┐   ┌────▼────┐
@@ -105,7 +105,7 @@ description: MSA 기반 국내 관광 지원 서비스
 
 | 기술                          | 선택 이유                          |
 | ----------------------------- | ---------------------------------- |
-| **Java 17 + Spring Boot 3.x** | 최신 LTS 기반 안정성 확보          |
+| **Java + Spring Boot**        | 프로젝트 표준 기술 스택            |
 | **Spring Cloud Gateway**      | Reactive 기반 고성능 API Gateway   |
 | **PostgreSQL**                | JSONB 지원 및 복잡한 쿼리 처리     |
 | **Redis**                     | 이메일 인증 코드 저장 (Hash + TTL) |

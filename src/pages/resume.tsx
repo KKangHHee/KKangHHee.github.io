@@ -83,7 +83,7 @@ export default function Resume() {
               <strong>Database</strong> : Oracle, MariaDB, MySQL, PostgreSQL
             </li>
             <li>
-              <strong>Testing / Infra</strong> : JUnit, Mockito, Docker
+              <strong>Testing / Infra</strong> : Mockito, Docker
             </li>
             <li>
               <strong>Frontend</strong> : React, TypeScript

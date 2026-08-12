@@ -24,7 +24,7 @@ tags: []
 public class VerificationService {
 
     public void createAndSendCode(String email, VerificationType type) {
-        // 1. 인증 코드 생성 및 Redis 저장 (0.1초)
+        // 1. 인증 코드 생성 및 Redis 저장
         String code = generateRandomCode();
         redisService.saveCode(email, code, type);
 

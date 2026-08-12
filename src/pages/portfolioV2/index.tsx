@@ -12,7 +12,7 @@ const skills = [
     "Java · Spring Boot · Spring Security · JPA · QueryDSL · MyBatis",
   ],
   ["Database", "Oracle · MariaDB · MySQL · PostgreSQL"],
-  ["Testing / Infra", "JUnit · Mockito · Docker"],
+  ["Testing / Infra", "Mockito · Docker"],
   ["Frontend", "React · TypeScript"],
 ];
 

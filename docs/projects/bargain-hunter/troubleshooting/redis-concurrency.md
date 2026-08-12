@@ -169,8 +169,8 @@ public void verifyCode(String email, String inputCode, VerificationType type) {
 
 :::success 성과
 
-- 동시 인증 요청 환경에서도 시도 횟수 정확성 100% 보장
-- Race Condition 완전 제거
+- 병렬 요청 테스트에서 lost update 없이 시도 횟수가 집계됨
+- 시도 횟수 증가를 여러 단계의 Read–Modify–Write에서 단일 원자 명령으로 변경
 - 인증 실패/성공 흐름 단순화
 - Redis Key 구조 간결화 및 유지보수성 향상
   :::

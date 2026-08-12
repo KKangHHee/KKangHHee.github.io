@@ -3,7 +3,7 @@ import { ProjectProps } from "@site/src/components/resume/projectItem/ProjectIte
 export const PROJECTS: ProjectProps[] = [
   // ✅ 1. 웅진 인턴
   {
-    organization: "인턴",
+    organization: "웅진 · 그룹IT혁신팀 인턴",
     title: "사내 메시지 발송 관리 서비스 마이그레이션",
     period: "2026.03 - 2026.06",
     service:
@@ -49,7 +49,7 @@ export const PROJECTS: ProjectProps[] = [
     period: "2025.07 - 2025.10",
     service: "관광지 탐색과 LLM 기반 가격 비교 기능을 제공하는 서비스",
     role: "인증·인가 아키텍처 및 사용자 도메인 담당",
-    members: "4인",
+    members: "BE 4인 / FE 1인",
     stack: [
       "Java",
       "Spring Boot",
@@ -111,7 +111,7 @@ export const PROJECTS: ProjectProps[] = [
     period: "2023.12 - 2024.05",
     service: "로컬 카페의 사전 주문과 결제를 지원하는 패스트오더 서비스",
     role: "프론트엔드 개발 및 API 인터페이스 설계",
-    members: "BE 2인 / FE 4인",
+    members: "개발팀 BE 2인 / FE 4인",
     stack: [
       "React",
       "TypeScript",

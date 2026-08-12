@@ -15,17 +15,20 @@ title: 커스텀 세션 인증 구현
 
 - **서버 환경**: Admin/Customer 통합 모놀리틱 환경
 - **요구사항**:
-  1. JSON 기반 로그인 (표준 FormLogin 필터 사용 불가)
+  1. 기본 Form Login은 폼 파라미터 기반이어서 프로젝트의 JSON 요청 형식과 맞지 않음
   2. 동시 로그인 제한 (중복 로그인 제어)
   3. 계정 잠금, 실패 횟수 증가, 첫 로그인 체크 등 비즈니스 로직 반영
   4. Admin/Customer 타입별 커스텀 응답 필요
      :::
 
+- 프론트엔드와 JSON API 계약을 사용하고 있었기 때문에 로그인만 폼 전송으로 바꾸면 요청 형식과 오류 응답 규칙이 달라집니다.
+- JSON 요청을 읽는 커스텀 인증 필터도 가능하지만, 계정 상태 변경과 최초 로그인 응답을 서비스 계층에서 명시적으로 처리하기 위해 Controller 진입 방식을 선택했습니다.
+
 :::tip 해결 방향
 
 - 필터 대신 **Controller + Service 레이어**에서 인증 처리
 - `SessionAuthenticationStrategy`를 **수동 호출**하여 세션 정책 적용
-- Spring Security의 세션 통제 정책을 **heap stack 방식**으로 우회
+- Spring Security의 표준 세션 전략과 SecurityContext 저장 방식을 재사용
   :::
 
 ---

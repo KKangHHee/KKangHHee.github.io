@@ -256,7 +256,7 @@ public class UserSpecification {
 
 ### 문제 분석
 
-- **choose 중첩으로 인한 SQL 캐시 비효율**
+- **choose 중첩으로 조건별 SQL 구조와 수정 지점이 늘어남**
 - 최대 응답시간 편차 큼 (473ms)
 - **COUNT 쿼리의 불필요한 JOIN**
 
@@ -424,7 +424,6 @@ public class UserSpecification {
 **초기 MyBatis 구현 대비:**
 
 - 평균 응답시간 **28.9% 감소** (23.69 → 16.85ms)
-- 최대 응답시간 **88.5% 감소** (473 → 54ms)
 - 평균 처리량 **17.1% 증가** (58.85 → 68.90 TPS)
 
 **JPA Specification 대비:**
@@ -463,7 +462,6 @@ public class UserSpecification {
 
 - JPA Specification 대비 평균 응답시간 **31.1% 감소**
 - JPA Specification 대비 평균 처리량 **23.7% 향상**
-- 초기 MyBatis 구현 대비 최대 응답시간 **88.5% 감소**
 
 수치의 기준을 분리해 보면 MyBatis 자체가 항상 빠르다는 결론보다, 복잡한 조회에서 SQL 구조를 직접 확인하고 최적화할 수 있었다는 점이 중요합니다. 단순 CRUD는 JPA로 유지하고 복합 검색만 MyBatis로 분리해 두 기술의 장점을 역할에 맞게 사용했습니다.
 

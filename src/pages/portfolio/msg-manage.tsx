@@ -10,7 +10,7 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
   return (
     <ProjectOverview
       embedded={embedded}
-      organization="인턴 프로젝트"
+      organization="웅진 · 그룹IT혁신팀 인턴"
       projectName="사내 메시지 발송 관리 서비스 마이그레이션"
       summary="레거시를 그대로 옮기지 않고 기존 운영에서 발생한 문제를 분석해 데이터 관리와 조회 구조를 다시 설계한 프로젝트"
       period="2026.03 - 2026.06"
