@@ -1,10 +1,10 @@
 ---
 title: 기록 블로그
-description: 궁금한거 정리해놓은 곳
+description: 프로젝트에서 겪은 문제와 학습 내용을 정리한 개발 기록
 date: 2000-07-13
 ---
 
-# 👩‍💻 희의 개발 블로그
+# 👩‍💻 강희의 개발 블로그
 
 안녕하세요!  
 **신입 개발자 신강희**입니다 😊
@@ -27,12 +27,6 @@ date: 2000-07-13
 - [동기·비동기와 블로킹·논블로킹 구분하기: SMTP 작업 분리 사례](./posts/spring-event-async-email-optimization.md)
 - [서로 다른 두 DB를 조인할 수 없을 때: 인메모리 조인과 트레이드오프](./posts/multi-datasource-in-memory-join.md)
 - [계속 추가되는 데이터에서 페이지 기준을 유지하는 방법: 앵커 기반 조회](./posts/anchor-based-live-history-pagination.md)
-
-### 🟣 Docker / Infra
-
-- _(새로운 글을 준비 중이에요 🚀)_
-
----
 
 ## 📌 About Me
 

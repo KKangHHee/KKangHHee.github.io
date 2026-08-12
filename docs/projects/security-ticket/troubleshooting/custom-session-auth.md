@@ -410,7 +410,10 @@ public class SecurityConfig {
     ) throws Exception {
         http
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-            .csrf(csrf -> csrf.disable())
+            // 세션 쿠키 인증이므로 CSRF 보호를 유지
+            .csrf(csrf -> csrf
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+            )
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
@@ -482,7 +485,7 @@ public class SecurityConfig {
 :::tip 배운 점
 
 - **Spring Security 내부 동작 이해**
-- **표준 필터 체인을 벗어난 커스텀 인증 구현** 경험
+- **Controller 진입점에서 Spring Security 표준 컴포넌트를 연결한 인증 구현** 경험
 - **SessionAuthenticationStrategy 수동 호출**의 활용
 - **비즈니스 로직과 인증 로직의 통합** 전략
   :::

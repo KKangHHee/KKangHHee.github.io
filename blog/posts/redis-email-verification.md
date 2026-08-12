@@ -57,9 +57,9 @@ CREATE TABLE email_codes (
 #### Redis로 구현할 경우
 
 ```java
-// 인증 코드 저장 + 10분 TTL 설정
+// 인증 코드 저장 + 5분 TTL 설정
 redisTemplate.opsForValue()
-    .set("email:code:" + email, code, 10, TimeUnit.MINUTES);
+    .set("email:code:" + email, code, 5, TimeUnit.MINUTES);
 ```
 
 #### 선택 기준
@@ -97,7 +97,7 @@ public class EmailVerificationService {
 
     private static final String KEY_PREFIX = "email:verification:"; // 키 구조
     private static final int MAX_ATTEMPTS = 5; // 최대 횟수
-    private static final int CODE_EXPIRY_MINUTES = 10; // 만료 시간
+    private static final int CODE_EXPIRY_MINUTES = 5; // 프로젝트 적용 값
 
     private final RedisTemplate redisTemplate;
 
@@ -208,7 +208,6 @@ if (!Boolean.TRUE.equals(redisTemplate.hasKey(key))) {
 
 // 이후 increment 실행
 ```
-
 
 **보충**
 

@@ -13,7 +13,7 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
       projectName="Bargain Hunter"
       summary="지도를 활용해 국내 관광지를 탐색하고 LLM 기반 가격 비교 기능을 제공하는 서비스"
       period="2025.07 - 2025.10"
-      team="4인 (BE 3인 / FE 1인)"
+      team="5인 (BE 4인 / FE 1인)"
       role="인증·인가 아키텍처 및 사용자 도메인 담당"
       stack={[
         "Java 17",

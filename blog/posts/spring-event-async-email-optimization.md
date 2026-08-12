@@ -134,7 +134,7 @@ public class VerificationService {
         String code = generateRandomCode();
         redisService.saveCode(email, code, type);
 
-        // 2. 이벤트 발행 (비동기)
+        // 2. 이벤트 발행 자체는 동기이며, @Async 리스너가 별도 Executor에서 처리
         eventPublisher.publishEvent(
             new VerificationCodeCreatedEvent(this, email, code, type)
         );

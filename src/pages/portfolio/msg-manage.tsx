@@ -27,7 +27,7 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
         "Alpine.js",
       ]}
       achievements={[
-        "부서 245건 중 상·하위 상태 불일치 87건 및 참조 오류 정비",
+        "부서 245건 중 상태 불일치 87건과 잘못된 상위 참조 2건 정비",
         "메타데이터 일원화와 앵커 기반 발송 이력 조회 구현",
       ]}
     >
@@ -69,8 +69,8 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
               있도록 운영 절차를 시스템화했습니다.
             </li>
             <li>
-              245건 중 확인된 상·하위 상태 불일치 87건과 잘못된 참조 데이터를
-              정비했습니다.
+              부서 245건 중 확인된 상·하위 상태 불일치 87건과 잘못된 상위 데이터
+              참조 2건을 정비했습니다.
             </li>
           </ul>
         </PortfolioTroubleCard>

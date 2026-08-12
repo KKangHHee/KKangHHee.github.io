@@ -1,10 +1,10 @@
 ---
 sidebar_position: 2
-title: Security Ticket Platform
+title: Security Ticket
 description: 정보보호 컴플라이언스 점검 디지털화 플랫폼
 ---
 
-# 🔐 Security Ticket Platform
+# 🔐 Security Ticket
 
 > **컴플라이언스(ISMS-P, ISO27001) 점검을 디지털화한 웹 기반 관리 플랫폼**  
 > Excel·이메일 중심의 수동 프로세스 → 웹 기반 자동화 전환
@@ -17,8 +17,7 @@ description: 정보보호 컴플라이언스 점검 디지털화 플랫폼
 | ----------- | ------------------------------------- |
 | **기간**    | 2025.04 ~ 2025.05 (2개월)             |
 | **팀 구성** | BE 8명 (A팀 4명, B팀 4명), FE 3명     |
-| **역할**    | Backend Developer (B팀)               |
-| **기여도**  | 15% (사용자 관리 담당)                |
+| **역할**    | 사용자 관리 도메인 및 백엔드 API 설계 |
 | **배포**    | 폐쇄망 온프레미스 + Nexus 패키지 관리 |
 
 ### 핵심 문제 인식
@@ -72,14 +71,14 @@ description: 정보보호 컴플라이언스 점검 디지털화 플랫폼
 
 ### Backend
 
-| 기술                          | 선택 이유                     |
-| ----------------------------- | ----------------------------- |
-| **Java + Spring Boot**        | 프로젝트 표준 기술 스택       |
-| **JPA (Hibernate)**           | 단순 CRUD 및 도메인 중심 개발 |
-| **MyBatis**                   | 복잡한 검색 조건 및 성능 튜닝 |
-| **MySQL**                     | 관계형 데이터 구조에 적합     |
-| **Redis**                     | 세션 관리 및 캐시 처리        |
-| **Spring Security**           | 세션 기반 인증/인가           |
+| 기술                   | 선택 이유                     |
+| ---------------------- | ----------------------------- |
+| **Java + Spring Boot** | 프로젝트 표준 기술 스택       |
+| **JPA (Hibernate)**    | 단순 CRUD 및 도메인 중심 개발 |
+| **MyBatis**            | 복잡한 검색 조건 및 성능 튜닝 |
+| **MySQL**              | 관계형 데이터 구조에 적합     |
+| **Redis**              | 세션 관리 및 캐시 처리        |
+| **Spring Security**    | 세션 기반 인증/인가           |
 
 ### Frontend
 
@@ -345,6 +344,6 @@ Response
 
 ### 3. Spring Security 내부 동작 이해
 
-- 표준 필터 체인을 벗어나 커스텀 인증 구현 경험
+- 로그인 진입점을 Controller로 구성하면서 Spring Security 표준 컴포넌트를 직접 연결한 경험
 - `SessionAuthenticationStrategy`, `SecurityContextRepository` 등  
   핵심 컴포넌트의 역할과 연계 방식 이해

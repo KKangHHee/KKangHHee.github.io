@@ -5,8 +5,7 @@ title: 이메일 인증 동시성 문제 해결
 
 # 이메일 인증 동시성 문제 해결
 
-> Redis Hash + 원자적 연산(HINCRBY)을 활용하여  
-> **동시 요청 환경에서도 인증 시도 횟수 정확성 보장**
+> 시도 횟수 증가를 Read–Modify–Write에서 Redis 단일 원자 명령으로 변경
 
 ---
 
@@ -69,7 +68,7 @@ verification:{type}:{email}
 ```
 
 - 인증 코드와 시도 횟수를 하나의 Key로 묶어 관리
-- 데이터 정합성 문제 근본적 해결
+- 코드와 시도 횟수의 생명 주기를 하나의 Key로 관리
 
 ### Step 2: 인증 코드 저장
 
@@ -100,6 +99,10 @@ public void verifyCode(String email, String inputCode, VerificationType type) {
     // 1. 코드 조회
     String savedCode = (String) stringRedisTemplate.opsForHash().get(key, "code");
 
+    if (savedCode == null) {
+        throw new CodeExpiredException("인증 코드가 만료되었거나 존재하지 않습니다.");
+    }
+
     if (savedCode.equals(inputCode)) {
         stringRedisTemplate.delete(key);
         return; // 인증 성공
@@ -124,8 +127,8 @@ public void verifyCode(String email, String inputCode, VerificationType type) {
 **핵심 포인트**
 
 - HINCRBY → 원자적 연산
-- 동시 요청에서도 시도 횟수 정확히 증가
-- 별도의 Lock 없이 동시성 문제 해결
+- 시도 횟수 증가 명령 사이의 lost update 방지
+- 증가 연산 자체에는 별도의 애플리케이션 Lock이 필요하지 않음
 
 ---
 
@@ -148,15 +151,15 @@ public void verifyCode(String email, String inputCode, VerificationType type) {
 
 ## 4. 핵심 개선 포인트
 
-**1️⃣ 데이터 일관성 확보**
+**1️⃣ 데이터 생명 주기 통합**
 
 - 코드 / 시도 횟수를 하나의 Hash Key로 관리
-- 부분 데이터 유실 문제 제거
+- 코드와 시도 횟수에 동일한 TTL 적용
 
 **2️⃣ 동시성 안전성 확보**
 
-- HINCRBY 사용으로 Race Condition 제거
-- 동시 요청 상황에서도 정확한 횟수 제한 보장
+- HINCRBY를 사용해 시도 횟수 증가 과정의 lost update 방지
+- 병렬 요청에서 시도 횟수 증가의 lost update 방지
 
 **3️⃣ Redis 메모리 효율 개선**
 
@@ -177,7 +180,7 @@ public void verifyCode(String email, String inputCode, VerificationType type) {
 
 :::tip 배운 점
 
-- 동시성 문제는 로직이 아닌 자료구조 선택에서 해결 가능
+- 동시성 문제의 범위에 따라 자료구조와 원자 명령을 함께 선택해야 함
 - Redis 원자적 연산의 중요성 체감
 - 분산 환경에서는 “읽고-수정”보다 “한 번에 처리”가 핵심
   :::

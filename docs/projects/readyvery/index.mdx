@@ -27,11 +27,10 @@ description: 간편 선결제 테이크아웃 서비스
 
 | 항목        | 내용                                               |
 | ----------- | -------------------------------------------------- |
-| **기간**    | 2023.12 ~ 2024.05 (5개월)                          |
+| **기간**    | 2023.12 ~ 2024.05 (6개월)                          |
 | **팀 구성** | 개발팀 BE 2명·FE 4명 / 협업 PM 1명·Designer 1명·Marketer 1명 |
-| **역할**    | Frontend Developer                                 |
-| **기여도**  | 17% (결제 시스템 / 매장 관리 화면 담당)            |
-| **배포**    | AWS EC2 + NginX                                    |
+| **역할**    | 프론트엔드 개발 및 API 인터페이스 설계             |
+| **배포**    | AWS EC2 + Nginx                                    |
 
 ---
 
@@ -169,7 +168,7 @@ const PaymentPage = () => {
     requestPayment(cartId, couponId, paymentWidget, paymentMethodsWidget, usedPoint);
   };
 
-  // SDK 초기화 (마운트 시 1회만)
+  // SDK 초기화를 금액 상태 변경과 분리
   useEffect(() => {
     (async () => {
       const paymentWidget = await loadPaymentWidget(clientKey, customerKey);
@@ -223,7 +222,7 @@ const useRequestPayment = () => {
 
 **핵심 개선**
 
-- ✅ **SDK 초기화는 마운트 시 1회만 실행** (`useEffect([])`)
+- ✅ **SDK 초기화를 금액 관련 상태 변경과 분리**
 - ✅ **결제 버튼 클릭 시 서버 금액 기반으로 updateAmount 호출**
 - ✅ **useRef로 SDK 인스턴스 값을 관리** → 불필요한 리렌더링 제거
 
@@ -291,7 +290,7 @@ const useMenu = (storeId) => {
 ### 기술적 성과
 
 - ✅ Toss SDK 초기화와 금액 갱신의 실행 시점 분리
-- ✅ useEffect 중복 실행 문제 해결 → **화면 깜빡임 제거**
+- ✅ SDK 반복 초기화를 제거해 화면 깜빡임 완화
 - ✅ Recoil + React Query로 **전역/서버 상태 명확히 분리**
 
 ---
@@ -307,9 +306,9 @@ const useMenu = (storeId) => {
 
 - **useEffect 의존성 관리 중요성**
   - 외부 라이브러리는 React의 렌더링 사이클과 분리해서 관리
-- **비동기 작업과 Race Condition 처리 경험**
-  - 두 개의 useEffect가 동시에 실행되면 **경합 조건** 발생 가능
-  - **단일 진입점**(결제 버튼 클릭)에서 모든 작업을 순차적으로 처리
+- **비동기 작업 순서 관리 경험**
+  - SDK 인스턴스 초기화와 금액 갱신의 실행 순서가 결과에 영향을 줄 수 있음을 확인
+  - 결제 버튼 클릭을 금액 갱신의 단일 진입점으로 구성
 - **백엔드 개발 전환 계기**
   - API 설계 과정에서 데이터 정합성, 트랜잭션 처리의 중요성 인식
   - 결제 금액의 최종 검증과 주문 상태 변경을 서버가 책임지고, 클라이언트가 그 결과를 일관되게 표현하는 구조의 중요성을 체감
