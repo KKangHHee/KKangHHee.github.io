@@ -22,7 +22,6 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
         "PostgreSQL",
         "Redis",
         "Docker",
-        "Kubernetes",
       ]}
       links={[
         {

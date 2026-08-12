@@ -90,7 +90,6 @@ description: MSA 기반 국내 관광 지원 서비스
 - **핵심 설계 원칙**
   - **Gateway 중앙 인증**: JWT 검증을 Gateway에서 1회만 수행 → 각 서비스는 헤더에서 사용자 정보 추출
   - **이벤트 기반 비동기**: Spring Event + @Async로 이메일 발송 처리
-  - **독립적 배포**: 각 서비스별 Docker 이미지 빌드 → Kubernetes 배포
 
 ### figma
 
@@ -113,7 +112,6 @@ description: MSA 기반 국내 관광 지원 서비스
 
 ### Infra & DevOps
 
-- **Docker + Kubernetes**: 컨테이너 오케스트레이션
 - **GitHub Actions**: PR Merge 시 자동 빌드/배포
 - **Naver Cloud Platform**: 인프라 호스팅
 
@@ -342,7 +340,6 @@ Long newAttemptCount = redisTemplate.opsForHash()
 
 - ✅ MSA 기반 독립적인 서비스 구조
 - ✅ 이벤트 기반 비동기 처리로 시스템 응답성 향상
-- ✅ Kubernetes를 활용한 자동 배포 및 스케일링
 
 ---
 
