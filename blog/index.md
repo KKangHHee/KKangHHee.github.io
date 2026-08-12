@@ -24,7 +24,7 @@ date: 2000-07-13
 
 - [Spring Boot에서 Session 인증을 커스텀하는 이유와 실전 구현](./posts/spring-boot-custom-session-authentication.md)
 - [복잡한 검색 쿼리, JPA vs MyBatis 성능 비교와 하이브리드 전략](./posts/jpa-mybatis-hybrid-strategy.md)
-- [이메일 발송 API 응답 속도 개선: Spring Event와 비동기 처리](./posts/spring-event-async-email-optimization.md)
+- [동기·비동기와 블로킹·논블로킹 구분하기: SMTP 작업 분리 사례](./posts/spring-event-async-email-optimization.md)
 - [서로 다른 두 DB를 조인할 수 없을 때: 인메모리 조인과 트레이드오프](./posts/multi-datasource-in-memory-join.md)
 - [계속 추가되는 데이터에서 페이지 기준을 유지하는 방법: 앵커 기반 조회](./posts/anchor-based-live-history-pagination.md)
 

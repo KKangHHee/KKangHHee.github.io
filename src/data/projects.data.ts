@@ -60,9 +60,9 @@ export const PROJECTS: ProjectProps[] = [
     ],
     highlights: [
       {
-        title: "비동기 처리로 이메일 인증 응답 시간 단축",
+        title: "외부 I/O 분리를 통한 이메일 인증 요청 경로 개선",
         description:
-          "SMTP 통신으로 API 응답이 평균 2.5초간 지연되는 문제를 Spring Event와 @Async 기반 비동기 처리로 분리해 사용자 응답 시간을 약 0.2초로 단축했습니다.",
+          "이메일 인증 과정에서 SMTP 통신이 사용자 요청 처리 경로를 점유하는 구조를 개선했습니다. Spring Event와 @Async를 활용해 메일 발송을 비동기 후처리로 분리하여, 인증 요청 API가 SMTP 처리 완료를 기다리지 않고 응답하도록 구성했습니다.",
       },
       {
         title: "Gateway 기반 JWT 인증 책임 분리",
@@ -92,9 +92,9 @@ export const PROJECTS: ProjectProps[] = [
     ],
     highlights: [
       {
-        title: "복합 검색 응답 성능 36.8% 개선",
+        title: "복합 검색 쿼리 구조 개선",
         description:
-          "기간·키워드·정렬 조건이 결합된 복합 조회에 MyBatis 동적 SQL을 적용하고 조건 구조를 단순화했습니다. COUNT 쿼리의 연관 테이블 JOIN을 EXISTS로 변경해 평균 응답 시간을 24.45ms에서 15.51ms로 단축했습니다.",
+          "기간·키워드·정렬 조건이 결합된 복합 조회에 MyBatis 동적 SQL을 적용하고 조건 구조를 단순화했습니다. COUNT 쿼리의 연관 테이블 JOIN을 EXISTS로 변경했으며, 동일한 로컬 테스트 조건에서 평균 응답 시간을 24.45ms에서 16.85ms로 줄였습니다.",
       },
       {
         title: "Controller 기반 커스텀 세션 인증 구현",
@@ -120,11 +120,6 @@ export const PROJECTS: ProjectProps[] = [
       "Toss Payments SDK",
     ],
     highlights: [
-      {
-        title: "결제 SDK 생명주기 개선",
-        description:
-          "상태 변경마다 Toss Payments SDK가 반복 초기화되는 문제를 확인하고 인스턴스를 useRef로 관리해 결제 로딩 시간을 약 3초에서 1초로 단축했습니다.",
-      },
       {
         title: "실사용 서비스 운영",
         description:

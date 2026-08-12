@@ -18,6 +18,8 @@ Redis는 명령을 순차적으로 처리하는 **싱글 스레드 모델**로 �
 
 이 글에서는 Redis의 실행 모델과 애플리케이션의 Read–Modify–Write 연산을 구분하고, Docker Compose 환경에서 비원자 연산과 `HINCRBY`를 비교한 결과를 정리합니다.
 
+TTL을 포함한 이메일 인증 데이터 모델과 보안 코드 생성은 [이메일 인증에서 Redis가 강점을 갖는 이유](./redis-email-verification)에서 다룹니다. 이 글은 Redis 명령의 원자성에만 집중합니다.
+
 ---
 
 ## 1. Redis란 무엇인가?

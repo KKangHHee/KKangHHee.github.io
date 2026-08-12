@@ -28,7 +28,7 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
         "Docker",
       ]}
       achievements={[
-        "복합 검색 평균 응답시간 36.8% 단축 (24.45ms → 15.51ms)",
+        "복합 검색 쿼리 구조 개선 (평균 24.45ms → 16.85ms)",
         "Controller 기반 커스텀 세션 인증 흐름 구현",
       ]}
     >
@@ -94,13 +94,6 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           <h4>3) 검증 결과</h4>
           <div className={styles.archGrid}>
             <div>
-              <img
-                src="/img/portfolio/security-ticket/mybatis_성능.png"
-                className={styles.archImage}
-                alt="성능 그림"
-              />
-            </div>
-            <div>
               <table className={styles.perfTable}>
                 <thead>
                   <tr>
@@ -114,8 +107,8 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
                   <tr>
                     <td>평균 응답시간</td>
                     <td>24.45ms</td>
-                    <td>15.51ms</td>
-                    <td>36.8% ↓</td>
+                    <td>16.85ms</td>
+                    <td>31.1% ↓</td>
                   </tr>
                   <tr>
                     <td>최대 응답시간</td>
@@ -125,9 +118,9 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
                   </tr>
                   <tr>
                     <td>처리량(TPS)</td>
-                    <td>221.77</td>
-                    <td>273.34</td>
-                    <td>23%↑</td>
+                    <td>55.71</td>
+                    <td>68.90</td>
+                    <td>23.7%↑</td>
                   </tr>
                 </tbody>
               </table>
@@ -137,7 +130,7 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
             <li>
               평균 응답시간:
               <mark className={styles.keyHighlight}>
-                24.45ms → 15.51ms (36.8% 개선)
+                24.45ms → 16.85ms (31.1% 개선)
               </mark>
               {"으로 단축했습니다."}
             </li>{" "}
