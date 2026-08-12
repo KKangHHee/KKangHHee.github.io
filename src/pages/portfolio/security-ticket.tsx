@@ -19,7 +19,6 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
       stack={[
         "Java",
         "Spring Boot 3",
-        "Spring Security",
         "JPA",
         "MyBatis",
         "MySQL",
@@ -29,7 +28,6 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
       ]}
       achievements={[
         "복합 검색 쿼리 구조 개선 (평균 24.45ms → 16.85ms)",
-        "JSON 로그인 및 계정 정책 처리",
       ]}
     >
       <PortfolioSection title="1. 시스템 아키텍처">
@@ -145,18 +143,6 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           </ul>
         </PortfolioTroubleCard>
 
-        <PortfolioTroubleCard title="Case 2. JSON 로그인 및 계정 정책 처리">
-          <h4>담당 내용</h4>
-          <ul className={styles.descList}>
-            <li>
-              프로젝트의 JSON API 형식에 맞춰 로그인 엔드포인트를 구성했습니다.
-            </li>
-            <li>
-              계정 잠금과 최초 로그인 여부 등 프로젝트의 계정 정책을 서비스
-              계층에서 처리했습니다.
-            </li>
-          </ul>
-        </PortfolioTroubleCard>
       </PortfolioSection>
 
       <PortfolioSection title="3. 관련 블로그 포스팅">
