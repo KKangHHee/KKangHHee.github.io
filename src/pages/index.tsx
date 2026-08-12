@@ -42,7 +42,7 @@ function HomepageHeader() {
             </Link>
             <Link
               className="button button--secondary button--lg"
-              to="/docs/projects"
+              to="/portfolioV2"
             >
               📁 프로젝트 살펴보기
             </Link>

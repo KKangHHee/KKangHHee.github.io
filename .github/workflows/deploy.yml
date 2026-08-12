@@ -1,0 +1,77 @@
+name: Deploy Docusaurus to GitHub Pages
+
+# main 브랜치에 코드가 push되면 자동 실행
+on:
+  push:
+    branches:
+      - main
+
+  # GitHub Actions 화면에서도 수동 실행 가능
+  workflow_dispatch:
+
+# 같은 배포가 여러 번 실행되면 이전 작업을 취소
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  # ==============================
+  # 1. Docusaurus 빌드
+  # ==============================
+  build:
+    name: Build Docusaurus
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      # 저장소 코드 가져오기
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      # Node.js 설치
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      # package-lock.json 기준으로 의존성 설치
+      - name: Install dependencies
+        run: npm ci
+
+      # Docusaurus 정적 파일 생성
+      - name: Build website
+        run: npm run build
+
+      # GitHub Pages 설정
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      # 생성된 build 폴더 업로드
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: build
+
+  # ==============================
+  # 2. GitHub Pages 배포
+  # ==============================
+  deploy:
+    name: Deploy GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy website
+        id: deployment
+        uses: actions/deploy-pages@v4
