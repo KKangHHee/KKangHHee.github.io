@@ -77,7 +77,7 @@ export default function Resume() {
           <ul className={styles.stackTextList}>
             <li>
               <strong>Backend</strong> : Java, Spring Boot, Spring Security,
-              JPA, QueryDSL, MyBatis
+              JPA, QueryDSL
             </li>
             <li>
               <strong>Database</strong> : Oracle, MariaDB, MySQL, PostgreSQL

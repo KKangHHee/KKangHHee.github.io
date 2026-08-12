@@ -7,10 +7,7 @@ import SecurityTicket from "../portfolio/security-ticket";
 import styles from "./portfolioV2.module.css";
 
 const skills = [
-  [
-    "Backend",
-    "Java · Spring Boot · Spring Security · JPA · QueryDSL · MyBatis",
-  ],
+  ["Backend", "Java · Spring Boot · Spring Security · JPA · QueryDSL"],
   ["Database", "Oracle · MariaDB · MySQL · PostgreSQL"],
   ["Testing / Infra", "Mockito · Docker"],
   ["Frontend", "React · TypeScript"],
