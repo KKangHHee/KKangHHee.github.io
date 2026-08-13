@@ -29,7 +29,7 @@ description: MSA 기반 국내 관광 지원 서비스
 | 항목        | 내용                                  |
 | ----------- | ------------------------------------- |
 | **기간**    | 2025.07 ~ 2025.10 (4개월)             |
-| **팀 구성** | BE 4명, FE 1명                        |
+| **팀 구성** | 5인 (BE 4인 / FE 1인)              |
 | **역할**    | 인증·인가 아키텍처 및 사용자 도메인 담당 |
 
 ### 주요 기능
@@ -188,7 +188,7 @@ public class OAuth2Service {
 
 **보안 강화**
 
-- ✅ PKCE 적용으로 **Authorization Code Interception** 공격 방지
+- ✅ PKCE 적용으로 **Authorization Code 탈취 위험 완화**
 - ✅ code_verifier를 알지 못하는 공격자는 토큰 교환 불가
 
 ### 3. Redis 기반 이메일 인증 시스템
@@ -263,7 +263,7 @@ public class JwtAuthenticationFilter implements GatewayFilter {
 
 **장점**
 
-- ✅ Gateway에서 JWT 검증을 1회만 수행 → 각 서비스의 인증 오버헤드 제거
+- ✅ 인증 검증 지점을 Gateway로 일원화 → 각 서비스의 중복 JWT 파싱·검증 부담 축소
 - ✅ 헤더로 사용자 정보 전달 → 각 서비스는 헤더에서 추출만
 
 ---
@@ -332,7 +332,7 @@ Long newAttemptCount = redisTemplate.opsForHash()
 
 ### 보안 강화
 
-- ✅ PKCE 적용으로 OAuth2 Authorization Code Interception 방지
+- ✅ PKCE 적용으로 OAuth2 Authorization Code 탈취 위험 완화
 - ✅ Refresh Token DB 저장으로 토큰 탈취 시 즉시 대응
 - ✅ Gateway 단일 JWT 검증으로 인증 일관성 확보
 

@@ -17,11 +17,11 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
       team="3인"
       role="기존 서비스 분석, Java 백엔드 개발 및 관리자 화면 구현"
       stack={[
-        "Java 17",
+        "Java",
         "Spring Boot",
         "JPA",
         "QueryDSL",
-        "Oracle 11g",
+        "Oracle",
         "MariaDB",
         "Thymeleaf",
         "Alpine.js",
@@ -89,13 +89,14 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
             <li>중복 관리하던 메타데이터를 MariaDB로 일원화했습니다.</li>
             <li>
               <mark className={styles.keyHighlight}>
-                MariaDB 후보 ID 조회 → Oracle 발송 이력 조회 → 서비스 계층 매핑
+                MariaDB 후보 ID 조회 → Oracle 발송 이력 페이징 → 메타데이터 Map
+                구성 → 서비스 계층 결합
               </mark>
               순서로 조회 구조를 구현했습니다.
             </li>
             <li>
-              실제 사용자와 조회 데이터 규모를 기준으로 IN절과 애플리케이션
-              매핑의 적용 가능 범위를 검토했습니다.
+              회사당 최대 300건 내외, 전체 1,000건 미만의 후보 규모를 기준으로
+              IN절과 애플리케이션 매핑의 적용 범위를 제한했습니다.
             </li>
           </ul>
 
@@ -162,10 +163,6 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           <li>
             <strong>Controller 레이어:</strong> 엔드포인트 테스트로 요청
             파라미터, 응답 구조, 실패 케이스 검증
-          </li>
-          <li>
-            <strong>DB 레이어:</strong>실제 Oracle 11g 환경에서 검색 조건별 조회
-            결과와 페이징 동작을 확인, QueryDSL bulk UPDATE 결과를 검증
           </li>
         </ul>
       </PortfolioSection>

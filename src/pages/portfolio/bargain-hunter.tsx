@@ -16,8 +16,8 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
       team="5인 (BE 4인 / FE 1인)"
       role="인증·인가 아키텍처 및 사용자 도메인 담당"
       stack={[
-        "Java 17",
-        "Spring Boot 3",
+        "Java",
+        "Spring Boot",
         "Spring Cloud Gateway",
         "PostgreSQL",
         "Redis",
@@ -155,8 +155,8 @@ Auth Service
           <h4>3) 검증 결과</h4>
           <ul className={styles.descList}>
             <li>
-              서비스별 중복 JWT 검증 로직을 제거하고 인증 정책의 변경 지점을
-              축소
+              인증 검증 지점을 Gateway로 일원화해 각 서비스의 중복 JWT
+              파싱·검증 부담과 인증 정책의 변경 지점을 줄였습니다.
             </li>
             <li>
               라우팅 계층과 사용자 도메인의 경계를 유지해 신규 서비스 추가 시

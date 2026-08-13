@@ -18,7 +18,7 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
       role="사용자 관리 도메인 및 백엔드 API 설계"
       stack={[
         "Java",
-        "Spring Boot 3",
+        "Spring Boot",
         "JPA",
         "MyBatis",
         "MySQL",
@@ -124,6 +124,10 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
               </table>
             </div>
           </div>
+          <p>
+            로컬 환경에서 동시 사용자 10명, 각 50회 요청으로 측정했으며,
+            동일한 데이터와 인덱스 조건을 유지했습니다.
+          </p>
           <ul className={styles.descList}>
             <li>
               평균 응답시간:
@@ -137,8 +141,9 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           <h4>4) 설계 회고</h4>
           <ul className={styles.descList}>
             <li>
-              성능 개선의 핵심은 MyBatis 도입 자체가 아니라, 목록 조회와 COUNT
-              쿼리의 목적을 구분하고 불필요한 JOIN을 제거한 데 있었습니다.
+              복합 조회를 MyBatis로 분리하고 COUNT 쿼리의 불필요한 JOIN을
+              EXISTS로 재구성한 결과, 동일한 로컬 테스트 조건에서 응답 시간을
+              줄였습니다.
             </li>
           </ul>
         </PortfolioTroubleCard>

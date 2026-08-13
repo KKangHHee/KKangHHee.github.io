@@ -11,7 +11,7 @@ export const PROJECTS: ProjectProps[] = [
     role: "기존 서비스 분석, 백엔드 개발 및 관리자 화면 구현",
     members: "3인",
     stack: [
-      "Java 17",
+      "Java",
       "Spring Boot",
       "JPA",
       "QueryDSL",
@@ -29,7 +29,7 @@ export const PROJECTS: ProjectProps[] = [
       {
         title: "메타데이터 일원화와 서비스 레벨 조인",
         description:
-          "Oracle과 MariaDB에 중복 관리되던 메타데이터를 MariaDB로 일원화해 이중 저장에 따른 정합성 관리 부담을 줄였습니다. 조회 시에는 MariaDB 후보 ID 조회 → Oracle 발송 이력 조회 → 서비스 계층 매핑 구조로 회사·사용자 기준 조회를 구현했습니다.",
+          "Oracle과 MariaDB에 중복 관리되던 메타데이터를 MariaDB로 일원화해 이중 저장에 따른 정합성 관리 부담을 줄였습니다. MariaDB에서 조건에 맞는 후보 ID를 조회하고 Oracle에서 발송 이력을 페이징한 뒤, 필요한 메타데이터를 Map으로 구성해 서비스 계층에서 결합했습니다.",
       },
       {
         title: "변화하는 발송 이력의 조회 기준 고정",
@@ -49,7 +49,7 @@ export const PROJECTS: ProjectProps[] = [
     period: "2025.07 - 2025.10",
     service: "관광지 탐색과 LLM 기반 가격 비교 기능을 제공하는 서비스",
     role: "인증·인가 아키텍처 및 사용자 도메인 담당",
-    members: "BE 4인 / FE 1인",
+    members: "5인 (BE 4인 / FE 1인)",
     stack: [
       "Java",
       "Spring Boot",
@@ -81,14 +81,7 @@ export const PROJECTS: ProjectProps[] = [
       "Excel·이메일 중심의 수동 점검 프로세스를 디지털화한 웹 기반 관리 시스템",
     role: "사용자 관리 도메인 및 백엔드 API 설계",
     members: "BE 8인 / FE 3인",
-    stack: [
-      "Java",
-      "Spring Boot",
-      "JPA",
-      "MyBatis",
-      "MySQL",
-      "Redis",
-    ],
+    stack: ["Java", "Spring Boot", "JPA", "MyBatis", "MySQL", "Redis"],
     highlights: [
       {
         title: "복합 검색 쿼리 구조 개선",
