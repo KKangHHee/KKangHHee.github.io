@@ -3,7 +3,7 @@ import { ProjectProps } from "@site/src/components/resume/projectItem/ProjectIte
 export const PROJECTS: ProjectProps[] = [
   // ✅ 1. 웅진 인턴
   {
-    organization: "인턴",
+    organization: "웅진 · 그룹IT혁신팀 인턴",
     title: "사내 메시지 발송 관리 서비스 마이그레이션",
     period: "2026.03 - 2026.06",
     service:
@@ -11,7 +11,7 @@ export const PROJECTS: ProjectProps[] = [
     role: "기존 서비스 분석, 백엔드 개발 및 관리자 화면 구현",
     members: "3인",
     stack: [
-      "Java 17",
+      "Java",
       "Spring Boot",
       "JPA",
       "QueryDSL",
@@ -29,7 +29,7 @@ export const PROJECTS: ProjectProps[] = [
       {
         title: "메타데이터 일원화와 서비스 레벨 조인",
         description:
-          "Oracle과 MariaDB에 중복 관리되던 메타데이터를 MariaDB로 일원화해 이중 저장에 따른 정합성 관리 부담을 줄였습니다. 조회 시에는 MariaDB 후보 ID 조회 → Oracle 발송 이력 조회 → 서비스 계층 매핑 구조로 회사·사용자 기준 조회를 구현했습니다.",
+          "Oracle과 MariaDB에 중복 관리되던 메타데이터를 MariaDB로 일원화해 이중 저장에 따른 정합성 관리 부담을 줄였습니다. MariaDB에서 조건에 맞는 후보 ID를 조회하고 Oracle에서 발송 이력을 페이징한 뒤, 필요한 메타데이터를 Map으로 구성해 서비스 계층에서 결합했습니다.",
       },
       {
         title: "변화하는 발송 이력의 조회 기준 고정",
@@ -49,7 +49,7 @@ export const PROJECTS: ProjectProps[] = [
     period: "2025.07 - 2025.10",
     service: "관광지 탐색과 LLM 기반 가격 비교 기능을 제공하는 서비스",
     role: "인증·인가 아키텍처 및 사용자 도메인 담당",
-    members: "4인",
+    members: "5인 (BE 4인 / FE 1인)",
     stack: [
       "Java",
       "Spring Boot",
@@ -60,9 +60,9 @@ export const PROJECTS: ProjectProps[] = [
     ],
     highlights: [
       {
-        title: "비동기 처리로 이메일 인증 응답 시간 단축",
+        title: "외부 I/O 분리를 통한 이메일 인증 요청 경로 개선",
         description:
-          "SMTP 통신으로 API 응답이 평균 2.5초간 지연되는 문제를 Spring Event와 @Async 기반 비동기 처리로 분리해 사용자 응답 시간을 약 0.2초로 단축했습니다.",
+          "이메일 인증 과정에서 SMTP 통신이 사용자 요청 처리 경로를 점유하는 구조를 개선했습니다. Spring Event와 @Async를 활용해 메일 발송을 비동기 후처리로 분리하여, 인증 요청 API가 SMTP 처리 완료를 기다리지 않고 응답하도록 구성했습니다.",
       },
       {
         title: "Gateway 기반 JWT 인증 책임 분리",
@@ -81,25 +81,12 @@ export const PROJECTS: ProjectProps[] = [
       "Excel·이메일 중심의 수동 점검 프로세스를 디지털화한 웹 기반 관리 시스템",
     role: "사용자 관리 도메인 및 백엔드 API 설계",
     members: "BE 8인 / FE 3인",
-    stack: [
-      "Java",
-      "Spring Boot",
-      "Spring Security",
-      "JPA",
-      "MyBatis",
-      "MySQL",
-      "Redis",
-    ],
+    stack: ["Java", "Spring Boot", "JPA", "MyBatis", "MySQL", "Redis"],
     highlights: [
       {
-        title: "복합 검색 응답 성능 36.8% 개선",
+        title: "복합 검색 쿼리 구조 개선",
         description:
-          "기간·키워드·정렬 조건이 결합된 복합 조회에 MyBatis 동적 SQL을 적용하고 조건 구조를 단순화했습니다. COUNT 쿼리의 연관 테이블 JOIN을 EXISTS로 변경해 평균 응답 시간을 24.45ms에서 15.51ms로 단축했습니다.",
-      },
-      {
-        title: "Controller 기반 커스텀 세션 인증 구현",
-        description:
-          "기본 Form Login 대신 Controller·LoginService에서 JSON 로그인과 실패 횟수·계정 잠금·최초 로그인 정책을 처리했습니다.",
+          "기간·키워드·정렬 조건이 결합된 복합 조회에 MyBatis 동적 SQL을 적용하고 조건 구조를 단순화했습니다. COUNT 쿼리의 연관 테이블 JOIN을 EXISTS로 변경했으며, 동일한 로컬 테스트 조건에서 평균 응답 시간을 24.45ms에서 16.85ms로 줄였습니다.",
       },
     ],
   },
@@ -111,7 +98,7 @@ export const PROJECTS: ProjectProps[] = [
     period: "2023.12 - 2024.05",
     service: "로컬 카페의 사전 주문과 결제를 지원하는 패스트오더 서비스",
     role: "프론트엔드 개발 및 API 인터페이스 설계",
-    members: "BE 2인 / FE 4인",
+    members: "개발팀 BE 2인 / FE 4인",
     stack: [
       "React",
       "TypeScript",
@@ -120,11 +107,6 @@ export const PROJECTS: ProjectProps[] = [
       "Toss Payments SDK",
     ],
     highlights: [
-      {
-        title: "결제 SDK 생명주기 개선",
-        description:
-          "상태 변경마다 Toss Payments SDK가 반복 초기화되는 문제를 확인하고 인스턴스를 useRef로 관리해 결제 로딩 시간을 약 3초에서 1초로 단축했습니다.",
-      },
       {
         title: "실사용 서비스 운영",
         description:

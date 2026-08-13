@@ -77,13 +77,13 @@ export default function Resume() {
           <ul className={styles.stackTextList}>
             <li>
               <strong>Backend</strong> : Java, Spring Boot, Spring Security,
-              JPA, QueryDSL, MyBatis
+              JPA, QueryDSL
             </li>
             <li>
               <strong>Database</strong> : Oracle, MariaDB, MySQL, PostgreSQL
             </li>
             <li>
-              <strong>Testing / Infra</strong> : JUnit, Mockito, Docker
+              <strong>Testing / Infra</strong> : Mockito, Docker
             </li>
             <li>
               <strong>Frontend</strong> : React, TypeScript
@@ -147,7 +147,7 @@ export default function Resume() {
                 &nbsp;:&nbsp; 데이터 모델링, 정규화, SQL 실습 지도
               </li>
               <li>
-                <strong>하나소셜벤처</strong>{" "}
+                <strong>하나소셜벤처유니버시티</strong>{" "}
                 <span className={styles.period}> (2024.07)</span>&nbsp;:&nbsp;
                 서비스 기획 및 피칭 수료
               </li>

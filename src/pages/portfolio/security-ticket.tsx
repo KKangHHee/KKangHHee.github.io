@@ -18,8 +18,7 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
       role="사용자 관리 도메인 및 백엔드 API 설계"
       stack={[
         "Java",
-        "Spring Boot 3",
-        "Spring Security",
+        "Spring Boot",
         "JPA",
         "MyBatis",
         "MySQL",
@@ -28,8 +27,7 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
         "Docker",
       ]}
       achievements={[
-        "복합 검색 평균 응답시간 36.8% 단축 (24.45ms → 15.51ms)",
-        "Controller 기반 커스텀 세션 인증 흐름 구현",
+        "복합 검색 쿼리 구조 개선 (평균 24.45ms → 16.85ms)",
       ]}
     >
       <PortfolioSection title="1. 시스템 아키텍처">
@@ -94,13 +92,6 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           <h4>3) 검증 결과</h4>
           <div className={styles.archGrid}>
             <div>
-              <img
-                src="/img/portfolio/security-ticket/mybatis_성능.png"
-                className={styles.archImage}
-                alt="성능 그림"
-              />
-            </div>
-            <div>
               <table className={styles.perfTable}>
                 <thead>
                   <tr>
@@ -114,8 +105,8 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
                   <tr>
                     <td>평균 응답시간</td>
                     <td>24.45ms</td>
-                    <td>15.51ms</td>
-                    <td>36.8% ↓</td>
+                    <td>16.85ms</td>
+                    <td>31.1% ↓</td>
                   </tr>
                   <tr>
                     <td>최대 응답시간</td>
@@ -125,19 +116,23 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
                   </tr>
                   <tr>
                     <td>처리량(TPS)</td>
-                    <td>221.77</td>
-                    <td>273.34</td>
-                    <td>23%↑</td>
+                    <td>55.71</td>
+                    <td>68.90</td>
+                    <td>23.7%↑</td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
+          <p>
+            로컬 환경에서 동시 사용자 10명, 각 50회 요청으로 측정했으며,
+            동일한 데이터와 인덱스 조건을 유지했습니다.
+          </p>
           <ul className={styles.descList}>
             <li>
               평균 응답시간:
               <mark className={styles.keyHighlight}>
-                24.45ms → 15.51ms (36.8% 개선)
+                24.45ms → 16.85ms (31.1% 개선)
               </mark>
               {"으로 단축했습니다."}
             </li>{" "}
@@ -146,99 +141,18 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
           <h4>4) 설계 회고</h4>
           <ul className={styles.descList}>
             <li>
-              성능 개선의 핵심은 MyBatis 도입 자체가 아니라, 목록 조회와 COUNT
-              쿼리의 목적을 구분하고 불필요한 JOIN을 제거한 데 있었습니다.
+              복합 조회를 MyBatis로 분리하고 COUNT 쿼리의 불필요한 JOIN을
+              EXISTS로 재구성한 결과, 동일한 로컬 테스트 조건에서 응답 시간을
+              줄였습니다.
             </li>
           </ul>
         </PortfolioTroubleCard>
 
-        <PortfolioTroubleCard title="Case 2. Controller 기반 커스텀 세션 인증 흐름 구현">
-          <h4>1) 문제 맥락</h4>
-          <ul className={styles.descList}>
-            <li>
-              기본 폼 로그인만으로는 JSON 요청, 로그인 실패 횟수, 계정 잠금,
-              최초 로그인 여부를 함께 처리하기 어려웠습니다.
-            </li>
-            <li>
-              인증 성공 여부뿐 아니라 실패 원인별 응답과 계정 상태 변경까지
-              일관된 흐름으로 관리해야 했습니다.
-            </li>
-            <li>
-              기본 Form Login 필터 내부에 모든 정책을 포함하면 인증 처리와 계정
-              비즈니스 규칙의 책임이 뒤섞일 수 있었습니다.
-            </li>
-          </ul>
-
-          <h4>2) 선택 기준</h4>
-          <ul className={styles.descList}>
-            <li>
-              로그인 요청의 진입점을 기본 Form Login 필터가 아닌 Controller로
-              옮겼습니다.
-            </li>
-            <li>
-              사용자 조회, 계정 활성 여부, 실패 횟수, 계정 잠금, 최초 로그인
-              여부 등의 비즈니스 검증은 LoginService에서 처리했습니다.
-            </li>
-          </ul>
-          <h4>3) 구현 과정</h4>
-          <ul className={styles.descList}>
-            <li>
-              <code>AuthenticationManager</code>를 통해 Spring Security의 인증
-              절차를 실행했습니다.
-            </li>
-            <li>
-              <code>SessionAuthenticationStrategy</code>를 직접 호출해 중복
-              로그인 제한, 세션 ID 변경, 활성 세션 등록 정책을 적용했습니다.
-            </li>
-            <li>
-              생성한 인증 정보를 <code>SecurityContextRepository</code>에
-              명시적으로 저장해 이후 요청에서 세션 인증 상태를 사용할 수 있도록
-              구성했습니다.
-            </li>
-            <li>
-              <code>HttpSessionEventPublisher</code>와{" "}
-              <code>SessionRegistry</code>를 연계해 로그아웃과 세션 만료 시 활성
-              세션 정보가 정리되도록 했습니다.
-            </li>
-          </ul>
-
-          <h4>4) 구현 결과</h4>
-          <ul className={styles.descList}>
-            <li>
-              로그인 5회 실패 시 계정 잠금, 최초 로그인 등 요구 조건을 만족하는
-              로직을 구현했습니다.
-            </li>
-            <li>
-              비즈니스 검증은 Service 계층에서 표현하면서도 세션 고정 공격
-              방지와 활성 세션 관리 등 Spring Security의 기본 정책을
-              유지했습니다.
-            </li>
-          </ul>
-
-          <h4>5) 설계 회고</h4>
-          <ul className={styles.descList}>
-            <li>
-              비즈니스 요구사항을 명시적으로 표현할 수 있었지만, 기본 필터가
-              자동으로 수행하던 인증 성공 이후의 절차를 직접 연결해야 했습니다.
-            </li>
-            <li>
-              SessionAuthenticationStrategy의 호출 순서와 SecurityContext의
-              명시적 저장, 세션 이벤트 구성을 함께 검증해야 하는 복잡도가
-              추가됐습니다.
-            </li>
-          </ul>
-        </PortfolioTroubleCard>
       </PortfolioSection>
 
       <PortfolioSection title="3. 관련 블로그 포스팅">
         <PortfolioBlogLinks
           items={[
-            {
-              href: "/blog/spring-boot-custom-session-authentication",
-              label:
-                "Spring Boot에서 Session 인증을 커스텀하는 이유와 실전 구현",
-              description: "– 로그인 구조 설계 & 요구 사항 적용",
-            },
             {
               href: "/blog/jpa-mybatis-hybrid-strategy",
               label: "JPA vs MyBatis 성능 비교와 하이브리드 전략",

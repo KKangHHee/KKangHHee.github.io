@@ -1,10 +1,10 @@
 ---
 sidebar_position: 2
-title: Security Ticket Platform
+title: Security Ticket
 description: 정보보호 컴플라이언스 점검 디지털화 플랫폼
 ---
 
-# 🔐 Security Ticket Platform
+# 🔐 Security Ticket
 
 > **컴플라이언스(ISMS-P, ISO27001) 점검을 디지털화한 웹 기반 관리 플랫폼**  
 > Excel·이메일 중심의 수동 프로세스 → 웹 기반 자동화 전환
@@ -17,8 +17,7 @@ description: 정보보호 컴플라이언스 점검 디지털화 플랫폼
 | ----------- | ------------------------------------- |
 | **기간**    | 2025.04 ~ 2025.05 (2개월)             |
 | **팀 구성** | BE 8명 (A팀 4명, B팀 4명), FE 3명     |
-| **역할**    | Backend Developer (B팀)               |
-| **기여도**  | 15% (사용자 관리 담당)                |
+| **역할**    | 사용자 관리 도메인 및 백엔드 API 설계 |
 | **배포**    | 폐쇄망 온프레미스 + Nexus 패키지 관리 |
 
 ### 핵심 문제 인식
@@ -63,8 +62,6 @@ description: 정보보호 컴플라이언스 점검 디지털화 플랫폼
 
 - **핵심 설계 원칙**
   - **하이브리드 ORM**: JPA(CRUD) + MyBatis(복잡 검색)
-  - **세션 기반 인증**: Spring Security 커스텀 구현
-  - **역할 기반 접근 제어**: 최고 관리자 / 관리자 / 고객사
 
 ---
 
@@ -72,14 +69,13 @@ description: 정보보호 컴플라이언스 점검 디지털화 플랫폼
 
 ### Backend
 
-| 기술                          | 선택 이유                     |
-| ----------------------------- | ----------------------------- |
-| **Java 17 + Spring Boot 3.x** | 최신 LTS 기반 안정성 확보     |
-| **JPA (Hibernate)**           | 단순 CRUD 및 도메인 중심 개발 |
-| **MyBatis**                   | 복잡한 검색 조건 및 성능 튜닝 |
-| **MySQL**                     | 관계형 데이터 구조에 적합     |
-| **Redis**                     | 세션 관리 및 캐시 처리        |
-| **Spring Security**           | 세션 기반 인증/인가           |
+| 기술                   | 선택 이유                     |
+| ---------------------- | ----------------------------- |
+| **Java + Spring Boot** | 프로젝트 표준 기술 스택       |
+| **JPA (Hibernate)**    | 단순 CRUD 및 도메인 중심 개발 |
+| **MyBatis**            | 복잡한 검색 조건 및 성능 튜닝 |
+| **MySQL**              | 관계형 데이터 구조에 적합     |
+| **Redis**              | 세션 관리 및 캐시 처리        |
 
 ### Frontend
 
@@ -91,54 +87,7 @@ description: 정보보호 컴플라이언스 점검 디지털화 플랫폼
 
 ## 🎯 담당 역할
 
-### 1. 세션 기반 커스텀 인증/인가 구조 설계
-
-**요구사항**
-
-- JSON 기반 로그인 (표준 FormLogin 필터 사용 불가)
-- 계정 잠금, 실패 횟수 증가, 첫 로그인 체크 등 비즈니스 로직 통합
-- Admin/Customer 타입별 다른 응답 포맷
-
-**해결**: Controller + Service 레이어에서 Spring Security 플로우 직접 제어
-
-```java
-@Service
-public class LoginService {
-
-    private void performSecurityAuthentication(
-        LoginDto req,
-        User user,
-        HttpServletRequest request,
-        HttpServletResponse response
-    ) {
-        // 1. AuthenticationManager를 통한 인증
-        Authentication authentication = authenticationManager.authenticate(authToken);
-
-        // 2. SessionAuthenticationStrategy 호출 (세션 정책 적용)
-        sessionAuthenticationStrategy.onAuthentication(authentication, request, response);
-
-        // 3. SecurityContext 생성 및 설정
-        SecurityContext context = securityContextHolderStrategy.createEmptyContext();
-        context.setAuthentication(authentication);
-        SecurityContextHolder.setContext(context);
-
-        // 4. SecurityContextRepository에 저장
-        securityContextRepository.saveContext(context, request, response);
-    }
-}
-```
-
-**핵심 포인트**
-
-- ✅ `SessionAuthenticationStrategy`를 수동 호출하여 세션 정책 적용
-- ✅ 중복 로그인 제어 + 세션 고정 공격 방지 + SessionRegistry 등록
-- ✅ 비즈니스 로직을 서비스 레이어에서 유연하게 처리
-
-[상세 구현 과정 보기 →](./troubleshooting/custom-session-auth)
-
----
-
-### 2. 복잡한 검색 기능 성능 최적화 (MyBatis 도입)
+### 1. 복합 조회 분리와 COUNT 쿼리 구조 개선
 
 **요구사항**
 
@@ -152,7 +101,7 @@ public class LoginService {
   - 동적 조건 추가 시 코드 복잡도 증가
   - 쿼리 튜닝 어려움
 
-**해결**: MyBatis 동적 SQL + EXISTS 서브쿼리 패턴
+**해결**: 복합 조회를 MyBatis로 분리하고 COUNT 쿼리의 불필요한 JOIN을 EXISTS로 재구성
 
 ```xml
   SELECT u.*, c.*, co.*
@@ -192,7 +141,7 @@ public class LoginService {
 
 1. **동적 SQL 최적화**
    - `<choose>` 중첩 제거 → OR 조건 기반 통합
-   - 쿼리 템플릿 고정화 → SQL 캐시 효율 향상
+   - 조건 분기를 단순화해 매퍼 가독성과 수정 범위 개선
 
 2. **COUNT 쿼리 최적화**
    - `JOIN` 후 `COUNT(*)` → `EXISTS` 서브쿼리
@@ -204,7 +153,7 @@ public class LoginService {
 
 ## 🔥 핵심 기술 도전
 
-### 1️⃣ 복합 검색 성능 36% 개선
+### 1️⃣ 복합 검색 쿼리 구조 개선
 
 **문제**: JPA Specification 사용 시 복잡한 조건에서 성능 저하
 
@@ -236,9 +185,9 @@ public class LoginService {
             <strong>평균 응답시간</strong>
           </td>
           <td>24.45ms</td>
-          <td>15.51ms</td>
+          <td>16.85ms</td>
           <td>
-            <strong>36.8% ↓</strong>
+            <strong>31.1% ↓</strong>
           </td>
         </tr>
       </tbody>
@@ -246,45 +195,9 @@ public class LoginService {
   </div>
 </div>
 
+> 로컬 환경에서 동시 사용자 10명, 각 50회 요청으로 측정했으며 동일한 데이터와 인덱스 조건을 유지했습니다.
+
 [상세 분석 보기 →](./troubleshooting/mybatis-optimization)
-
----
-
-### 2️⃣ 커스텀 세션 인증 구현
-
-**문제**: 표준 FormLogin으로 처리 어려운 비즈니스 로직
-
-- 계정 잠금, 실패 횟수, 첫 로그인 체크
-- Admin/Customer 타입별 커스텀 응답
-
-**해결**: Controller + SessionAuthenticationStrategy 조합
-
-**인증 플로우**
-
-```
-Client Request
-    ↓
-Controller (요청 수신)
-    ↓
-LoginService (비즈니스 검증)
-  ├─ 사용자 확인
-  ├─ 계정 활성 여부
-  ├─ 비밀번호 검증
-  └─ 첫 로그인 검증
-    ↓
-performSecurityAuthentication
-  ├─ AuthenticationManager.authenticate()
-  ├─ SessionAuthenticationStrategy.onAuthentication()
-  │   ├─ 중복 세션 제어
-  │   ├─ 세션 고정 공격 방지
-  │   └─ SessionRegistry 등록
-  ├─ SecurityContext 생성
-  └─ HttpSession에 저장
-    ↓
-Response
-```
-
-[상세 구현 과정 보기 →](./troubleshooting/custom-session-auth)
 
 ---
 
@@ -292,18 +205,11 @@ Response
 
 ### 성능 개선
 
-- ✅ 복합 검색 **평균 응답시간 36% 개선** (24.45ms → 15.51ms)
-
-### 보안 강화
-
-- ✅ 세션 기반 커스텀 인증으로 비즈니스 로직 통합
-- ✅ 계정 잠금, 실패 횟수, 첫 로그인 체크 등 보안 요구사항 충족
-- ✅ `SessionRegistry`를 활용한 활성 세션 관리
+- ✅ 복합 검색 쿼리 구조 개선 (동일한 로컬 테스트 조건에서 평균 24.45ms → 16.85ms)
 
 ### 협업 효율성
 
-- ✅ API 표준화로 FE 연동 시간 **30% 단축** (팀 피드백 기반)
-- ✅ Swagger 문서 자동화로 커뮤니케이션 비용 감소
+- ✅ 공통 응답 형식과 Swagger 문서를 정리해 프론트엔드 연동 기준 통일
   ![img_1](./img/notion_1.png)
   <div
     style={{
@@ -341,8 +247,6 @@ Response
   - 적절한 계층화
 - 이러한 구조적 접근이 성능 개선의 핵심
 
-### 3. Spring Security 내부 동작 이해
+### 3. 인증 정책과 API 책임 분리
 
-- 표준 필터 체인을 벗어나 커스텀 인증 구현 경험
-- `SessionAuthenticationStrategy`, `SecurityContextRepository` 등  
-  핵심 컴포넌트의 역할과 연계 방식 이해
+- 로그인 요청 처리와 계정 상태 정책을 서비스 계층에서 구분해 구현한 경험

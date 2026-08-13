@@ -27,11 +27,11 @@ function HomepageHeader() {
             </Heading>
             <p className={styles.heroSubtitle}>{siteConfig.tagline}</p>
             <p className={styles.heroDescription}>
-              Spring Boot와 Java를 활용하여 성능과 확장성을 고려한 서버
-              아키텍처를 설계합니다.
+              Java와 Spring Boot를 기반으로 백엔드 기능을 구현하고, 데이터와
+              요청 흐름의 문제를 구조적으로 개선해 왔습니다.
               <br />
-              MySQL, PostgreSQL, Redis를 활용한 데이터 최적화 경험을 보유하고
-              있습니다.
+              인턴과 팀 프로젝트에서 관계형 데이터베이스와 Redis를 활용한 조회·인증
+              기능을 개발했습니다.
             </p>
           </div>
 

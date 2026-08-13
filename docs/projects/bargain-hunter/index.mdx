@@ -29,14 +29,13 @@ description: MSA 기반 국내 관광 지원 서비스
 | 항목        | 내용                                  |
 | ----------- | ------------------------------------- |
 | **기간**    | 2025.07 ~ 2025.10 (4개월)             |
-| **팀 구성** | BE 4명, FE 1명                        |
-| **역할**    | Backend Developer (Auth Service 담당) |
-| **배포**    | Kubernetes + GitHub Actions CI/CD     |
+| **팀 구성** | 5인 (BE 4인 / FE 1인)              |
+| **역할**    | 인증·인가 아키텍처 및 사용자 도메인 담당 |
 
 ### 주요 기능
 
 - 🗺️ **지도 탐색**: TourAPI 연동 관광지 정보 제공
-- 📝 **리뷰 시스템**: Kafka 기반 이벤트 메시징
+- 📝 **리뷰 시스템**: 관광지 리뷰 등록 및 조회
 - 💬 **가격 질의**: Gemini API 챗봇
 
 ---
@@ -78,7 +77,7 @@ description: MSA 기반 국내 관광 지원 서비스
     │                │          │         │
 ┌───▼───┐    ┌──────▼─────┐  ┌─▼────┐  ┌─▼───┐
 │ Auth  │    │  Review    │  │ Tour │  │ Util│
-│ (JWT) │    │  (Kafka)   │  │ (API)│  │(LLM)│
+│ (JWT) │    │   Review   │  │ (API)│  │(LLM)│
 └───────┘    └────────────┘  └──────┘  └─────┘
      │              │
 ┌────▼────┐   ┌────▼────┐
@@ -91,7 +90,6 @@ description: MSA 기반 국내 관광 지원 서비스
 - **핵심 설계 원칙**
   - **Gateway 중앙 인증**: JWT 검증을 Gateway에서 1회만 수행 → 각 서비스는 헤더에서 사용자 정보 추출
   - **이벤트 기반 비동기**: Spring Event + @Async로 이메일 발송 처리
-  - **독립적 배포**: 각 서비스별 Docker 이미지 빌드 → Kubernetes 배포
 
 ### figma
 
@@ -105,7 +103,7 @@ description: MSA 기반 국내 관광 지원 서비스
 
 | 기술                          | 선택 이유                          |
 | ----------------------------- | ---------------------------------- |
-| **Java 17 + Spring Boot 3.x** | 최신 LTS 기반 안정성 확보          |
+| **Java + Spring Boot**        | 프로젝트 표준 기술 스택            |
 | **Spring Cloud Gateway**      | Reactive 기반 고성능 API Gateway   |
 | **PostgreSQL**                | JSONB 지원 및 복잡한 쿼리 처리     |
 | **Redis**                     | 이메일 인증 코드 저장 (Hash + TTL) |
@@ -114,7 +112,6 @@ description: MSA 기반 국내 관광 지원 서비스
 
 ### Infra & DevOps
 
-- **Docker + Kubernetes**: 컨테이너 오케스트레이션
 - **GitHub Actions**: PR Merge 시 자동 빌드/배포
 - **Naver Cloud Platform**: 인프라 호스팅
 
@@ -191,7 +188,7 @@ public class OAuth2Service {
 
 **보안 강화**
 
-- ✅ PKCE 적용으로 **Authorization Code Interception** 공격 방지
+- ✅ PKCE 적용으로 **Authorization Code 탈취 위험 완화**
 - ✅ code_verifier를 알지 못하는 공격자는 토큰 교환 불가
 
 ### 3. Redis 기반 이메일 인증 시스템
@@ -266,22 +263,24 @@ public class JwtAuthenticationFilter implements GatewayFilter {
 
 **장점**
 
-- ✅ Gateway에서 JWT 검증을 1회만 수행 → 각 서비스의 인증 오버헤드 제거
+- ✅ 인증 검증 지점을 Gateway로 일원화 → 각 서비스의 중복 JWT 파싱·검증 부담 축소
 - ✅ 헤더로 사용자 정보 전달 → 각 서비스는 헤더에서 추출만
 
 ---
 
 ## 🔥 핵심 기술 도전
 
-### 1️⃣ 이메일 발송 API 응답 속도 92% 개선[(관련 PR 보기)](https://github.com/JocketDan/jocketdanBackend/pull/34)
+### 1️⃣ 외부 I/O 분리를 통한 이메일 인증 요청 경로 개선 [(관련 PR 보기)](https://github.com/JocketDan/jocketdanBackend/pull/34)
 
-**문제**: JavaMailSender.send()가 동기 블로킹 (평균 2~3초 대기)
+**문제**: SMTP 통신이 사용자 요청 처리 경로를 점유해, 인증 요청 API가 메일 발송 완료까지 대기
 
-**해결**: Spring Event + @Async 비동기 처리
+**개선**: Spring Event와 @Async를 활용해 메일 발송을 비동기 후처리로 분리하고, 인증 요청 API가 SMTP 처리 완료를 기다리지 않고 응답하도록 구성
+
+**검증 결과**
+
 | 항목 | Before | After | 개선율 |
 | ----------------- | -------- | ---------- | ---------- |
 | API 응답 시간 | 2.5초 | 0.2초 | **92% ↓** |
-| 동시 처리 가능 수 | 10 req/s | 100+ req/s | **10배 ↑** |
 
 [상세 분석 보기 →](./troubleshooting/email-async)
 
@@ -327,13 +326,13 @@ Long newAttemptCount = redisTemplate.opsForHash()
 
 ### 성능 최적화
 
-- ✅ 이메일 발송 API 응답 속도 **92% 개선** (2.5s → 0.2s)
+- ✅ SMTP 통신을 요청 경로에서 분리해 인증 API가 메일 발송 완료를 기다리지 않도록 개선 (평균 2.5s → 0.2s)
 - ✅ Redis HINCRBY 원자적 연산으로 동시성 제어
 - ✅ Gateway 중앙 인증으로 각 서비스의 JWT 파싱 오버헤드 제거
 
 ### 보안 강화
 
-- ✅ PKCE 적용으로 OAuth2 Authorization Code Interception 방지
+- ✅ PKCE 적용으로 OAuth2 Authorization Code 탈취 위험 완화
 - ✅ Refresh Token DB 저장으로 토큰 탈취 시 즉시 대응
 - ✅ Gateway 단일 JWT 검증으로 인증 일관성 확보
 
@@ -341,7 +340,6 @@ Long newAttemptCount = redisTemplate.opsForHash()
 
 - ✅ MSA 기반 독립적인 서비스 구조
 - ✅ 이벤트 기반 비동기 처리로 시스템 응답성 향상
-- ✅ Kubernetes를 활용한 자동 배포 및 스케일링
 
 ---
 

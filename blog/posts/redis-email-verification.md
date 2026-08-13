@@ -27,12 +27,12 @@ tags: []
 
 #### DB vs Redis 비교
 
-| 기준          | MySQL/PostgreSQL            | Redis                   |
-| ------------- | --------------------------- | ----------------------- |
-| **읽기 속도** | 상대적으로 느림(디스크 I/O) | 상대적으로 빠름(메모리) |
-| **TTL 지원**  | ❌                          | ✅ (자동 만료)          |
-| **동시성**    | Row Lock 필요               | 원자 연산 기본 지원     |
-| **영속성**    | 장기 보관                   | RDB/AOF로 백업 가능     |
+| 기준            | MySQL/PostgreSQL                    | Redis                    |
+| --------------- | ----------------------------------- | ------------------------ |
+| **데이터 접근** | 버퍼 풀·인덱스를 활용한 관계형 조회 | 메모리 기반 키 조회      |
+| **TTL 지원**    | ❌                                  | ✅ (자동 만료)           |
+| **원자적 갱신** | 트랜잭션·조건부 UPDATE 등 활용      | INCR·HINCRBY·Lua 등 활용 |
+| **영속성**      | 장기 보관                           | RDB/AOF로 백업 가능      |
 
 짧은 수명, 자동 만료, 빈번한 읽기·쓰기가 핵심인 인증 코드에는 Redis가 적합합니다. 반대로 감사 이력처럼 장기 보관과 관계형 조회가 필요하다면 별도의 영속 저장소가 필요합니다.
 
@@ -57,18 +57,15 @@ CREATE TABLE email_codes (
 #### Redis로 구현할 경우
 
 ```java
-// 인증 코드 저장 + 10분 TTL 설정
+// 인증 코드 저장 + 5분 TTL 설정
 redisTemplate.opsForValue()
-    .set("email:code:" + email, code, 10, TimeUnit.MINUTES);
+    .set("email:code:" + email, code, 5, TimeUnit.MINUTES);
 ```
 
-#### Redis가 빠른 이유
+#### 선택 기준
 
-- MySQL:
-  요청 → 디스크 I/O → 인덱스 검색 → Row Lock → 결과 반환
-
-- Redis:
-  요청 → 메모리 해시 조회 → 결과 반환
+- Redis를 선택한 핵심 이유는 단순한 속도 비교가 아니라, 짧은 수명의 데이터를 TTL로 만료시키고 시도 횟수를 원자적으로 갱신하기 쉽다는 점입니다.
+- 관계형 DB도 버퍼 풀과 인덱스를 활용하므로 모든 조회가 디스크 I/O나 Row Lock을 거친다고 볼 수는 없습니다.
 
 ---
 
@@ -89,7 +86,7 @@ Fields:
 
 - **데이터 응집도**: 같은 이메일의 모든 정보를 한 곳에 관리
 - **부분 업데이트**: `code`는 그대로 두고 `attempts`만 증가 가능
-- **메모리 효율**: 작은 Hash는 Ziplist로 압축되어 메모리 절약
+- **메모리 효율**: 작은 Hash는 Redis 설정에 따라 listpack 형태로 압축 저장 가능
 
 #### Java 코드 구현
 
@@ -100,7 +97,7 @@ public class EmailVerificationService {
 
     private static final String KEY_PREFIX = "email:verification:"; // 키 구조
     private static final int MAX_ATTEMPTS = 5; // 최대 횟수
-    private static final int CODE_EXPIRY_MINUTES = 10; // 만료 시간
+    private static final int CODE_EXPIRY_MINUTES = 5; // 프로젝트 적용 값
 
     private final RedisTemplate redisTemplate;
 
@@ -212,6 +209,12 @@ if (!Boolean.TRUE.equals(redisTemplate.hasKey(key))) {
 // 이후 increment 실행
 ```
 
+**보충**
+
+`hasKey`와 `increment`는 별도 명령이므로 그 사이에 TTL이 만료될 수 있습니다. 실제로는 Lua Script에서 키 존재 확인과 증가를 하나의 원자적 작업으로 묶거나, 데이터 모델에 맞는 단일 명령 구조를 사용해야 합니다.
+
+시도 횟수 증가 자체의 원자성과 Read–Modify–Write 비교는 [레디스는 싱글스레드인데 왜 동시성 제어가 필요할까?](./redis-concurrency)에서 별도로 다룹니다.
+
 ### 주의점 2) Hash vs String 구조 비교
 
 - **Hash 구조의 경우**
@@ -236,4 +239,4 @@ if (!Boolean.TRUE.equals(redisTemplate.hasKey(key))) {
 - **보안:**
   원자 연산을 활용하면 여러 애플리케이션 인스턴스에서도 시도 횟수를 일관되게 집계할 수 있습니다.
 
-다만 만료된 Hash에 `increment`를 실행하면 TTL이 없는 새 키가 생길 수 있습니다. 따라서 증가 연산 전에 키의 존재 여부를 확인하고, 인증 코드와 시도 횟수의 생명 주기를 함께 관리해야 합니다.
+다만 만료된 Hash에 `increment`를 실행하면 TTL이 없는 고아 키가 누적될 수 있습니다. 단순한 사전 존재 확인만으로는 명령 사이의 경쟁 조건을 제거할 수 없으므로, 키 확인과 증가를 원자적으로 처리하고 인증 코드와 시도 횟수의 생명 주기를 함께 관리해야 합니다.

@@ -1,11 +1,11 @@
 ---
 sidebar_position: 1
-title: 이메일 발송 비동기 처리 (92% 개선)
+title: 외부 I/O 분리를 통한 이메일 인증 요청 경로 개선
 ---
 
-# 이메일 발송 API 응답 속도 92% 개선
+# 외부 I/O 분리를 통한 이메일 인증 요청 경로 개선
 
-> Spring Event + @Async를 활용한 비동기 처리로 **2.5초 → 0.2초** 달성
+> SMTP 통신을 사용자 요청 처리 경로에서 분리하고, 메일 발송을 비동기 후처리로 구성한 과정을 정리합니다.
 
 ---
 
@@ -37,10 +37,10 @@ public class VerificationService {
 
     public void createAndSendCode(String email, VerificationType type) {
         String code = generateRandomCode();
-        redisService.saveCode(email, code, type);  // 0.1초
+        redisService.saveCode(email, code, type);
 
         // 동기 블로킹 - SMTP 서버 응답 대기
-        emailService.sendVerificationCode(email, code, type);  // 2.4초
+        emailService.sendVerificationCode(email, code, type);
 
         // 총 응답 시간: 2.5초
     }
@@ -93,13 +93,13 @@ public class VerificationService {
         String code = generateRandomCode();
         redisService.saveCode(email, code, type);  // Redis 저장 (동기)
 
-        // 이벤트 발행 (비동기)
+        // 이벤트 발행 자체는 동기이며, @Async 리스너가 별도 Executor에서 처리
         eventPublisher.publishEvent(
             new VerificationCodeCreatedEvent(this, email, code, type)
         );
 
         log.info("인증코드 생성 완료: email={}", email);
-        // 여기서 즉시 응답 반환 (총 0.2초)
+        // 요청 스레드는 SMTP 완료를 기다리지 않고 반환
     }
 }
 ```
@@ -167,8 +167,8 @@ public class AsyncConfig {
 | --------------------- | ------------- | -------------- | ---------- |
 | **평균 응답시간**     | 2.5초         | 0.2초          | **92% ↓**  |
 | **95 percentile**     | 3.2초         | 0.3초          | **90% ↓**  |
-| **처리량 (TPS)**      | 10 req/s      | 100+ req/s     | **10배 ↑** |
-| **동시 처리 가능 수** | 10명          | 100명+         | **10배 ↑** |
+
+응답 시간은 SMTP 처리 시간이 사라진 것이 아니라 HTTP 응답 경로에서 분리된 결과입니다. 메일 발송 완료 시간과 실패율은 별도 지표로 확인해야 합니다.
 
 ---
 
@@ -177,11 +177,11 @@ public class AsyncConfig {
 ```
 [Client 요청]
      ↓
-[Controller] ← 0.2초 후 즉시 응답
+[Controller] ← SMTP 완료를 기다리지 않고 응답
      ↓
 [VerificationService]
-  ├─ Redis 저장 (0.1초)
-  └─ Event 발행 (0.1초) ← 여기서 반환
+  ├─ Redis 저장
+  └─ Event 발행 ← 여기서 반환
            ↓
 [ApplicationEventPublisher]
            ↓
@@ -190,7 +190,7 @@ public class AsyncConfig {
 [VerificationCodeEventListener]
   @Async("emailTaskExecutor")
            ↓
-[EmailService.sendMail()] ← 2.4초 (사용자는 대기 안 함)
+[EmailService.sendMail()] ← 사용자는 완료까지 대기하지 않음
 ```
 
 ---
@@ -201,13 +201,13 @@ public class AsyncConfig {
 
 - ✅ 이메일 발송 로직을 **별도 이벤트로 분리**
 - ✅ API 응답과 이메일 발송이 **느슨하게 결합**
-- ✅ 이메일 발송 실패 시에도 사용자 응답에 영향 없음
+- ✅ 이메일 발송 실패가 이미 반환된 사용자 응답을 지연시키지 않음
 
 ### 2️⃣ @Async 비동기 처리
 
 - ✅ 별도 스레드에서 이메일 발송
-- ✅ 메인 스레드는 즉시 반환
-- ✅ 스레드 풀로 동시 요청 안정적 처리
+- ✅ 일반적인 부하 범위에서는 요청 스레드가 SMTP 완료를 기다리지 않고 반환
+- ✅ 전용 Executor로 요청 처리 스레드와 SMTP 작업 자원 분리
 
 ### 3️⃣ ThreadPoolTaskExecutor 튜닝
 
@@ -221,8 +221,10 @@ QueueCapacity: 100    // 대기 작업 큐 크기
 
 1. 요청 2개 이하: CorePoolSize 스레드 사용
 2. 요청 2~102개: 큐에 대기 (100개)
-3. 요청 102개 초과: MaxPoolSize까지 스레드 증가 (최대 5개)
-4. 요청 107개 초과: RejectedExecutionHandler 실행 (CallerRunsPolicy)
+3. 동시에 실행·대기 중인 작업이 102개를 넘으면 MaxPoolSize까지 워커 증가
+4. 워커 5개와 큐 100개가 모두 차면 다음 작업부터 `CallerRunsPolicy` 실행
+
+`CallerRunsPolicy`가 실행되면 이벤트를 발행한 요청 스레드가 SMTP 작업을 직접 수행하므로 해당 요청은 다시 지연될 수 있습니다. 이 정책은 작업 유실을 피하는 대신 과부하를 호출자에게 전달하는 선택이므로, 실제 운영에서는 큐 적재량과 거부 횟수를 함께 관찰해야 합니다.
 
 ---
 
@@ -254,7 +256,7 @@ public void handleVerificationCodeCreated(VerificationCodeCreatedEvent event) {
                 log.error("이메일 발송 최종 실패: email={}", event.getEmail(), e);
                 // 슬랙 알림 또는 DB 로그 저장
             } else {
-                Thread.sleep(1000 * retryCount);  // 지수 백오프
+                Thread.sleep(1000L * retryCount);  // 선형 백오프 예시
             }
         }
     }
@@ -265,11 +267,12 @@ public void handleVerificationCodeCreated(VerificationCodeCreatedEvent event) {
 
 ## 7. 결론
 
-:::success 성과
+:::success 개선 결과
 
-- API 응답 시간 **2.5초 → 0.2초** (92% 개선)
-- 이메일 발송 실패 시에도 사용자 응답에 영향 없음
-- 스레드 풀로 동시 발송 요청 안정적 처리
+- 인증 요청 API가 SMTP 처리 완료를 기다리지 않고 응답하도록 요청 경로와 메일 발송 책임 분리
+- 측정 환경에서 API 평균 응답 시간 **2.5초 → 0.2초**
+- 이메일 발송 실패가 이미 반환된 사용자 응답을 지연시키지 않음
+- 전용 Executor로 요청 처리 스레드와 SMTP 작업 자원 분리
   :::
 
 :::tip 배운 점

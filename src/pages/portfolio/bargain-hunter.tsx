@@ -13,16 +13,15 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
       projectName="Bargain Hunter"
       summary="지도를 활용해 국내 관광지를 탐색하고 LLM 기반 가격 비교 기능을 제공하는 서비스"
       period="2025.07 - 2025.10"
-      team="4인 (BE 3인 / FE 1인)"
+      team="5인 (BE 4인 / FE 1인)"
       role="인증·인가 아키텍처 및 사용자 도메인 담당"
       stack={[
-        "Java 17",
-        "Spring Boot 3",
+        "Java",
+        "Spring Boot",
         "Spring Cloud Gateway",
         "PostgreSQL",
         "Redis",
         "Docker",
-        "Kubernetes",
       ]}
       links={[
         {
@@ -31,7 +30,7 @@ export default function Portfolio({ embedded = false }: PortfolioProps) {
         },
       ]}
       achievements={[
-        "이메일 인증 API 응답시간 92% 단축 (2.5초 → 0.2초)",
+        "외부 I/O 분리를 통한 이메일 인증 요청 경로 개선",
         "Gateway 공통 JWT 검증과 Auth Service 책임 분리",
       ]}
     >
@@ -77,37 +76,34 @@ Auth Service
       </PortfolioSection>
 
       <PortfolioSection title="2. 핵심 문제 해결 및 성과">
-        <PortfolioTroubleCard title="Case 1. SMTP 대기 시간을 사용자 응답 경로에서 분리">
+        <PortfolioTroubleCard title="Case 1. 외부 I/O 분리를 통한 이메일 인증 요청 경로 개선">
           <h4>1) 문제 맥락</h4>
           <ul className={styles.descList}>
             <li>
-              이메일 인증 API의 평균 응답 시간이 <strong>2.5초</strong>였습니다.
+              이메일 인증 과정에서 SMTP 통신이 사용자 요청 처리 경로를 점유하고
+              있었습니다.
             </li>
             <li>
-              SMTP 서버 통신이 <strong>동기 블로킹</strong> 방식으로 처리되어
-              병목이 발생했습니다.
+              이 때문에 인증 요청 API가 메일 발송 완료까지 기다려야 했고, 외부
+              I/O 지연이 사용자 응답에 그대로 전파됐습니다.
             </li>
           </ul>
 
           <h4>2) 선택 기준과 구현</h4>
           <ul className={styles.descList}>
-            <li>회원가입 로직과 메일 발송 로직을 분리했습니다.</li>
+            <li>인증 요청 처리와 메일 발송의 실행 경로를 분리했습니다.</li>
             <li>
-              Spring Event와 <code>@Async</code> 기반 비동기 구조를 도입 후,
-              @Async를 통해 별도 스레드에서 SMTP 통신을 처리했습니다.
+              Spring Event와 <code>@Async</code>를 활용해 메일 발송을 비동기
+              후처리로 구성하고, SMTP 통신은 별도 Executor에서 처리했습니다.
             </li>
           </ul>
 
           <h4>3) 검증 결과</h4>
           <ul className={styles.descList}>
             <li>
-              평균 응답시간
-              <mark className={styles.keyHighlight}>
-                2.5s → 0.2s (92% 개선)
-              </mark>
-              {"으로 단축했습니다."}
+              로컬 테스트 환경에서 요청 접수까지의 평균 API 응답 시간은 약
+              2.5초에서 0.2초로 감소했습니다.
             </li>
-            <li>처리량을 약 10배 향상했습니다(10 req/s → 100+ req/s).</li>
             <li>회원가입 과정의 이메일 인증 UX를 개선했습니다.</li>
           </ul>
 
@@ -159,8 +155,8 @@ Auth Service
           <h4>3) 검증 결과</h4>
           <ul className={styles.descList}>
             <li>
-              서비스별 중복 JWT 검증 로직을 제거하고 인증 정책의 변경 지점을
-              축소
+              인증 검증 지점을 Gateway로 일원화해 각 서비스의 중복 JWT
+              파싱·검증 부담과 인증 정책의 변경 지점을 줄였습니다.
             </li>
             <li>
               라우팅 계층과 사용자 도메인의 경계를 유지해 신규 서비스 추가 시
@@ -184,9 +180,8 @@ Auth Service
           items={[
             {
               href: "/blog/spring-event-async-email-optimization",
-              label:
-                "이메일 발송 API 응답 속도 개선: Spring Event와 비동기 처리",
-              description: "회원가입 인증 비동기 구조 설계 & 성능 최적화",
+              label: "동기·비동기와 블로킹·논블로킹 구분하기",
+              description: "개념 비교와 SMTP 작업 분리 사례",
             },
             {
               href: "/blog/redis-concurrency",
